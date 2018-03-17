@@ -8,15 +8,14 @@ import RootRoutes from './routes'
 import reducers from './reducer';
 
 const store = createStore(
-  reducers, 
-  fromJS({}), 
-  applyMiddleware(thunk)
+    reducers, 
+    fromJS({}), applyMiddleware(thunk)
 );
 
 const Root = () => (
-  <Provider store={store}>
-    <RootRoutes/>
-  </Provider>
+    <Provider store={store}>
+        <RootRoutes/>
+    </Provider>
 );
 
 export default Root;
