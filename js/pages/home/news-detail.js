@@ -30,12 +30,14 @@ class NewsDetail extends Component {
         const newsDetail = newsDetailState && newsDetailState.toJS() || {};
 
         return (
-            <View style={styles.detail}>
-                <ScrollView style={styles.detail__content}>
+            <ScrollView style={styles.detail}>
+                <Text style={styles.detail__title}>{newsDetail.title}</Text>
+                <Text style={styles.detail__date}>{newsDetail.date}</Text>
+                <View style={styles.detail__content}>
                     {this.getContentLayout(newsDetail.content)}
-                </ScrollView>
-            </View>
-        )
+                </View>
+            </ScrollView>
+        );
     }
 
     getContentLayout = (content) => {
@@ -78,8 +80,21 @@ const styles = StyleSheet.create({
         paddingLeft: 15,
         paddingRight: 15,
     },
-    datail__content: {
-        
+    detail__title: {
+        paddingLeft: 10,
+        paddingRight: 10,
+        textAlign: 'center',
+        fontSize: 20,
+        color: '#000',
+    },
+    detail__date: {
+        marginTop: 5,
+        marginBottom: 15,
+        textAlign: 'center',
+        color: colors.gray51,
+    },
+    detail__content: {
+
     },
     detail__section: {
         marginBottom: 15,

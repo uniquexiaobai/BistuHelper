@@ -5,5 +5,6 @@ export const mainTabColors = {
 
 export const colors = {
     whiteSmoke: '#f5f5f5',
+    gray: '#828282',
     lightGray: '#d3d3d3',
 };
