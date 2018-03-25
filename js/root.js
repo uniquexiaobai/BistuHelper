@@ -1,19 +1,11 @@
 import React from 'react';
-import {createStore, applyMiddleware} from 'redux';
-import thunk from 'redux-thunk';
-import {Provider} from 'react-redux';
-import {fromJS} from 'immutable';
+import {Provider} from 'mobx-react';
 
-import RootRoutes from './routes'
-import reducers from './reducer';
-
-const store = createStore(
-    reducers, 
-    fromJS({}), applyMiddleware(thunk)
-);
+import RootRoutes from './routes';
+import stores from './store';
 
 const Root = () => (
-    <Provider store={store}>
+    <Provider {...stores}>
         <RootRoutes/>
     </Provider>
 );

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
+import {observer, inject} from 'mobx-react';
 import {
     StyleSheet,
     TouchableHighlight,
@@ -13,45 +12,27 @@ import {
 import {colors} from '../../constants/colors';
 import {pixelWidth} from '../../utils/screen';
 
-import homeActionCreators from './action';
-
+@inject('newsStore')
+@observer
 class NewsList extends Component {
-    constructor(props) {
-        super(props);
-        this.ds = new ListView.DataSource({
-            rowHasChanged: (r1, r2) => r1 !== r2
-        });
-        this.state = {
-            dataSource: this.ds.cloneWithRows([])
-        };
-    }
+    ds = new ListView.DataSource({
+        rowHasChanged: (r1, r2) => r1 !== r2
+    });
 
-    componentDidMount() {
-        const {fetchNewsList} = this.props.homeActions;
+    async componentDidMount() {
+        const {fetchNewsList} = this.props.newsStore;
 
-        fetchNewsList()
-            .then(() => {})
-            .catch((err) => {});
-    }
-
-    componentWillReceiveProps(nextProps) {
-        const newsList = nextProps.newsListState.toJS();
-
-        if (newsList) {
-            this.setState({
-                dataSource: this.ds.cloneWithRows(newsList)
-            });
-        }
+        await fetchNewsList();
     }
 
     render() {
-        const newsList = this.props.newsListState;
+        const newsList = [...this.props.newsStore.newsList];
 
         return (
             <ListView
                 style={styles.news_list}
                 enableEmptySections={true}
-                dataSource={this.state.dataSource}
+                dataSource={this.ds.cloneWithRows(newsList)}
                 renderRow={(news) => (
                     <TouchableHighlight
                         key={news.id}
@@ -112,16 +93,4 @@ const styles = StyleSheet.create({
     }
 });
 
-function mapStateToProps(state) {
-    return {
-        newsListState: state.getIn(['home', 'newsList'])
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        homeActions: bindActionCreators(homeActionCreators, dispatch)
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NewsList);
+export default NewsList;

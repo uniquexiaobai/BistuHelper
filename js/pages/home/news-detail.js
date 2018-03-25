@@ -1,33 +1,43 @@
 import React, {Component} from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
+import {observable, action, runInAction} from 'mobx';
+import {observer} from 'mobx-react';
+import axios from 'axios';
 import {StyleSheet, ScrollView, View, Text, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import {mainTabColors} from '../../constants/colors';
-import {colors} from '../../constants/colors';
+import {mainTabColors, colors} from '../../constants/colors';
 import {screenWidth} from '../../utils/screen';
 
-import homeActionCreators from './action';
-
+@observer
 class NewsDetail extends Component {
     static navigationOptions = ({navigation}) => ({
         title: '新闻详情',
     });
 
-    componentDidMount() {
-        const {fetchNewsDetail} = this.props.homeActions;
-        const {getParam} = this.props.navigation;
-        const newsId = getParam('newsId');
+    @observable newsDetail = {};
 
-        fetchNewsDetail(newsId)
-            .then(() => {})
-            .catch((err) => {});
+    @action
+    fetchNewsDetail = async (newsId) => {
+        try {
+            const requestURL = `http://bistuhelper.cn/api/news/${newsId}`;
+            const response = await axios.get(requestURL);
+
+            runInAction(() => {
+                this.newsDetail = response.data;
+            });
+        } catch (e) {
+            console.error('Connection error', 'Couldn\'t fetch the data.');
+        }
+    };
+
+    async componentDidMount() {
+        const newsId = this.props.navigation.getParam('newsId');
+
+        await this.fetchNewsDetail(newsId);
     }
 
     render() {
-        const {newsDetailState} = this.props;
-        const newsDetail = newsDetailState && newsDetailState.toJS() || {};
+        const newsDetail = this.newsDetail;
 
         return (
             <ScrollView style={styles.detail}>
@@ -76,7 +86,6 @@ class NewsDetail extends Component {
 const styles = StyleSheet.create({
     detail: {
         paddingTop: 15,
-        paddingBottom: 15,
         paddingLeft: 15,
         paddingRight: 15,
     },
@@ -94,7 +103,7 @@ const styles = StyleSheet.create({
         color: colors.gray51,
     },
     detail__content: {
-
+        paddingBottom: 15,
     },
     detail__section: {
         marginBottom: 15,
@@ -110,16 +119,4 @@ const styles = StyleSheet.create({
     },
 });
 
-function mapStateToProps(state) {
-    return {
-        newsDetailState: state.getIn(['home', 'newsDetail'])
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        homeActions: bindActionCreators(homeActionCreators, dispatch)
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NewsDetail);
+export default NewsDetail;
