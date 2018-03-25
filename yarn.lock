@@ -3819,6 +3819,10 @@ react-native-drawer-layout@1.3.2:
   dependencies:
     react-native-dismiss-keyboard "1.0.0"
 
+react-native-popup-menu@^0.12.3:
+  version "0.12.3"
+  resolved "http://registry.npm.taobao.org/react-native-popup-menu/download/react-native-popup-menu-0.12.3.tgz#547544e2f4606b907a338e3f9992495d67c76157"
+
 react-native-safe-area-view@^0.7.0:
   version "0.7.0"
   resolved "http://registry.npm.taobao.org/react-native-safe-area-view/download/react-native-safe-area-view-0.7.0.tgz#38f5ab9368d6ef9e5d18ab64212938af3ec39421"

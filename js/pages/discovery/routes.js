@@ -3,7 +3,7 @@ import PhoneBook from './phone_book';
 
 const discoveryRoutes = {
     Library: {
-        screen: Library
+        screen: Library,
     },
     PhoneBook: {
         screen: PhoneBook
