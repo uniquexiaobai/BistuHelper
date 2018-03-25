@@ -6,5 +6,3 @@ export const screenWidth = Dimensions
 export const screenHeight = Dimensions
     .get('window')
     .height;
-
-export const pixelWidth = 1 / PixelRatio.get();

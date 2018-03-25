@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 
 import {colors} from '../../constants/colors';
-import {pixelWidth} from '../../utils/screen';
 
 @inject('newsStore')
 @observer
@@ -70,7 +69,7 @@ const styles = StyleSheet.create({
         paddingLeft: 15,
         paddingRight: 15,
         marginBottom: 10,
-        borderWidth: pixelWidth,
+        borderWidth: StyleSheet.hairlineWidth,
         borderRadius: 5,
         borderColor: colors.lightGray,
         backgroundColor: '#fff'

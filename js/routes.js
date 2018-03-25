@@ -1,4 +1,5 @@
 import {StackNavigator, TabNavigator} from 'react-navigation';
+import {StyleSheet} from 'react-native';
 
 import StartUp from './pages/start-up';
 import Home from './pages/home';
@@ -9,7 +10,6 @@ import HomeRoutes from './pages/home/routes';
 import discoveryRoutes from './pages/discovery/routes';
 
 import {mainTabColors, colors} from './constants/colors';
-import {pixelWidth} from './utils/screen';
 
 const MainTabNavigator = TabNavigator({
     Home: {
@@ -34,7 +34,7 @@ const MainTabNavigator = TabNavigator({
         inactiveTintColor: mainTabColors.inactiveTintColor,
         style: {
             backgroundColor: '#fff',
-            borderTopWidth: pixelWidth,
+            borderTopWidth: StyleSheet.hairlineWidth,
             borderTopColor: colors.lightGray
         },
         tabStyle: {

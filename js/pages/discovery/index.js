@@ -13,7 +13,7 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import {mainTabColors, colors} from '../../constants/colors';
-import {screenWidth, pixelWidth} from '../../utils/screen';
+import {screenWidth} from '../../utils/screen';
 
 class Discovery extends Component {
     static navigationOptions = {
@@ -120,7 +120,8 @@ const styles = StyleSheet.create({
     },
     touchView: {
         borderColor: colors.lightGray,
-        borderWidth: pixelWidth,
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderRightWidth: StyleSheet.hairlineWidth,
         width: screenWidth / 4,
         height: screenWidth / 4
     },
