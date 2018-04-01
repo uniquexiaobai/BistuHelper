@@ -13,7 +13,7 @@ class Library extends Component {
             <View>
                 <Text>hello {navigation.state.routeName}</Text>
             </View>
-        )
+        );
     }
 }
 

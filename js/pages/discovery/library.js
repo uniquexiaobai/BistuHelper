@@ -2,49 +2,12 @@ import React, {Component} from 'react';
 import {observable, action} from 'mobx';
 import {observer} from 'mobx-react';
 import {StyleSheet, BackHandler, ToolbarAndroid, WebView, View, Text} from 'react-native';
-import {MenuProvider, Menu, MenuOptions, MenuOption, MenuTrigger} from 'react-native-popup-menu';
+import mitt from 'mitt';
 
 import Icon from 'react-native-vector-icons/Ionicons';
+import HeaderMenu from './header_menu';
 
-const optionsStyles = {
-    optionsContainer: {
-        width: 100,
-        // marginTop: 50,
-        // paddingRight: 20,
-        // borderWidth: 1, 
-        // borderColor: 'red',
-    },
-    optionsWrapper: {
-        // borderWidth: 1, 
-        // borderColor: 'blue',
-    },
-    optionTouchable: {
-        // underlayColor: 'gold',
-        // activeOpacity: 70,
-    },
-    optionText: {
-        // color: 'brown',
-    },
-}
-
-const HeaderMenu = () => {
-    return (
-        <Menu>
-            <MenuTrigger style={{width: 40, height: 40, borderRadius: 20, justifyContent: 'center', alignItems: 'center', marginRight: 10}}>
-                <Icon
-                    name='ios-more'
-                    color='#000'
-                    size={25}
-                />
-            </MenuTrigger>
-
-            <MenuOptions customStyles={optionsStyles}>
-                <MenuOption onSelect={() => alert(`Save`)} text='我的借阅' />
-                <MenuOption onSelect={() => alert(`Not called`)} text='待还书籍' />
-            </MenuOptions>
-        </Menu>
-    );
-};
+const emitter = mitt();
 
 @observer
 class Library extends Component {
@@ -56,7 +19,11 @@ class Library extends Component {
         headerTitleStyle: {
             fontSize: 18,
         },
-        headerRight: <HeaderMenu/>
+        headerRight: <HeaderMenu options={[
+            {text: '我的借阅', onSelect: () => {
+                emitter.emit('navigateToLibraryBorrow');
+            }}
+        ]}/>
     });
 
     @observable backButtonEnabled = false;
@@ -66,11 +33,17 @@ class Library extends Component {
     }
 
     componentDidMount() {
-        BackHandler.addEventListener('hardwareBackPress', this.onBackHandler)
+        const {navigate} = this.props.navigation;
+
+        BackHandler.addEventListener('hardwareBackPress', this.onBackHandler);
+        emitter.on('navigateToLibraryBorrow', () => {
+            // console.warn('hello', navigate);
+            // navigate('LibraryBorrow');
+        });
     }
 
     componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress', this.onBackHandler)
+        BackHandler.removeEventListener('hardwareBackPress', this.onBackHandler);
     }
 
     onBackHandler = () => {
