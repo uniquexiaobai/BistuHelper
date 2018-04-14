@@ -2,12 +2,9 @@ import React, {Component} from 'react';
 import {observable, action} from 'mobx';
 import {observer} from 'mobx-react';
 import {StyleSheet, BackHandler, ToolbarAndroid, WebView, View, Text} from 'react-native';
-import mitt from 'mitt';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import HeaderMenu from './header_menu';
-
-const emitter = mitt();
 
 @observer
 class Library extends Component {
@@ -20,9 +17,7 @@ class Library extends Component {
             fontSize: 18,
         },
         headerRight: <HeaderMenu options={[
-            {text: '我的借阅', onSelect: () => {
-                emitter.emit('navigateToLibraryBorrow');
-            }}
+            {text: '我的借阅', onSelect: navigation.getParam('routeToLibraryBorrow')}
         ]}/>
     });
 
@@ -33,13 +28,11 @@ class Library extends Component {
     }
 
     componentDidMount() {
-        const {navigate} = this.props.navigation;
+        const {navigation} = this.props;
+
+        navigation.setParams({routeToLibraryBorrow: this.routeToLibraryBorrow});
 
         BackHandler.addEventListener('hardwareBackPress', this.onBackHandler);
-        emitter.on('navigateToLibraryBorrow', () => {
-            // console.warn('hello', navigate);
-            // navigate('LibraryBorrow');
-        });
     }
 
     componentWillUnmount() {
@@ -54,13 +47,17 @@ class Library extends Component {
         return false;
     }
 
+    routeToLibraryBorrow = () => {
+        const {navigate} = this.props.navigation;
+
+        navigate('LibraryBorrow');
+    };
+
     navigationStateChangeHandler = (navState) => {
         this.setBackButtonStatus(navState.canGoBack);
     }
 
     render() {
-        const {navigation} = this.props;
-
         return (
             <WebView
                 ref={(r) => this.webview_ref = r}

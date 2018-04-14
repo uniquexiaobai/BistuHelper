@@ -1,20 +1,16 @@
 import React, {Component} from 'react';
-import {View} from 'react-native';
+import {View, Text} from 'react-native';
 
 class LibraryBorrow extends Component {
-    static navigationOptions = ({navigation}) => ({
-        title: '我的借阅',
-        headerStyle: {
-            height: 48,
-        },
-        headerTitleStyle: {
-            fontSize: 18,
-        },
+    static navigationOptions = () => ({
+        title: '我的借阅'
     });
 
     render() {
         return (
-            <View>我借阅的信息</View>
+            <View>
+                <Text>我的借阅</Text>
+            </View>
         );
     }
 }
