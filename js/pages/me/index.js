@@ -7,8 +7,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import {mainTabColors} from '../../constants/colors';
 
-// import { Container, Content, List, ListItem, Text, Thumbnail } from
-// 'native-base';
+import {Button} from 'antd-mobile';
 
 class Me extends Component {
     static navigationOptions = {
@@ -74,7 +73,9 @@ class Me extends Component {
             </List>
             </Content>
         </Container>*/ 
-            <View><Text>Me</Text></View>
+            <View>
+                <Button>me</Button>
+            </View>
         );
     }
 }
