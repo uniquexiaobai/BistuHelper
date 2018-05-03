@@ -65,7 +65,7 @@ const MainStackNavigator = StackNavigator({
     ...discoveryRoutes,
     ...MeRoutes,
 }, {
-    initialRouteName: 'SignUp',
+    initialRouteName: 'Home',
     cardStyle: {
         backgroundColor: '#fff'
     }

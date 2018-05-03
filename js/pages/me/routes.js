@@ -1,5 +1,5 @@
-import SignUp from './sign_up';
-import SignIn from './sign_in';
+import SignUp from './sign-up';
+import SignIn from './sign-in';
 
 const MeRoutes = {
     SignUp: {
