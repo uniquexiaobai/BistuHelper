@@ -8,6 +8,7 @@ import Discovery from './pages/discovery';
 import Me from './pages/me';
 import HomeRoutes from './pages/home/routes';
 import discoveryRoutes from './pages/discovery/routes';
+import MeRoutes from './pages/me/routes';
 
 import {mainTabColors, colors} from './constants/colors';
 
@@ -61,9 +62,10 @@ const MainStackNavigator = StackNavigator({
         screen: MainTabNavigator
     },
     ...HomeRoutes,
-    ...discoveryRoutes
+    ...discoveryRoutes,
+    ...MeRoutes,
 }, {
-    initialRouteName: 'Home',
+    initialRouteName: 'SignUp',
     cardStyle: {
         backgroundColor: '#fff'
     }

@@ -1,13 +1,13 @@
-/**
- * Tab Bar 我
- */
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import {mainTabColors} from '../../constants/colors';
 
-import {Button} from 'antd-mobile';
+import {List, Card, Button} from 'antd-mobile';
+const Item = List.Item;
+
+import ButtonStyle from 'antd-mobile/lib/button/style/index.native';
 
 class Me extends Component {
     static navigationOptions = {
@@ -24,60 +24,64 @@ class Me extends Component {
 
     render() {
         return (
-            /*<Container>
-            <Content>
-            <List>
-                <ListItem itemDivider>
-                <Text>账户管理</Text>
-                </ListItem>
-                <ListItem button onPress={() => {}}>
-                <Thumbnail source={require('../public/img/alarm@2x.png')} style={{width: 20, height: 20}}/>
-                <Text>更改密码</Text>
-                </ListItem>
-            </List>
-
-            <List>
-                <ListItem itemDivider>
-                <Text>模块设置</Text>
-                </ListItem>
-                <ListItem button onPress={() => {}}>
-                <Thumbnail source={require('../public/img/alarm@2x.png')} style={{width: 20, height: 20}}/>
-                <Text>提醒设置</Text>
-                </ListItem>
-                <ListItem button onPress={() => {}}>
-                <Thumbnail source={require('../public/img/alarm@2x.png')} style={{width: 20, height: 20}}/>
-                <Text>清除缓存</Text>
-                </ListItem>
-            </List>
-
-            <List>
-                <ListItem itemDivider>
-                <Text>关于</Text>
-                </ListItem>
-                <ListItem button onPress={() => {}}>
-                <Thumbnail source={require('../public/img/alarm@2x.png')} style={{width: 20, height: 20}}/>
-                <Text>意见反馈</Text>
-                </ListItem>
-                <ListItem button onPress={() => {}}>
-                <Thumbnail source={require('../public/img/alarm@2x.png')} style={{width: 20, height: 20}}/>
-                <Text>关于此软件</Text>
-                </ListItem>
-                <ListItem button onPress={() => {}}>
-                <Thumbnail source={require('../public/img/alarm@2x.png')} style={{width: 20, height: 20}}/>
-                <Text>推荐给同学</Text>
-                </ListItem>
-                <ListItem button onPress={() => {}}>
-                <Thumbnail source={require('../public/img/alarm@2x.png')} style={{width: 20, height: 20}}/>
-                <Text>检查更新</Text>
-                </ListItem>
-            </List>
-            </Content>
-        </Container>*/ 
             <View>
-                <Button>me</Button>
+                <View style={{paddingLeft: 20, marginTop: 20}}>
+                    <View style={{marginBottom: 10}}>
+                        <Text style={{fontSize: 20, color: '#000'}}>欢迎来到掌上北信科</Text>    
+                    </View>
+
+                    <View style={{flexDirection: 'row'}}>
+                        <Button type="primary" size="small" styles={CustomButtonStyle} style={{marginRight: 15}} onClick={this.routeToSignIn}>登陆</Button>
+                        <Button type="ghost" size="small" styles={CustomButtonStyle} onClick={this.routeToSignUp}>注册</Button>
+                    </View>
+                </View>
+
+                <View style={{marginTop: 20}}>
+                    <Card full style={{paddingBottom: 0, paddingLeft: 5}}>
+                        <Card.Header
+                            title="公子小白"
+                            thumb="http://7xp8de.com1.z0.glb.clouddn.com/logo.png"
+                            thumbStyle={{width: 60, height: 60, borderRadius: 30, marginRight: 10}}
+                        />
+                    </Card>
+                </View>
+
+                <View style={{marginTop: 20}}>
+                    <List>
+                        <Item arrow="horizontal" thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png">教务处绑定</Item>
+                        <Item arrow="horizontal" thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png">图书馆绑定</Item>
+                        <Item arrow="horizontal" thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png">设置</Item>
+                    </List>
+                </View>
             </View>
         );
     }
+
+    routeToSignUp = () => {
+        this.routeTo('SignUp');
+    };
+
+    routeToSignIn = () => {
+        this.routeTo('SignIn');
+    };
+
+    routeTo = (routeName) => {
+        const {navigate} = this.props.navigation;
+
+        navigate(routeName);
+    }
 }
+
+const CustomButtonStyle = {
+    ...ButtonStyle, 
+    smallRaw: {
+        height: 30,
+        paddingLeft: 25,
+        paddingRight: 25,
+    },
+    smallRawText: {
+        fontSize: 14,
+    },
+};
 
 export default Me;
