@@ -3,7 +3,7 @@ import {View, Text} from 'react-native';
 
 class SignIn extends Component {
     static navigationOptions = ({navigation}) => ({
-        title: navigation.state.routeName
+        title: '登陆'
     });
 
     render() {

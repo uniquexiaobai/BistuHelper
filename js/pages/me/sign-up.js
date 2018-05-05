@@ -8,7 +8,7 @@ import {user_signUp} from '../../utils/leancloud';
 
 class SignUp extends Component {
     static navigationOptions = ({navigation}) => ({
-        title: navigation.state.routeName
+        title: '注册',
     });
 
     usernameValidator = (rule, value = '', callback) => {

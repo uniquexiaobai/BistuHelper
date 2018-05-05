@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import {observable, action} from 'mobx';
 import {observer} from 'mobx-react';
-import {StyleSheet, BackHandler, AsyncStorage, WebView, View, Text} from 'react-native';
+import {StyleSheet, BackHandler, WebView, View, Text} from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import HeaderMenu from './header_menu';
-
-const libraryStorageKey = 'BistuHelper__library';
 
 @observer
 class Library extends Component {
@@ -52,17 +50,7 @@ class Library extends Component {
     routeToLibraryBorrow = () => {
         const {navigate} = this.props.navigation;
 
-        AsyncStorage.getItem(libraryStorageKey)
-            .then((error, data) => {
-                console.warn(data);
-                console.warn(error);
-                if (data == null) {
-                    
-                    // navigate('LibrarySignIn');
-                } else {
-                    // navigate('LibraryBorrow');
-                }
-            });
+        navigate('LibrarySignIn');
     };
 
     navigationStateChangeHandler = (navState) => {

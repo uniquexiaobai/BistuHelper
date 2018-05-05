@@ -24,3 +24,4 @@ export const user_signUp = ({username, password}, success, fail) => {
             fail(error);
         });
 };
+    

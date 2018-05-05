@@ -1,15 +1,32 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import {AsyncStorage, View, Text} from 'react-native';
 
 import {createForm} from 'rc-form';
 import {Toast, InputItem, Button} from 'antd-mobile';
 
 import {user_signUp} from '../../utils/leancloud';
 
+const libraryStorageKey = 'BistuHelper__library';
+
 class LibrarySignIn extends Component {
     static navigationOptions = ({navigation}) => ({
-        title: navigation.state.routeName
+        title: '图书馆登陆',
     });
+
+    async componentDidMount() {
+        try {
+            const value = await AsyncStorage.getItem(libraryStorageKey);
+            const {username, password} = JSON.parse(value);
+            const {setFieldsValue} = this.props.form;
+
+            setFieldsValue({
+                username: `${username}`,
+                password: `${password}`,
+            });
+        } catch(err) {
+            console.warn(err);
+        }
+    }
 
     usernameValidator = (rule, value = '', callback) => {
         value = value.trim();
@@ -17,7 +34,7 @@ class LibrarySignIn extends Component {
             return callback('用户名不能为空');
         }
         if (!/^\w+$/.test(value)) {
-            return callback('用户名只能包含大小写字母/数字/下划线');
+            return callback('用户名只能包含数字');
         }
         return callback();
     };
@@ -26,9 +43,6 @@ class LibrarySignIn extends Component {
         value = value.trim();
         if (value == '') {
             return callback('密码不能为空');
-        }
-        if (!/^\w+$/.test(value)) {
-            return callback('密码只能包含大小写字母/数字/下划线');
         }
         return callback();
     };
@@ -69,12 +83,14 @@ class LibrarySignIn extends Component {
                     密码
                 </InputItem>
 
-                <Button type="primary" style={{marginTop: 15}} onClick={this.submit}>注册</Button>
+                <Button type="primary" style={{marginTop: 15}} onClick={this.submit}>登陆</Button>
             </View>
         );
     }
 
     submit = () => {
+        const {replace, setParams} = this.props.navigation;
+
         this.props.form.validateFields((error, value) => {
             if (error) {
                 error = error || {};
@@ -83,14 +99,20 @@ class LibrarySignIn extends Component {
             } else {
                 const {username, password} = value;
 
-                user_signUp({username, password}, (user) => {
-                    console.warn(user);
-                }, (error) => {
-                    console.warn(error);
+                AsyncStorage.setItem(libraryStorageKey, JSON.stringify({username, password}))
+                    .catch(err => {
+                        if (err) {
+                            console.warn(err);
+                        }
+                    });
+                
+                replace('LibraryBorrow', {
+                    username,
+                    password,
                 });
             }
         });
-    }
+    };
 }
 
 export default createForm()(LibrarySignIn);
