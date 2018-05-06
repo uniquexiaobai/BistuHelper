@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {observable, action, runInAction} from 'mobx';
 import {observer} from 'mobx-react';
-import axios from 'axios';
 import {StyleSheet, ScrollView, View, Text, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+
+import {fetchNewsDetail} from '../../utils/api';
 
 import {mainTabColors, colors} from '../../constants/colors';
 import {screenWidth} from '../../utils/screen';
@@ -19,14 +20,13 @@ class NewsDetail extends Component {
     @action
     fetchNewsDetail = async (newsId) => {
         try {
-            const requestURL = `http://bistuhelper.cn/api/news/${newsId}`;
-            const response = await axios.get(requestURL);
+            const data = await fetchNewsDetail(newsId);
 
             runInAction(() => {
-                this.newsDetail = response.data;
+                this.newsDetail = data;
             });
         } catch (e) {
-            console.error('Connection error', 'Couldn\'t fetch the data.');
+            console.error(e);
         }
     };
 

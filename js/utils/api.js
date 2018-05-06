@@ -3,13 +3,13 @@ import axios from 'axios';
 
 const baseUrl = 'http://bistuhelper.cn';
 
-export const fetchBorrowInfo = async(params) => {
+export const fetchBorrowInfo = async(body) => {
     try {
         const url = `${baseUrl}/api/library/borrow`;
         const options = {
             method: 'POST',
             headers: { 'content-type': 'application/x-www-form-urlencoded' },
-            data: qs.stringify(params),
+            data: qs.stringify(body),
             url,
         };
         const response = await axios(options);
@@ -25,6 +25,19 @@ export const fetchBorrowInfo = async(params) => {
 export const fetchNewsList = async () => {
     try {
         const requestURL = `${baseUrl}/api/news?type=zhxw&page=1`;
+        const response = await axios.get(requestURL);
+
+        if (response.status !== 200) return;
+
+        return response.data;
+    } catch (e) {
+        throw(e);
+    }
+};
+
+export const fetchNewsDetail = async (newsId) => {
+    try {
+        const requestURL = `${baseUrl}/api/news/${newsId}`;
         const response = await axios.get(requestURL);
 
         if (response.status !== 200) return;

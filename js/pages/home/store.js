@@ -1,4 +1,3 @@
-import axios from 'axios';
 import {observable, action, runInAction} from 'mobx';
 
 import {fetchNewsList} from '../../utils/api';
@@ -15,7 +14,7 @@ class NewsStore {
                 this.newsList = data;
             });
         } catch (e) {
-            console.error('Connection error', 'Couldn\'t fetch the data.');
+            console.error(e);
         }
     };
 }
