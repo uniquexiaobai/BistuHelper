@@ -78,9 +78,10 @@ class Discovery extends Component {
                 name: '四六级查询',
                 logo: require("../../../assets/images/discovery/grade.png")
             }, {
+                routeName: 'SchoolOverview',
                 name: '学校概况',
                 logo: require("../../../assets/images/discovery/about.png")
-            }
+            },
         ];
 
         return (

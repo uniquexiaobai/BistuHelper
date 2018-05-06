@@ -2,6 +2,7 @@ import Library from './library';
 import PhoneBook from './phone_book';
 import LibraryBorrow from './library_borrow';
 import LibrarySignIn from './library_sign-in';
+import SchoolOverview from './school_overview';
 
 const discoveryRoutes = {
     Library: {
@@ -15,6 +16,9 @@ const discoveryRoutes = {
     },
     PhoneBook: {
         screen: PhoneBook,
+    },
+    SchoolOverview: {
+        screen: SchoolOverview,
     },
 };
 

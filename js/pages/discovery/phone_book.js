@@ -3,7 +3,7 @@ import {View, Text} from 'react-native';
 
 class Library extends Component {
     static navigationOptions = ({navigation}) => ({
-        title: navigation.state.routeName
+        title: '常用电话',
     });
 
     render() {
