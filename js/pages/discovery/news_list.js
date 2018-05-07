@@ -11,7 +11,7 @@ import {
 
 import {colors} from '../../constants/colors';
 
-@inject('DiscoveryStore')
+@inject('schoolNewsStore')
 @observer
 class NewsList extends Component {
     ds = new ListView.DataSource({
@@ -19,7 +19,7 @@ class NewsList extends Component {
     });
 
     async componentDidMount() {
-        const {fetchNewsList} = this.props.DiscoveryStore;
+        const {fetchNewsList} = this.props.schoolNewsStore;
         const {type} = this.props;
 
         await fetchNewsList({type});
@@ -27,7 +27,7 @@ class NewsList extends Component {
 
     render() {
         const {type} = this.props;
-        const schoolNews = this.props.DiscoveryStore.schoolNews;
+        const schoolNews = this.props.schoolNewsStore.schoolNews;
         const newsList = [...schoolNews[type]];
 
         return (

@@ -1,8 +1,8 @@
 import {observable, action, runInAction, computed, set, autorun} from 'mobx';
 
-import {fetchNewsList} from '../../utils/api';
+import {fetchNewsList} from '../../../utils/api';
 
-class DiscoveryStore {
+class SchoolNewsStore {
     @observable schoolNews = {
         'zhxw': [], 
         'tpxw': [],
@@ -30,4 +30,4 @@ class DiscoveryStore {
     };
 }
 
-export default DiscoveryStore;
+export default SchoolNewsStore;

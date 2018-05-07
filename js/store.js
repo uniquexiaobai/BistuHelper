@@ -1,7 +1,7 @@
-import DiscoveryStore from './pages/discovery/store';
-import HomeStore from './pages/home/store';
+import homeStore from './pages/home/store';
+import discoveryStore from './pages/discovery/store';
 
 export default {
-    DiscoveryStore: new DiscoveryStore(),
-    ...HomeStore,
+    ...homeStore,
+    ...discoveryStore,
 };
