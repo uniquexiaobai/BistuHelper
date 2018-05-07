@@ -23,7 +23,7 @@ class NewsDetail extends Component {
             const data = await fetchNewsDetail(newsId);
 
             runInAction(() => {
-                this.newsDetail = data;
+                if (data) this.newsDetail = data;
             });
         } catch (e) {
             console.error(e);

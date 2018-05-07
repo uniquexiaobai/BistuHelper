@@ -3,8 +3,9 @@ import React, {Component} from 'react';
 import {StyleSheet, View, Text, Alert} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import NewsHot from './news_hot';
+
 import {mainTabColors} from '../../constants/colors';
-import {colors} from '../../constants/colors';
 
 class Home extends Component {
     static navigationOptions = {
@@ -24,7 +25,7 @@ class Home extends Component {
 
         return (
             <View style={styles.home}>
-                <Text>index</Text>
+                <NewsHot navigation={navigation}/>
             </View>
         );
     }
@@ -32,9 +33,8 @@ class Home extends Component {
 
 const styles = StyleSheet.create({
     home: {
-        // paddingBottom: 10,
-        // backgroundColor: colors.whiteSmoke,
-    },
+        
+    }
 });
 
 export default Home;

@@ -22,7 +22,7 @@ class DiscoveryStore {
 
             runInAction(() => {
                 // fixbug object api set in next release
-                this.schoolNews[params.type] = data;
+                if (data) this.schoolNews[params.type] = data;
             });
         } catch (e) {
             console.error(e);

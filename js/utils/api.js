@@ -36,6 +36,19 @@ export const fetchNewsList = async ({type='zhxw', page=1}) => {
     }
 };
 
+export const fetchNewsHot = async () => {
+    try {
+        const requestURL = `${baseUrl}/api/news/hot`;
+        const response = await axios.get(requestURL);
+
+        if (response.status !== 200) return;
+
+        return response.data;
+    } catch (e) {
+        throw(e);
+    }
+};
+
 export const fetchNewsDetail = async (newsId) => {
     try {
         const requestURL = `${baseUrl}/api/news/${newsId}`;
