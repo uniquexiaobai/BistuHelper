@@ -23,9 +23,9 @@ export const fetchBorrowInfo = async(body) => {
     }
 };
 
-export const fetchNewsList = async () => {
+export const fetchNewsList = async ({type='zhxw', page=1}) => {
     try {
-        const requestURL = `${baseUrl}/api/news?type=zhxw&page=1`;
+        const requestURL = `${baseUrl}/api/news?type=${type}&page=${page}`;
         const response = await axios.get(requestURL);
 
         if (response.status !== 200) return;

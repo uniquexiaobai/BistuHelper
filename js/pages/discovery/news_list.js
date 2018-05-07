@@ -11,7 +11,7 @@ import {
 
 import {colors} from '../../constants/colors';
 
-@inject('newsStore')
+@inject('DiscoveryStore')
 @observer
 class NewsList extends Component {
     ds = new ListView.DataSource({
@@ -19,13 +19,16 @@ class NewsList extends Component {
     });
 
     async componentDidMount() {
-        const {fetchNewsList} = this.props.newsStore;
+        const {fetchNewsList} = this.props.DiscoveryStore;
+        const {type} = this.props;
 
-        await fetchNewsList();
+        await fetchNewsList({type});
     }
 
     render() {
-        const newsList = [...this.props.newsStore.newsList];
+        const {type} = this.props;
+        const schoolNews = this.props.DiscoveryStore.schoolNews;
+        const newsList = [...schoolNews[type]];
 
         return (
             <ListView
@@ -61,7 +64,11 @@ class NewsList extends Component {
 
 const styles = StyleSheet.create({
     news_list: {
-        padding: 10
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingTop: 5,
+        paddingBottom: 5,
+        backgroundColor: colors.whiteSmoke,
     },
     news_item__wrap: {
         paddingTop: 10,

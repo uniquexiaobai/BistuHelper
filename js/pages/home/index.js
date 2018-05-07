@@ -1,14 +1,10 @@
-/**
- * Tab Bar 首页
- */
 import React, {Component} from 'react';
+
 import {StyleSheet, View, Text, Alert} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import {mainTabColors} from '../../constants/colors';
 import {colors} from '../../constants/colors';
-
-import NewsList from './news-list';
 
 class Home extends Component {
     static navigationOptions = {
@@ -28,7 +24,7 @@ class Home extends Component {
 
         return (
             <View style={styles.home}>
-                <NewsList navigation={navigation}/>
+                <Text>index</Text>
             </View>
         );
     }
@@ -36,8 +32,8 @@ class Home extends Component {
 
 const styles = StyleSheet.create({
     home: {
-        paddingBottom: 10,
-        backgroundColor: colors.whiteSmoke,
+        // paddingBottom: 10,
+        // backgroundColor: colors.whiteSmoke,
     },
 });
 

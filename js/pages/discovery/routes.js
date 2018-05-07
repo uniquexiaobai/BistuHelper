@@ -2,6 +2,8 @@ import Library from './library';
 import PhoneBook from './phone_book';
 import LibraryBorrow from './library_borrow';
 import SchoolOverview from './school_overview';
+import SchoolNews from './school_news';
+import NewsDetail from './news_detail';
 
 const discoveryRoutes = {
     Library: {
@@ -15,6 +17,12 @@ const discoveryRoutes = {
     },
     SchoolOverview: {
         screen: SchoolOverview,
+    },
+    SchoolNews: {
+        screen: SchoolNews,
+    },
+    NewsDetail: {
+        screen: NewsDetail,
     },
 };
 

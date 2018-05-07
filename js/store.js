@@ -1,5 +1,5 @@
-import NewsStore from './pages/home/store.js';
+import DiscoveryStore from './pages/discovery/store';
 
 export default {
-    newsStore: new NewsStore(),
+    DiscoveryStore: new DiscoveryStore(),
 };

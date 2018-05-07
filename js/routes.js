@@ -6,7 +6,6 @@ import Home from './pages/home';
 import Courses from './pages/courses';
 import Discovery from './pages/discovery';
 import Me from './pages/me';
-import HomeRoutes from './pages/home/routes';
 import discoveryRoutes from './pages/discovery/routes';
 import MeRoutes from './pages/me/routes';
 
@@ -61,7 +60,6 @@ const MainStackNavigator = StackNavigator({
     Home: {
         screen: MainTabNavigator
     },
-    ...HomeRoutes,
     ...discoveryRoutes,
     ...MeRoutes,
 }, {
