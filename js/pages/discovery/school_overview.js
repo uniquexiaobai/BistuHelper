@@ -12,7 +12,7 @@ class SchoolOverview extends Component {
 
         return (
             <ScrollView style={styles.schoolOverview}>
-                <View>
+                <View style={styles.schoolOverview__content}>
                     <View style={styles.schoolOverview__section}>
                         <Text style={styles.schoolOverview__text}>{space8}北京信息科技大学是北京市重点支持建设的高校，坐落于北京市海淀区，有清河小营、健翔桥、清河、金台路、酒仙桥5个校区，占地500亩，校舍建筑面积33.32万平方米。学校总用地规模1183.6亩的新校区已于2015年正式开工建设。</Text>
                     </View>
@@ -51,12 +51,15 @@ class SchoolOverview extends Component {
 
 const styles = StyleSheet.create({
     schoolOverview: {
-        paddingTop: 15,
+        paddingTop: 10,
         paddingLeft: 15,
         paddingRight: 15,
     },
+    schoolOverview__content: {
+        paddingBottom: 20,
+    },
     schoolOverview__section: {
-        marginBottom: 8,
+        marginBottom: 5,
     },
     schoolOverview__text: {
         fontSize: 16,
