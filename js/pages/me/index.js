@@ -31,8 +31,8 @@ class Me extends Component {
                     </View>
 
                     <View style={{flexDirection: 'row'}}>
-                        <Button type="primary" size="small" styles={CustomButtonStyle} style={{marginRight: 15}} onClick={this.routeToSignIn}>登陆</Button>
-                        <Button type="ghost" size="small" styles={CustomButtonStyle} onClick={this.routeToSignUp}>注册</Button>
+                        <Button type="primary" size="small" styles={CustomButtonStyle} style={{marginRight: 15}} onClick={() => this.routeTo('SignIn')}>登陆</Button>
+                        <Button type="ghost" size="small" styles={CustomButtonStyle} onClick={() => this.routeTo('SignUp')}>注册</Button>
                     </View>
                 </View>
 
@@ -48,22 +48,14 @@ class Me extends Component {
 
                 <View style={{marginTop: 20}}>
                     <List>
-                        <Item arrow="horizontal" thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png">教务处绑定</Item>
-                        <Item arrow="horizontal" thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png">图书馆绑定</Item>
-                        <Item arrow="horizontal" thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png">设置</Item>
+                        <Item arrow="horizontal" onClick={() => this.routeTo('EducationSignIn')}>教务处绑定</Item>
+                        <Item arrow="horizontal" onClick={() => this.routeTo('LibrarySignIn')}>图书馆绑定</Item>
+                        <Item arrow="horizontal">设置</Item>
                     </List>
                 </View>
             </View>
         );
     }
-
-    routeToSignUp = () => {
-        this.routeTo('SignUp');
-    };
-
-    routeToSignIn = () => {
-        this.routeTo('SignIn');
-    };
 
     routeTo = (routeName) => {
         const {navigate} = this.props.navigation;

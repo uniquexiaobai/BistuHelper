@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {observable, action} from 'mobx';
 import {observer} from 'mobx-react';
-import {StyleSheet, BackHandler, WebView, View, Text} from 'react-native';
 
+import {StyleSheet, BackHandler, WebView, View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+
 import HeaderMenu from './header_menu';
 
 @observer
@@ -50,7 +51,7 @@ class Library extends Component {
     routeToLibraryBorrow = () => {
         const {navigate} = this.props.navigation;
 
-        navigate('LibrarySignIn');
+        navigate('LibraryBorrow');
     };
 
     navigationStateChangeHandler = (navState) => {

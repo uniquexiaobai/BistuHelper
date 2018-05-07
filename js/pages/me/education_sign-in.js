@@ -1,31 +1,29 @@
 import React, {Component} from 'react';
-import {AsyncStorage, View, Text} from 'react-native';
 
+import {View, Text} from 'react-native';
 import {createForm} from 'rc-form';
 import {Toast, InputItem, Button} from 'antd-mobile';
 
 import {user_signUp} from '../../utils/leancloud';
+import {getFromStorage, saveToStorage} from '../../utils/storage';
 
-const libraryStorageKey = 'BistuHelper__library';
+const educationAccountStorageKey = 'BistuHelper__education__account';
 
 class LibrarySignIn extends Component {
     static navigationOptions = ({navigation}) => ({
-        title: '图书馆登陆',
+        title: '教务处账号绑定',
     });
 
     async componentDidMount() {
-        try {
-            const value = await AsyncStorage.getItem(libraryStorageKey);
-            const {username, password} = JSON.parse(value);
-            const {setFieldsValue} = this.props.form;
+        const {username, password} = await getFromStorage(educationAccountStorageKey);
+        const {setFieldsValue} = this.props.form;
 
-            setFieldsValue({
-                username: `${username}`,
-                password: `${password}`,
-            });
-        } catch(err) {
-            console.warn(err);
-        }
+        if (!username || !password) return;
+
+        setFieldsValue({
+            username: `${username}`,
+            password: `${password}`,
+        });
     }
 
     usernameValidator = (rule, value = '', callback) => {
@@ -60,7 +58,7 @@ class LibrarySignIn extends Component {
                             {validator: this.usernameValidator}
                         ]
                     })}
-                    placeholder="请输入用户名"
+                    placeholder="请输入学号"
                     moneyKeyboardAlign="left"
                     onBlur={this.blur}
                     style={{marginLeft: 0}}
@@ -83,13 +81,13 @@ class LibrarySignIn extends Component {
                     密码
                 </InputItem>
 
-                <Button type="primary" style={{marginTop: 15}} onClick={this.submit}>登陆</Button>
+                <Button type="primary" style={{marginTop: 15}} onClick={this.submit}>绑定</Button>
             </View>
         );
     }
 
     submit = () => {
-        const {replace, setParams} = this.props.navigation;
+        const {goBack} = this.props.navigation;
 
         this.props.form.validateFields((error, value) => {
             if (error) {
@@ -99,17 +97,11 @@ class LibrarySignIn extends Component {
             } else {
                 const {username, password} = value;
 
-                AsyncStorage.setItem(libraryStorageKey, JSON.stringify({username, password}))
-                    .catch(err => {
-                        if (err) {
-                            console.warn(err);
-                        }
+                saveToStorage(educationAccountStorageKey, {username, password})
+                    .then(() => {
+                        Toast.success('绑定成功', 1);
+                        setTimeout(() => goBack(), 1000);
                     });
-                
-                replace('LibraryBorrow', {
-                    username,
-                    password,
-                });
             }
         });
     };

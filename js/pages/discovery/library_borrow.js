@@ -4,22 +4,31 @@ import {observer} from 'mobx-react';
 
 import {StyleSheet, View, Text} from 'react-native';
 import {Accordion, Toast} from 'antd-mobile';
-
-import {fetchBorrowInfo} from '../../utils/api';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import AccordionStyle from 'antd-mobile/lib/accordion/style/index.native';
+
+import {fetchBorrowInfo} from '../../utils/api';
+import {getFromStorage, saveToStorage} from '../../utils/storage';
+
+const libraryAccountStorageKey = 'BistuHelper__library__account';
+const libraryBorrowInfoStorageKey = 'BistuHelper__library__borrowInfo';
 
 @observer
 class LibraryBorrow extends Component {
     static navigationOptions = () => ({
-        title: '借阅信息'
+        title: '借阅信息',
     });
 
     @observable borrowInfo;
     @action
     fetchBorrowInfo = async (params) => {
         try {
-            const data = await fetchBorrowInfo(params);
+            const data = await getFromStorage(libraryBorrowInfoStorageKey);
+            if (!data || !Object.keys(data).length) {
+                data = await fetchBorrowInfo(params);
+                await saveToStorage(libraryBorrowInfoStorageKey, data);
+            }
 
             runInAction(() => {
                 this.borrowInfo = data;
@@ -30,11 +39,19 @@ class LibraryBorrow extends Component {
     };
 
     async componentDidMount() {
-        const {params} = this.props.navigation.state;
-        const {username, password} = params;
+        const {username, password} = await getFromStorage(libraryAccountStorageKey);
+
+        if (!username || !password) {
+            Toast.info('请先绑定图书馆账号', 1);
+            return;
+        }
 
         Toast.loading('加载中...', 0);
         await this.fetchBorrowInfo({username, password});
+        Toast.hide();
+    }
+
+    componentWillUnmount() {
         Toast.hide();
     }
 
