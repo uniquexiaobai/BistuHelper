@@ -70,6 +70,7 @@ class Discovery extends Component {
                 name: '空闲教室',
                 logo: require("../../../assets/images/discovery/news.png"),
             }, {
+                routeName: 'SchoolCalendar',                
                 name: '校历',
                 logo: require("../../../assets/images/discovery/calendar.png"),
             }, {

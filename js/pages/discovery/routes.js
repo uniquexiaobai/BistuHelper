@@ -4,6 +4,7 @@ import LibraryBorrow from './library_borrow';
 import SchoolOverview from './school_overview';
 import SchoolNews from './school_news';
 import NewsDetail from './news_detail';
+import SchoolCalendar from './school_calendar';
 
 const discoveryRoutes = {
     Library: {
@@ -23,6 +24,9 @@ const discoveryRoutes = {
     },
     NewsDetail: {
         screen: NewsDetail,
+    },
+    SchoolCalendar: {
+        screen: SchoolCalendar,
     },
 };
 
