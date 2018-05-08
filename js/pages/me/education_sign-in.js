@@ -6,6 +6,7 @@ import {Toast, InputItem, Button} from 'antd-mobile';
 
 import {user_signUp} from '../../utils/leancloud';
 import {getFromStorage, saveToStorage} from '../../utils/storage';
+import {fetchEducationBase} from '../../utils/api';
 
 const educationAccountStorageKey = 'BistuHelper__education__account';
 
@@ -86,6 +87,18 @@ class LibrarySignIn extends Component {
         );
     }
 
+    fetchAndSaveBase = async (body) => {
+        try {
+            const data = await fetchEducationBase(body);
+            if (!data) return false;
+            const account = Object.assign({}, data, body);
+            await saveToStorage(educationAccountStorageKey, account);
+            return true;
+        } catch (err) {
+            return false;
+        }
+    }
+
     submit = () => {
         const {goBack} = this.props.navigation;
 
@@ -97,10 +110,21 @@ class LibrarySignIn extends Component {
             } else {
                 const {username, password} = value;
 
-                saveToStorage(educationAccountStorageKey, {username, password})
-                    .then(() => {
-                        Toast.success('绑定成功', 1);
-                        setTimeout(() => goBack(), 1000);
+                Toast.loading('绑定账号中...', 0);
+                this.fetchAndSaveBase({username, password})
+                    .then(isSuccess => {
+                        Toast.hide();
+                        if (isSuccess) {
+                            Toast.success('绑定成功', 1);
+                            setTimeout(() => goBack(), 1000);
+                        } else {
+                            Toast.success('绑定失败，请重试', 1);
+                        }
+                    })
+                    .catch(err => {
+                        console.warn(err);
+                        Toast.success('绑定失败，请重试', 1);
+                        setTimeout(() => Toast.hide(), 1000);
                     });
             }
         });

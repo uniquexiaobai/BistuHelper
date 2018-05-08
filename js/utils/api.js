@@ -23,6 +23,25 @@ export const fetchBorrowInfo = async(body) => {
     }
 };
 
+export const fetchEducationBase = async(body) => {
+    try {
+        const url = `${baseUrl}/api/education/base`;
+        const options = {
+            method: 'POST',
+            headers: { 'content-type': 'application/x-www-form-urlencoded' },
+            data: qs.stringify(body),
+            url,
+        };
+        const response = await axios(options);
+
+        if (response.status !== 200) return;
+
+        return response.data;
+    } catch (e) {
+        throw(e);
+    }
+};
+
 export const fetchNewsList = async ({type='zhxw', page=1}) => {
     try {
         const requestURL = `${baseUrl}/api/news?type=${type}&page=${page}`;
