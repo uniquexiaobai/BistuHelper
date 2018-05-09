@@ -27,6 +27,10 @@ class LibrarySignIn extends Component {
         });
     }
 
+    componentWillUnmount() {
+        Toast.hide();
+    }
+
     usernameValidator = (rule, value = '', callback) => {
         value = value.trim();
         if (value == '') {
@@ -90,12 +94,10 @@ class LibrarySignIn extends Component {
     fetchAndSaveBase = async (body) => {
         try {
             const data = await fetchEducationBase(body);
-            if (!data) return false;
             const account = Object.assign({}, data, body);
             await saveToStorage(educationAccountStorageKey, account);
-            return true;
         } catch (err) {
-            return false;
+            throw err;
         }
     }
 
@@ -112,19 +114,14 @@ class LibrarySignIn extends Component {
 
                 Toast.loading('绑定账号中...', 0);
                 this.fetchAndSaveBase({username, password})
-                    .then(isSuccess => {
+                    .then(() => {
                         Toast.hide();
-                        if (isSuccess) {
-                            Toast.success('绑定成功', 1);
-                            setTimeout(() => goBack(), 1000);
-                        } else {
-                            Toast.success('绑定失败，请重试', 1);
-                        }
+                        Toast.success('绑定成功', 1);
+                        setTimeout(() => goBack(), 1000);
                     })
                     .catch(err => {
-                        console.warn(err);
-                        Toast.success('绑定失败，请重试', 1);
-                        setTimeout(() => Toast.hide(), 1000);
+                        Toast.hide();
+                        Toast.fail(`${err.message || '绑定失败'}, 请重试`, 1);
                     });
             }
         });

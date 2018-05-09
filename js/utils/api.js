@@ -2,81 +2,72 @@ import qs from 'qs';
 import axios from 'axios';
 
 const baseUrl = 'http://bistuhelper.cn';
-// baseUrl = 'http://53d3a9bd.ngrok.io';
+// baseUrl = 'http://c9977a5e.ngrok.io';
 
-export const fetchBorrowInfo = async(body) => {
+const newsHotUrl = `${baseUrl}/api/news/hot`;
+const libraryBaseUrl = `${baseUrl}/api/library/base`;
+const libraryBorrowUrl = `${baseUrl}/api/library/borrow`;
+const educationBaseUrl = `${baseUrl}/api/education/base`;
+
+const defaultOptions = {
+    method: 'POST',
+    headers: {'content-type': 'application/x-www-form-urlencoded'},
+};
+
+const postCreater = (url) => async (body) => {
+    const options = defaultOptions;
+    options.url = url;
+    options.data = qs.stringify(body);
+
     try {
-        const url = `${baseUrl}/api/library/borrow`;
-        const options = {
-            method: 'POST',
-            headers: { 'content-type': 'application/x-www-form-urlencoded' },
-            data: qs.stringify(body),
-            url,
-        };
-        const response = await axios(options);
+        const {data = {}} = await axios(options);
 
-        if (response.status !== 200) return;
+        if (data.code === 1) throw new Error(data.message);
 
-        return response.data;
-    } catch (e) {
-        throw(e);
+        return data.data;
+    } catch (err) {
+        throw err;
     }
 };
 
-export const fetchEducationBase = async(body) => {
+const getCreater = (url) => async () => {
     try {
-        const url = `${baseUrl}/api/education/base`;
-        const options = {
-            method: 'POST',
-            headers: { 'content-type': 'application/x-www-form-urlencoded' },
-            data: qs.stringify(body),
-            url,
-        };
-        const response = await axios(options);
+        const {data = {}} = await axios.get(url);
 
-        if (response.status !== 200) return;
+        if (data.code === 1) throw new Error(data.message);
 
-        return response.data;
-    } catch (e) {
-        throw(e);
+        return data.data;
+    } catch (err) {
+        throw err;
     }
 };
 
-export const fetchNewsList = async ({type='zhxw', page=1}) => {
+export const fetchLibraryBase = postCreater(libraryBaseUrl);
+
+export const fetchLibraryBorrow = postCreater(libraryBorrowUrl);
+
+export const fetchEducationBase = postCreater(educationBaseUrl);
+
+export const fetchNewsHot = getCreater(newsHotUrl);
+
+export const fetchNewsList = async({type = 'zhxw', page = 1}) => {
+    const url = `${baseUrl}/api/news?type=${type}&page=${page}`;
+
     try {
-        const requestURL = `${baseUrl}/api/news?type=${type}&page=${page}`;
-        const response = await axios.get(requestURL);
-
-        if (response.status !== 200) return;
-
-        return response.data;
-    } catch (e) {
-        throw(e);
+        const data = await getCreater(url)();
+        return data;
+    } catch (err) {
+        throw err;
     }
-};
-
-export const fetchNewsHot = async () => {
-    try {
-        const requestURL = `${baseUrl}/api/news/hot`;
-        const response = await axios.get(requestURL);
-
-        if (response.status !== 200) return;
-
-        return response.data;
-    } catch (e) {
-        throw(e);
-    }
-};
+}
 
 export const fetchNewsDetail = async (newsId) => {
+    const url = `${baseUrl}/api/news/${newsId}`;
+
     try {
-        const requestURL = `${baseUrl}/api/news/${newsId}`;
-        const response = await axios.get(requestURL);
-
-        if (response.status !== 200) return;
-
-        return response.data;
-    } catch (e) {
-        throw(e);
+        const data = await getCreater(url)();
+        return data;
+    } catch (err) {
+        throw err;
     }
 };

@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {mainTabColors} from '../../constants/colors';
 
 import {List, Card, Button} from 'antd-mobile';
-const Item = List.Item;
+const {Item} = List;
 
 import ButtonStyle from 'antd-mobile/lib/button/style/index.native';
 
@@ -50,7 +50,7 @@ class Me extends Component {
                     <List>
                         <Item arrow="horizontal" onClick={() => this.routeTo('EducationSignIn')}>教务处绑定</Item>
                         <Item arrow="horizontal" onClick={() => this.routeTo('LibrarySignIn')}>图书馆绑定</Item>
-                        <Item arrow="horizontal">设置</Item>
+                        <Item arrow="horizontal" onClick={() => this.routeTo('Settings')}>设置</Item>
                     </List>
                 </View>
             </View>

@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import AccordionStyle from 'antd-mobile/lib/accordion/style/index.native';
 
-import {fetchBorrowInfo} from '../../utils/api';
+import {fetchLibraryBorrow} from '../../utils/api';
 import {getFromStorage, saveToStorage} from '../../utils/storage';
 
 const libraryAccountStorageKey = 'BistuHelper__library__account';
@@ -21,12 +21,13 @@ class LibraryBorrow extends Component {
     });
 
     @observable borrowInfo;
+    @observable userInfo;
     @action
-    fetchBorrowInfo = async (params) => {
+    fetchLibraryBorrow = async (params) => {
         try {
             const data = await getFromStorage(libraryBorrowInfoStorageKey);
             if (!data || !Object.keys(data).length) {
-                data = await fetchBorrowInfo(params);
+                data = await fetchLibraryBorrow(params);
                 await saveToStorage(libraryBorrowInfoStorageKey, data);
             }
 
@@ -39,15 +40,16 @@ class LibraryBorrow extends Component {
     };
 
     async componentDidMount() {
-        const {username, password} = await getFromStorage(libraryAccountStorageKey);
+        const {username, password, name, department} = await getFromStorage(libraryAccountStorageKey);
 
         if (!username || !password) {
             Toast.info('请先绑定图书馆账号', 1);
             return;
         }
+        this.userInfo = {name, department};
 
         Toast.loading('加载中...', 0);
-        await this.fetchBorrowInfo({username, password});
+        await this.fetchLibraryBorrow({username, password});
         Toast.hide();
     }
 
@@ -56,12 +58,13 @@ class LibraryBorrow extends Component {
     }
 
     render() {
-        const {user, books = []} = this.borrowInfo || {};
+        const books = this.borrowInfo || [];
+        const user = this.userInfo || {};
 
         return (
             <View style={{paddingTop: 15, paddingLeft: 5, paddingRight: 5}}>
                 {
-                    user ? (
+                    books.length ? (
                         <View style={{marginBottom: 15, paddingLeft: 5}}>
                             <Text>{`${user.name}（${user.department}），目前借书 ${books.length} 本`}</Text>
                         </View>
