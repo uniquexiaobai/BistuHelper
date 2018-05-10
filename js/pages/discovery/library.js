@@ -18,7 +18,9 @@ class Library extends Component {
             fontSize: 18,
         },
         headerRight: <HeaderMenu options={[
-            {text: '我的借阅', onSelect: navigation.getParam('routeToLibraryBorrow')}
+            {text: '我的借阅', onSelect: navigation.getParam('routeToLibraryBorrow')},
+            {text: '开放时间', onSelect: navigation.getParam('routeToLibraryOpenTime')},
+            {text: '联系方式', onSelect: navigation.getParam('routeToLibraryContact')},
         ]}/>
     });
 
@@ -31,13 +33,21 @@ class Library extends Component {
     componentDidMount() {
         const {navigation} = this.props;
 
-        navigation.setParams({routeToLibraryBorrow: this.routeToLibraryBorrow});
+        navigation.setParams({routeToLibraryBorrow: this.routeTo('LibraryBorrow')});
+        navigation.setParams({routeToLibraryOpenTime: this.routeTo('LibraryOpenTime')});
+        navigation.setParams({routeToLibraryContact: this.routeTo('LibraryContact')});
 
         BackHandler.addEventListener('hardwareBackPress', this.onBackHandler);
     }
 
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.onBackHandler);
+    }
+
+    routeTo = (routeName) => () => {
+        const {navigate} = this.props.navigation;
+
+        navigate(routeName);
     }
 
     onBackHandler = () => {
@@ -47,12 +57,6 @@ class Library extends Component {
         }
         return false;
     }
-
-    routeToLibraryBorrow = () => {
-        const {navigate} = this.props.navigation;
-
-        navigate('LibraryBorrow');
-    };
 
     navigationStateChangeHandler = (navState) => {
         this.setBackButtonStatus(navState.canGoBack);

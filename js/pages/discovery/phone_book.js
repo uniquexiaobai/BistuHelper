@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 
-class Library extends Component {
+class PhoneBook extends Component {
     static navigationOptions = ({navigation}) => ({
         title: '常用电话',
     });
@@ -17,4 +17,4 @@ class Library extends Component {
     }
 }
 
-export default Library;
+export default PhoneBook;
