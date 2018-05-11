@@ -7,4 +7,10 @@ export const colors = {
     whiteSmoke: '#f5f5f5',
     gray51: '#828282',
     lightGray: '#d3d3d3',
+
+    // 文字色
+    color_text_base: '#000000',
+
+    // 边框色
+    border_color_base: '#dddddd',
 };

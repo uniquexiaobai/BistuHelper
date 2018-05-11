@@ -5,7 +5,7 @@ import {observer} from 'mobx-react';
 import {StyleSheet, BackHandler, WebView, View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import HeaderMenu from './header_menu';
+import PopupMenu from './popup-menu';
 
 @observer
 class Library extends Component {
@@ -17,7 +17,7 @@ class Library extends Component {
         headerTitleStyle: {
             fontSize: 18,
         },
-        headerRight: <HeaderMenu options={[
+        headerRight: <PopupMenu options={[
             {text: '我的借阅', onSelect: navigation.getParam('routeToLibraryBorrow')},
             {text: '开放时间', onSelect: navigation.getParam('routeToLibraryOpenTime')},
             {text: '联系方式', onSelect: navigation.getParam('routeToLibraryContact')},
