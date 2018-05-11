@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
         paddingRight: 10,
         textAlign: 'center',
         fontSize: 20,
-        color: '#000',
+        color: colors.color_text_base,
     },
     detail__date: {
         marginTop: 5,
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     detail__text: {
         fontSize: 16,
         lineHeight: 28,
-        color: '#363636',
+        color: colors.color_text_paragraph,
     },
     detail__image: {
         width: screenWidth - 15 * 2,

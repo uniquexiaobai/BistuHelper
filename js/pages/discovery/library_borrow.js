@@ -10,6 +10,7 @@ import AccordionStyle from 'antd-mobile/lib/accordion/style/index.native';
 
 import {fetchLibraryBorrow} from '../../utils/api';
 import {getFromStorage, saveToStorage} from '../../utils/storage';
+import {colors} from '../../constants/colors';
 
 const libraryAccountStorageKey = 'BistuHelper__library__account';
 const libraryBorrowInfoStorageKey = 'BistuHelper__library__borrowInfo';
@@ -66,7 +67,7 @@ class LibraryBorrow extends Component {
                 {
                     books.length ? (
                         <View style={{marginBottom: 15, paddingLeft: 5}}>
-                            <Text>{`${user.name}（${user.department}），目前借书 ${books.length} 本`}</Text>
+                            <Text style={styles.libraryBorrow__top}>{`${user.name}（${user.department}），目前借书 ${books.length} 本`}</Text>
                         </View>
                     ) : null
                 }
@@ -106,7 +107,7 @@ const CustomAccordionStyle = {
         paddingTop: 5,
         paddingBottom: 5,
         borderBottomWidth: StyleSheet.hairlineWidth,
-        borderBottomColor: '#ddd',
+        borderBottomColor: colors.border_color_base,
     },
     headerWrap: {
         flex: 1,
@@ -115,19 +116,22 @@ const CustomAccordionStyle = {
         flexDirection: 'row',
     },
     headerText: {
-        fontSize: 15,
-        color: '#000',
+        fontSize: 16,
+        color: colors.color_text_base,
     },
     contentText: {
         lineHeight: 25,
-        fontSize: 16,
-        color: '#333',
+        fontSize: 15,
+        color: colors.color_text_paragraph,
     },
 };
 
 const styles = StyleSheet.create({
+    libraryBorrow__top: {
+        color: colors.color_text_paragraph,
+    },
     bookMeta__key: {
-        fontWeight: 'bold',
+        // fontWeight: 'bold',
     },
     bookMeta__value: {
     }
