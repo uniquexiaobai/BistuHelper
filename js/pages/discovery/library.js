@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {observable, action} from 'mobx';
 import {observer} from 'mobx-react';
-
-import {StyleSheet, BackHandler, WebView, View, Text} from 'react-native';
+import {BackHandler, WebView, View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import PopupMenu from './popup-menu';
@@ -67,19 +66,11 @@ class Library extends Component {
             <WebView
                 ref={(r) => this.webview_ref = r}
                 source={{uri: 'http://lib-m.bistu.edu.cn:8080/sms/opac/search/showiphoneSearch.action'}}
-                style={styles.library}
                 onNavigationStateChange={this.navigationStateChangeHandler}
                 injectedJavaScript={'(() => {document.querySelector(".search").style.background="#fff"})()'}
             />
         )
     }
 }
-
-const styles = StyleSheet.create({
-    library: {
-        borderWidth: 1,
-        borderColor: 'red',
-    },
-});
 
 export default Library;

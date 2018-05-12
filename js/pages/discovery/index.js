@@ -34,55 +34,71 @@ class Discovery extends Component {
                 routeName: 'Library',
                 name: '图书馆',
                 logo: require("../../../assets/images/discovery/library.png"),
-            }, {
+            }, 
+            {
                 routeName: 'SchoolNews',
                 name: '校园新闻',
-                logo: require("../../../assets/images/discovery/news.png"),
-            }, {
-                name: '教务新闻',
-                logo: require("../../../assets/images/discovery/news.png"),
-            }, {
+                logo: require("../../../assets/images/discovery/school-news.png"),
+            }, 
+            {
+                routeName: 'SubwayMap',
+                name: '地铁图',
+                logo: require("../../../assets/images/discovery/subway-map.png"),
+            }, 
+            {
                 name: '讲座预告',
                 logo: require("../../../assets/images/discovery/lecture.png"),
-            }, {
+            }, 
+            {
                 name: '寻物招领',
                 logo: require("../../../assets/images/discovery/lost.png"),
-            }, {
+            }, 
+            {
                 routeName: 'PhoneBook',
                 name: '常用电话',
-                logo: require("../../../assets/images/discovery/phone.png"),
-            }, {
+                logo: require("../../../assets/images/discovery/phone-book.png"),
+            }, 
+            {
                 name: '生活服务',
                 logo: require("../../../assets/images/discovery/life.png"),
-            }, {
+            }, 
+            {
                 name: '校车',
                 logo: require("../../../assets/images/discovery/bus.png"),
-            }, {
+            }, 
+            {
                 name: '离线地图',
                 logo: require("../../../assets/images/discovery/map.png"),
-            }, {
+            }, 
+            {
                 name: '新生专栏',
                 logo: require("../../../assets/images/discovery/ask.png"),
-            }, {
+            }, 
+            {
                 name: '教务通知',
                 logo: require("../../../assets/images/discovery/notice.png"),
-            }, {
+            }, 
+            {
                 name: '空闲教室',
-                logo: require("../../../assets/images/discovery/news.png"),
-            }, {
+                logo: require("../../../assets/images/discovery/school-news.png"),
+            }, 
+            {
                 routeName: 'SchoolCalendar',                
                 name: '校历',
-                logo: require("../../../assets/images/discovery/calendar.png"),
-            }, {
+                logo: require("../../../assets/images/discovery/school-calendar.png"),
+            }, 
+            {
                 name: '成绩查询',
                 logo: require("../../../assets/images/discovery/grade.png"),
-            }, {
+            }, 
+            {
                 name: '四六级查询',
                 logo: require("../../../assets/images/discovery/grade.png"),
-            }, {
+            },
+            {
                 routeName: 'SchoolOverview',
                 name: '学校概况',
-                logo: require("../../../assets/images/discovery/about.png"),
+                logo: require("../../../assets/images/discovery/school-overview.png"),
             },
         ];
 

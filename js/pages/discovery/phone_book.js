@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-
-import {Linking, Alert, View} from 'react-native';
+import {Linking, Alert, View, Text} from 'react-native';
 import {List} from 'antd-mobile';
 const {Item} = List;
+
+import {colors} from '../../constants/colors';
 
 const persons = [
     {name: '治安办公室', number: '82426114'},
@@ -17,9 +18,9 @@ const persons = [
 ];
 
 class PhoneBook extends Component {
-    static navigationOptions = ({navigation}) => ({
+    static navigationOptions = {
         title: '常用电话',
-    });
+    };
 
     render() {
         return (
@@ -27,7 +28,13 @@ class PhoneBook extends Component {
                 <List>
                     {
                         persons.map(person => (
-                            <Item onClick={() => this.showDialModal(person.number)} key={person.number}>{person.name}</Item>
+                            <Item 
+                                extra={this.renderItemExtra(person.number)}
+                                key={person.number}
+                                onClick={() => this.showDialModal(person.number)} 
+                            >
+                                {person.name}
+                            </Item>
                         ))
                     }
                 </List>
@@ -35,10 +42,16 @@ class PhoneBook extends Component {
         );
     }
 
+    renderItemExtra = (extra) => {
+        return (
+            <Text style={{color: colors.color_text_base}}>{extra}</Text>
+        );
+    }
+
     showDialModal = (number) => {
         Alert.alert(
             '',
-            `确定要拨打 ${number}`,
+            `确定要拨打号码 ${number}`,
             [
               {text: '取消', style: 'cancel'},
               {text: '确定', onPress: () => Linking.openURL(`tel:${number}`)},

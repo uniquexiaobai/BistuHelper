@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Linking, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-
-import {mainTabColors} from '../../constants/colors';
-
 import {List, Card, Button} from 'antd-mobile';
 const {Item} = List;
 
 import ButtonStyle from 'antd-mobile/lib/button/style/index.native';
+
+import {mainTabColors} from '../../constants/colors';
+
+const feedbackUrl = 'https://github.com/uniquexiaobai/BistuHelper/issues';
 
 class Me extends Component {
     static navigationOptions = {
@@ -50,6 +51,8 @@ class Me extends Component {
                     <List>
                         <Item arrow="horizontal" onClick={() => this.routeTo('EducationSignIn')}>教务处绑定</Item>
                         <Item arrow="horizontal" onClick={() => this.routeTo('LibrarySignIn')}>图书馆绑定</Item>
+                        <Item arrow="horizontal" onClick={() => this.feedback()}>意见反馈</Item>
+                        <Item arrow="horizontal" onClick={() => this.routeTo('AboutMe')}>关于我们</Item>
                         <Item arrow="horizontal" onClick={() => this.routeTo('Settings')}>设置</Item>
                     </List>
                 </View>
@@ -61,6 +64,10 @@ class Me extends Component {
         const {navigate} = this.props.navigation;
 
         navigate(routeName);
+    }
+
+    feedback = () => {
+        Linking.openURL(feedbackUrl); 
     }
 }
 

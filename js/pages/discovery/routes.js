@@ -7,6 +7,7 @@ import SchoolOverview from './school_overview';
 import SchoolNews from './school_news';
 import NewsDetail from './news_detail';
 import SchoolCalendar from './school_calendar';
+import SubwayMap from './subway_map';
 
 const discoveryRoutes = {
     Library: {
@@ -21,11 +22,11 @@ const discoveryRoutes = {
     LibraryOpenTime: {
         screen: LibraryOpenTime,
     },
-    PhoneBook: {
-        screen: PhoneBook,
-    },
     SchoolOverview: {
         screen: SchoolOverview,
+    },
+    SchoolCalendar: {
+        screen: SchoolCalendar,
     },
     SchoolNews: {
         screen: SchoolNews,
@@ -33,8 +34,11 @@ const discoveryRoutes = {
     NewsDetail: {
         screen: NewsDetail,
     },
-    SchoolCalendar: {
-        screen: SchoolCalendar,
+    PhoneBook: {
+        screen: PhoneBook,
+    },
+    SubwayMap: {
+        screen: SubwayMap,
     },
 };
 

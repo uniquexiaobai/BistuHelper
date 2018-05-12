@@ -66,9 +66,11 @@ class NewsDetail extends Component {
     }
 
     getSectionLayout = (section) => {
+        const space8 = '        ';
+
         if (section.text) {
             return (
-                <Text style={styles.detail__text}>{section.text}</Text>
+                <Text style={styles.detail__text}>{space8}{section.text}</Text>
             );
         } else if (section.img) {
             return (
@@ -106,7 +108,7 @@ const styles = StyleSheet.create({
         paddingBottom: 15,
     },
     detail__section: {
-        marginBottom: 15,
+        marginBottom: 5,
     },
     detail__text: {
         fontSize: 16,
