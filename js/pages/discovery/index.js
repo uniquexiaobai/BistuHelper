@@ -31,41 +31,31 @@ class Discovery extends Component {
     render() {
         const list = [
             {
-                routeName: 'Library',
-                name: '图书馆',
-                logo: require("../../../assets/images/discovery/library.png"),
-            }, 
-            {
                 routeName: 'SchoolNews',
                 name: '校园新闻',
                 logo: require("../../../assets/images/discovery/school-news.png"),
             }, 
             {
-                routeName: 'SubwayMap',
-                name: '地铁图',
-                logo: require("../../../assets/images/discovery/subway-map.png"),
+                routeName: 'Library',
+                name: '图书馆',
+                logo: require("../../../assets/images/discovery/library.png"),
+            },
+            {
+                name: '成绩查询',
+                logo: require("../../../assets/images/discovery/grade-query.png"),
             }, 
             {
-                routeName: 'AirQuality',
-                name: '空气质量',
-                logo: require("../../../assets/images/discovery/air-quality.png"),
-            }, 
+                name: '四六级查询',
+                logo: require("../../../assets/images/discovery/cet-query.png"),
+            },
             {
                 name: '寻物招领',
                 logo: require("../../../assets/images/discovery/lost.png"),
-            }, 
-            {
-                routeName: 'PhoneBook',
-                name: '常用电话',
-                logo: require("../../../assets/images/discovery/phone-book.png"),
-            }, 
-            {
-                name: '生活服务',
-                logo: require("../../../assets/images/discovery/life.png"),
-            }, 
+            },
+            
             {
                 name: '校车',
-                logo: require("../../../assets/images/discovery/bus.png"),
+                logo: require("../../../assets/images/discovery/school-bus.png"),
             }, 
             {
                 name: '离线地图',
@@ -84,18 +74,30 @@ class Discovery extends Component {
                 logo: require("../../../assets/images/discovery/school-news.png"),
             }, 
             {
+                routeName: 'SubwayMap',
+                name: '地铁图',
+                logo: require("../../../assets/images/discovery/subway-map.png"),
+            }, 
+            {
+                routeName: 'AirQuality',
+                name: '空气质量',
+                logo: require("../../../assets/images/discovery/air-quality.png"),
+            },
+            {
+                routeName: 'PhoneBook',
+                name: '常用电话',
+                logo: require("../../../assets/images/discovery/phone-book.png"),
+            },
+            {
                 routeName: 'SchoolCalendar',                
                 name: '校历',
                 logo: require("../../../assets/images/discovery/school-calendar.png"),
-            }, 
-            {
-                name: '成绩查询',
-                logo: require("../../../assets/images/discovery/grade.png"),
-            }, 
-            {
-                name: '四六级查询',
-                logo: require("../../../assets/images/discovery/grade.png"),
             },
+            {
+                routeName: 'TimeTable',
+                name: '作息时间',
+                logo: require("../../../assets/images/discovery/time-table.png"),
+            }, 
             {
                 routeName: 'SchoolOverview',
                 name: '学校概况',

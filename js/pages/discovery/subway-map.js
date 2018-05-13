@@ -20,7 +20,7 @@ class SubwayMap extends Component {
             <WebView
                 // contentInset ios only
                 onLoad={() => Toast.hide()}
-                source={{uri: 'http://workhard.top/test/subway.html'}}
+                source={{uri: 'http://workhard.top/test/subway-map.html'}}
             />
         );
     }

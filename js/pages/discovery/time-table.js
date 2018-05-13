@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {WebView} from 'react-native';
+import {WebView, View, Text} from 'react-native';
 import {Toast} from 'antd-mobile';
 
-class LibraryContact extends Component {
+class TimeTable extends Component {
     static navigationOptions = {
-        title: '联系方式',
+        title: '作息时间',
     };
 
     componentDidMount() {
@@ -18,11 +18,11 @@ class LibraryContact extends Component {
     render() {
         return (
             <WebView
+                source={{uri: 'http://workhard.top/test/time-table.html'}}
                 onLoad={() => Toast.hide()}
-                source={{uri: 'http://workhard.top/test/library_contact.html'}}
             />
         );
     }
 }
 
-export default LibraryContact;
+export default TimeTable;

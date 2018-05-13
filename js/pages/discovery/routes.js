@@ -7,8 +7,9 @@ import SchoolOverview from './school_overview';
 import SchoolNews from './school_news';
 import NewsDetail from './news_detail';
 import SchoolCalendar from './school_calendar';
-import SubwayMap from './subway_map';
+import SubwayMap from './subway-map';
 import AirQuality from './air_quality';
+import TimeTable from './time-table';
 
 const discoveryRoutes = {
     Library: {
@@ -43,6 +44,9 @@ const discoveryRoutes = {
     },
     AirQuality: {
         screen: AirQuality,
+    },
+    TimeTable: {
+        screen: TimeTable,
     },
 };
 
