@@ -45,6 +45,7 @@ class Discovery extends Component {
                 logo: require("../../../assets/images/discovery/grade-query.png"),
             }, 
             {
+                routeName: 'CetQuery',
                 name: '四六级查询',
                 logo: require("../../../assets/images/discovery/cet-query.png"),
             },
@@ -52,7 +53,6 @@ class Discovery extends Component {
                 name: '寻物招领',
                 logo: require("../../../assets/images/discovery/lost.png"),
             },
-            
             {
                 name: '校车',
                 logo: require("../../../assets/images/discovery/school-bus.png"),

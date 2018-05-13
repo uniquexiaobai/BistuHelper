@@ -16,15 +16,20 @@ class LibrarySignIn extends Component {
     });
 
     async componentDidMount() {
-        const {username, password} = await getFromStorage(libraryAccountStorageKey);
         const {setFieldsValue} = this.props.form;
 
-        if (!username || !password) return;
+        try {
+            const {username, password} = await getFromStorage(libraryAccountStorageKey) || {};
+            
+            if (!username || !password) return;
 
-        setFieldsValue({
-            username: `${username}`,
-            password: `${password}`,
-        });
+            setFieldsValue({
+                username: `${username}`,
+                password: `${password}`,
+            });
+        } catch (err) {
+            console.warn(err);
+        }
     }
 
     componentWillUnmount() {

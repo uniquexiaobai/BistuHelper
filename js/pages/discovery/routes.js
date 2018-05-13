@@ -10,6 +10,7 @@ import SchoolCalendar from './school_calendar';
 import SubwayMap from './subway-map';
 import AirQuality from './air_quality';
 import TimeTable from './time-table';
+import CetQuery from './cet-query';
 
 const discoveryRoutes = {
     Library: {
@@ -47,6 +48,9 @@ const discoveryRoutes = {
     },
     TimeTable: {
         screen: TimeTable,
+    },
+    CetQuery: {
+        screen: CetQuery,
     },
 };
 
