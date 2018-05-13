@@ -86,14 +86,14 @@ class LibraryBorrow extends Component {
                             {
                                 books.map(book => (
                                     <Accordion.Panel key={book.barCode} header={book.name}>
-                                        <Text style={styles.bookMeta__key}>    条码号：</Text>
-                                        <Text style={styles.bookMeta__value}> {book.barCode}</Text>{'\n'}
-                                        <Text style={styles.bookMeta__key}>借阅日期：</Text>
-                                        <Text style={styles.bookMeta__value}> {book.fromDate}</Text>{'\n'}
-                                        <Text style={styles.bookMeta__key}>应还日期：</Text>
-                                        <Text style={styles.bookMeta__value}> {book.toDate}</Text>{'\n'}
-                                        <Text style={styles.bookMeta__key}>    馆藏地：</Text>
-                                        <Text style={styles.bookMeta__value}> {book.address}</Text>
+                                        <Text>    条码号：</Text>
+                                        <Text> {book.barCode}</Text>{'\n'}
+                                        <Text>借阅日期：</Text>
+                                        <Text> {book.fromDate}</Text>{'\n'}
+                                        <Text>应还日期：</Text>
+                                        <Text> {book.toDate}</Text>{'\n'}
+                                        <Text>    馆藏地：</Text>
+                                        <Text> {book.address}</Text>
                                     </Accordion.Panel>
                                 ))
                             }
@@ -109,11 +109,6 @@ const styles = StyleSheet.create({
     libraryBorrow__top: {
         color: colors.color_text_paragraph,
     },
-    bookMeta__key: {
-        // fontWeight: 'bold',
-    },
-    bookMeta__value: {
-    }
 });
 
 export default LibraryBorrow;

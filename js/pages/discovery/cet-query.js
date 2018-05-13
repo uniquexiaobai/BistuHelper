@@ -20,7 +20,6 @@ class CetQuery extends Component {
     async componentDidMount() {
         const {navigate} = this.props.navigation;
         const {fetchEducationCet} = this.props.cetQueryStore;
-        
 
         try {
             const {username, password, name, major} = await getFromStorage(educationAccountStorageKey) || {};

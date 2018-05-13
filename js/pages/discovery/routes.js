@@ -11,6 +11,7 @@ import SubwayMap from './subway-map';
 import AirQuality from './air_quality';
 import TimeTable from './time-table';
 import CetQuery from './cet-query';
+import ScoreQuery from './score-query';
 
 const discoveryRoutes = {
     Library: {
@@ -51,6 +52,9 @@ const discoveryRoutes = {
     },
     CetQuery: {
         screen: CetQuery,
+    },
+    ScoreQuery: {
+        screen: ScoreQuery,
     },
 };
 

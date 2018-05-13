@@ -9,6 +9,7 @@ const libraryBaseUrl = `${baseUrl}/api/library/base`;
 const libraryBorrowUrl = `${baseUrl}/api/library/borrow`;
 const educationBaseUrl = `${baseUrl}/api/education/base`;
 const cetQueryUrl = `${baseUrl}/api/education/cet`;
+const scoreQueryUrl = `${baseUrl}/api/education/score`;
 
 const defaultOptions = {
     method: 'POST',
@@ -50,6 +51,8 @@ export const fetchLibraryBorrow = postCreater(libraryBorrowUrl);
 export const fetchEducationBase = postCreater(educationBaseUrl);
 
 export const fetchEducationCet = postCreater(cetQueryUrl);
+
+export const fetchEducationScore = postCreater(scoreQueryUrl);
 
 export const fetchNewsHot = getCreater(newsHotUrl);
 

@@ -41,8 +41,9 @@ class Discovery extends Component {
                 logo: require("../../../assets/images/discovery/library.png"),
             },
             {
+                routeName: 'ScoreQuery',
                 name: '成绩查询',
-                logo: require("../../../assets/images/discovery/grade-query.png"),
+                logo: require("../../../assets/images/discovery/score-query.png"),
             }, 
             {
                 routeName: 'CetQuery',
