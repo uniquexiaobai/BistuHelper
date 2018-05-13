@@ -8,6 +8,7 @@ import SchoolNews from './school_news';
 import NewsDetail from './news_detail';
 import SchoolCalendar from './school_calendar';
 import SubwayMap from './subway_map';
+import AirQuality from './air_quality';
 
 const discoveryRoutes = {
     Library: {
@@ -39,6 +40,9 @@ const discoveryRoutes = {
     },
     SubwayMap: {
         screen: SubwayMap,
+    },
+    AirQuality: {
+        screen: AirQuality,
     },
 };
 

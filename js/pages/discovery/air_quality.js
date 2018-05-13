@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {WebView, View, Text} from 'react-native';
 import {Toast} from 'antd-mobile';
 
-class SubwayMap extends Component {
+class AirQuality extends Component {
     static navigationOptions = {
-        title: '地铁图',
+        title: '空气质量',
     };
 
     componentDidMount() {
@@ -18,12 +18,11 @@ class SubwayMap extends Component {
     render() {
         return (
             <WebView
-                // contentInset ios only
+                source={{uri: 'https://m.castform.cloud/'}}
                 onLoad={() => Toast.hide()}
-                source={{uri: 'http://workhard.top/test/subway.html'}}
             />
         );
     }
 }
 
-export default SubwayMap;
+export default AirQuality;

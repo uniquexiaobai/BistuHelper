@@ -46,8 +46,9 @@ class Discovery extends Component {
                 logo: require("../../../assets/images/discovery/subway-map.png"),
             }, 
             {
-                name: '讲座预告',
-                logo: require("../../../assets/images/discovery/lecture.png"),
+                routeName: 'AirQuality',
+                name: '空气质量',
+                logo: require("../../../assets/images/discovery/air-quality.png"),
             }, 
             {
                 name: '寻物招领',

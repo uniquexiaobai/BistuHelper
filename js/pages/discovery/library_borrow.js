@@ -49,7 +49,7 @@ class LibraryBorrow extends Component {
         }
         this.userInfo = {name, department};
 
-        Toast.loading('加载中...', 0);
+        Toast.loading('', 0);
         await this.fetchLibraryBorrow({username, password});
         Toast.hide();
     }
