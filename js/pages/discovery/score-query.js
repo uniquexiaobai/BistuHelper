@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {observer, inject} from 'mobx-react';
 
-import {StyleSheet, TouchableOpacity, ScrollView, View, Text} from 'react-native';
-import {Accordion, Picker, List, Toast} from 'antd-mobile';
+import {StyleSheet, TouchableOpacity, ScrollView, View, Text, Picker} from 'react-native';
+import {Accordion, Toast} from 'antd-mobile';
 
 import CustomAccordionStyle from '../../styles/Accordion';
 import {getFromStorage} from '../../utils/storage';
@@ -47,11 +47,6 @@ class ScoreQuery extends Component {
     render() {
         const {setCurScoreTerm, scoreTerms, curScoreTerm, curScoreInfo} = this.props.scoreQueryStore;
         const userInfo = this.userInfo || {};
-
-        // console.warn(formatedScoreInfo);
-        // console.warn(curScoreInfo);
-        // console.warn(curScoreTerm);
-
         const pickerData = scoreTerms.map(value => {
             const keys = value.split('#');
 
@@ -60,12 +55,6 @@ class ScoreQuery extends Component {
                 value,
             };
         });
-
-        const CustomPickerChildren = ({onClick, extra}) => (
-            <TouchableOpacity activeOpacity={1} onPress={onClick} style={{height: 45, paddingLeft: 5, justifyContent: 'center'}}>
-                <Text>学期选择：{extra}</Text>
-            </TouchableOpacity>
-        );
 
         return (
             <View style={{paddingTop: 15, paddingLeft: 5, paddingRight: 5}}>
@@ -78,8 +67,13 @@ class ScoreQuery extends Component {
                 }
 
                 <View>
-                    <Picker data={pickerData} cols={1} title="选择学期" value={[curScoreTerm]} onOk={(val) => setCurScoreTerm(val[0])}>
-                        <CustomPickerChildren/>
+                    <Picker 
+                        selectedValue={curScoreTerm}
+                        onValueChange={value => setCurScoreTerm(value)}
+                    >
+                        {pickerData.map(({label, value}) => (
+                            <Picker.Item key={value} label={label} value={value}/>
+                        ))}
                     </Picker>
                 </View>
 
