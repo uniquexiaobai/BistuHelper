@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {observer, inject} from 'mobx-react';
-
 import {StyleSheet, View, Text} from 'react-native';
 import {Accordion, Toast} from 'antd-mobile';
 

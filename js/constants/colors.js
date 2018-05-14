@@ -13,5 +13,8 @@ export const colors = {
     color_text_paragraph: '#333333',
 
     // 边框色
-    border_color_base: '#dddddd',
+    border_color_base: '#cccccc',
+
+    // 背景色
+    fill_grey: '#f7f7f7',
 };

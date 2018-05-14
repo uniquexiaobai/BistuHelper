@@ -10,6 +10,7 @@ const libraryBorrowUrl = `${baseUrl}/api/library/borrow`;
 const educationBaseUrl = `${baseUrl}/api/education/base`;
 const cetQueryUrl = `${baseUrl}/api/education/cet`;
 const scoreQueryUrl = `${baseUrl}/api/education/score`;
+const courseListUrl = `${baseUrl}/api/education/course`;
 
 const defaultOptions = {
     method: 'POST',
@@ -43,6 +44,10 @@ const getCreater = (url) => async () => {
         throw err;
     }
 };
+
+
+
+export const fetchCourseList = postCreater(courseListUrl);
 
 export const fetchLibraryBase = postCreater(libraryBaseUrl);
 
