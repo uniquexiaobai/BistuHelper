@@ -8,6 +8,7 @@ import dayjs from 'dayjs';
 import {getFromStorage} from '../../utils/storage';
 import {mainTabColors} from '../../constants/colors';
 import {screenWidth} from '../../utils/screen';
+import {range} from '../../utils/array';
 
 const educationAccountStorageKey = 'BistuHelper__education__account';
 
@@ -75,9 +76,8 @@ class Courses extends Component {
     curWeekDates = () => {
         const date = dayjs();
         const curWeek = date.day();
-        const arr = [1, 2, 3, 4, 5, 6, 7];
 
-        return arr.map(w => {
+        return range(1, 7).map(w => {
             if (w === curWeek) {
                 return date;
             } else if (w > curWeek) {
@@ -124,32 +124,70 @@ class Courses extends Component {
         </View>
     );
 
-    courseBodyView = () => (
-        <View style={styles.course__body}>
-            <View style={[styles.course__column, styles.course__column0]}>
-            </View>
+    courseBodyView = (data) => {
+        return (
+            <ScrollView>
+                <View style={styles.course__body}>
+                    {
+                        data.map((line, index) => (
+                            <View key={index} style={[styles.course__column, index === 0 ? styles.course__column0 : null]}>
+                                {
+                                    line.map(({flex = 1, value = '', data}) => (
+                                        <View key={value} style={[{flex, justifyContent: 'center', alignItems: 'center'}, data ? styles.active : null]}>
+                                            <Text>{value}</Text>
+                                        </View>
+                                    ))
+                                }
+                            </View>
+                        ))
+                    }
+                </View>
+            </ScrollView>
+        );
+    };
 
-            <View style={[styles.course__column]}>
-            </View>
-            <View style={[styles.course__column]}>
-            </View>
-            <View style={[styles.course__column]}>
-            </View>
-            <View style={[styles.course__column]}>
-            </View>
-            <View style={[styles.course__column]}>
-            </View>
-            <View style={[styles.course__column]}>
-            </View>
-            <View style={[styles.course__column]}>
-            </View>
-        </View>
-    )
+    courseBodyValues = (courses) => {
+        const sideValues = range(1, 13).map(value => ({value}));
+
+        const values = [];
+        for (let i = 0; i < courses.length; i++) {
+            const course = courses[i];
+        
+            if (!course || !course.length) {
+                values.push([]);
+            } else {
+                let result = [];
+                result.length = 14;
+                let prev = 0;
+        
+                course.forEach(c => {
+                    const a = +c.meta.parts[0];
+                    const b = +c.meta.parts[1];
+                    const total = b - a + 1;
+                    const obj = {
+                        flex: total,
+                        value: c.name,
+                        data: c,
+                    };
+                    result.splice(a - prev, total, obj);
+                    prev + total - 1;
+                });
+                for (let j = 0; j < result.length; j++) {
+                    result[j] = result[j] || {};
+                }
+                values.push(result.slice(1));
+            }
+        }
+        
+        return [sideValues, ...values];
+    }
 
     render() {
+        const {curWeekCourses} = this.props.courseStore;
         const headerValues = this.courseHeaderValues();
 
-        console.warn(headerValues);
+        const bodyValues = this.courseBodyValues(curWeekCourses);
+        console.warn(bodyValues);
 
         return (
             <View style={styles.course}>
@@ -158,27 +196,32 @@ class Courses extends Component {
                 <View style={styles.course__table}>
                     {this.courseHeaderView(headerValues)}
 
-                    {this.courseBodyView()}
+                    {this.courseBodyView(bodyValues)}
                 </View>
-
             </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
+    course: {
+        flex: 1,
+    },
     course__table: {
-
+        flex: 1,
     },
     course__header: {
+        height: 55,
         flexDirection: 'row',
+        alignItems: 'stretch',
         backgroundColor: '#f7f7f7',
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderBottomColor: '#cccccc',
     },
     course__th: {
         flex: 3,
         justifyContent: 'center',
         alignItems: 'center',
-        height: 55,
     },
     course__th0: {
         flex: 2,
@@ -193,20 +236,20 @@ const styles = StyleSheet.create({
 
     course__body: {
         flexDirection: 'row',
-        borderWidth: 1,
-        borderColor: 'red',
-        height: 320,
+        height: 715,
     },
     course__column: {
         flex: 3,
         justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 1,
-        borderColor: 'blue',
-        height: 320,
+        alignItems: 'stretch',
     },
     course__column0: {
         flex: 2,
+        backgroundColor: '#f7f7f7',
+    },
+    active: {
+        borderWidth: 1,
+        borderColor: 'blue',
     },
 });
 
