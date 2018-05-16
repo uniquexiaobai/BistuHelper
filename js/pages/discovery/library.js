@@ -4,23 +4,20 @@ import {observer} from 'mobx-react';
 import {BackHandler, WebView, View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import PopupMenu from './popup-menu';
+import {MoreNavBar} from '../../components/nav-bar';
 
 @observer
 class Library extends Component {
     static navigationOptions = ({navigation}) => ({
-        title: '图书馆',
-        headerStyle: {
-            height: 48,
-        },
-        headerTitleStyle: {
-            fontSize: 18,
-        },
-        headerRight: <PopupMenu options={[
-            {text: '我的借阅', onSelect: navigation.getParam('routeToLibraryBorrow')},
-            {text: '开放时间', onSelect: navigation.getParam('routeToLibraryOpenTime')},
-            {text: '联系方式', onSelect: navigation.getParam('routeToLibraryContact')},
-        ]}/>
+        header: <MoreNavBar 
+            navigation={navigation} 
+            config={{title: '图书馆'}}
+            moreOptions={[
+                {text: '我的借阅', onSelect: navigation.getParam('routeToLibraryBorrow')},
+                {text: '开放时间', onSelect: navigation.getParam('routeToLibraryOpenTime')},
+                {text: '联系方式', onSelect: navigation.getParam('routeToLibraryContact')},
+            ]}
+        />
     });
 
     @observable backButtonEnabled = false;

@@ -3,7 +3,7 @@ import {MenuProvider, Menu, MenuOptions, MenuOption, MenuTrigger} from 'react-na
 import {StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import {colors} from '../../constants/colors';
+import {colors} from '../constants/colors';
 
 const optionsStyles = {
     optionsContainer: {
@@ -25,11 +25,11 @@ const optionsStyles = {
 
 const PopupMenu = ({options = []}) => {
     return (
-        <Menu style={{marginRight: 5, flex: 1}}>
-            <MenuTrigger style={{width: 40, height: 40, justifyContent: 'center', alignItems: 'center'}}>
+        <Menu style={{width: 44, height: 44, justifyContent: 'center', alignItems: 'center'}}>
+            <MenuTrigger style={{width: 44, height: 44, justifyContent: 'center', alignItems: 'center'}}>
                 <Icon 
                     name='ios-more' 
-                    color='#000000' 
+                    color='#000000'
                     size={25}
                 />
             </MenuTrigger>
