@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {observer, inject} from 'mobx-react';
-import {StyleSheet, ScrollView, View, Text, Button} from 'react-native';
+import {StyleSheet, ScrollView, TouchableOpacity, View, Text, Button} from 'react-native';
 import {Toast} from 'antd-mobile';
 import Icon from 'react-native-vector-icons/Ionicons';
 import dayjs from 'dayjs';
@@ -113,39 +113,6 @@ class Courses extends Component {
         return values;
     }
 
-    courseHeaderView = (values) => (
-        <View style={styles.course__header}>
-            {values.map((value, index) => (
-                <View key={index} style={[styles.course__th, index === 0 ? styles.course__th0 : null]}>
-                    <Text style={[styles.course__th_text, styles.text_bold]}>{value[0]}</Text>
-                    <Text style={[styles.course__th_text]}>{value[1]}</Text>
-                </View>
-            ))}
-        </View>
-    );
-
-    courseBodyView = (data) => {
-        return (
-            <ScrollView>
-                <View style={styles.course__body}>
-                    {
-                        data.map((line, index) => (
-                            <View key={index} style={[styles.course__column, index === 0 ? styles.course__column0 : null]}>
-                                {
-                                    line.map(({flex = 1, value = '', data}) => (
-                                        <View key={value} style={[{flex, justifyContent: 'center', alignItems: 'center'}, data ? styles.active : null]}>
-                                            <Text>{value}</Text>
-                                        </View>
-                                    ))
-                                }
-                            </View>
-                        ))
-                    }
-                </View>
-            </ScrollView>
-        );
-    };
-
     courseBodyValues = (courses) => {
         const sideValues = range(1, 13).map(value => ({value}));
 
@@ -166,11 +133,11 @@ class Courses extends Component {
                     const total = b - a + 1;
                     const obj = {
                         flex: total,
-                        value: c.name,
+                        value: `${c.name}\n@${c.address}`,
                         data: c,
                     };
                     result.splice(a - prev, total, obj);
-                    prev + total - 1;
+                    prev = prev + total - 1;
                 });
                 for (let j = 0; j < result.length; j++) {
                     result[j] = result[j] || {};
@@ -182,12 +149,50 @@ class Courses extends Component {
         return [sideValues, ...values];
     }
 
+    courseHeaderView = (values) => (
+        <View style={styles.course__header}>
+            {values.map((value, index) => (
+                <View key={index} style={[styles.course__th, index === 0 ? styles.course__th0 : null]}>
+                    <Text style={[styles.course__th_text, styles.text_bold]}>{value[0]}</Text>
+                    <Text style={[styles.course__th_text]}>{value[1]}</Text>
+                </View>
+            ))}
+        </View>
+    );
+
+    courseBodyView = (data) => {
+        return (
+            <ScrollView>
+                <View style={styles.course__body}>
+                    {
+                        data.map((line, index) => (
+                            <View key={index} style={[styles.course__column, index === 0 ? styles.course__column0 : null]}>
+                                {
+                                    (line.length ? line : range(1, 13)).map(({flex = 1, value = '', data}) => (
+                                        <TouchableOpacity 
+                                            key={value} 
+                                            activeOpacity={1} 
+                                            style={[styles.course__row, {flex}, data ? styles['course__row-active'] : null]}
+                                            onPress={() => {this.routeToDetail(data)}}
+                                        >
+                                            <Text style={[styles.course__row_text, data ? styles['course__row_text-active'] : null]}>{value}</Text>
+                                        </TouchableOpacity>
+                                    ))
+                                }
+                            </View>
+                        ))
+                    }
+                </View>
+            </ScrollView>
+        );
+    };
+
     render() {
         const {curWeekCourses} = this.props.courseStore;
         const headerValues = this.courseHeaderValues();
 
         const bodyValues = this.courseBodyValues(curWeekCourses);
-        console.warn(bodyValues);
+        // console.warn(bodyValues);
 
         return (
             <View style={styles.course}>
@@ -201,6 +206,13 @@ class Courses extends Component {
             </View>
         );
     }
+
+    routeToDetail = (course) => {
+        if (!course) return;
+        const {navigate} = this.props.navigation;
+
+        navigate('CourseDetail', {course})
+    };
 }
 
 const styles = StyleSheet.create({
@@ -233,7 +245,6 @@ const styles = StyleSheet.create({
     text_bold: {
         fontWeight: 'bold',
     },
-
     course__body: {
         flexDirection: 'row',
         height: 715,
@@ -247,9 +258,22 @@ const styles = StyleSheet.create({
         flex: 2,
         backgroundColor: '#f7f7f7',
     },
-    active: {
-        borderWidth: 1,
-        borderColor: 'blue',
+    course__row: {
+        paddingLeft: 3,
+        paddingRight: 3,
+        justifyContent: 'center', 
+        alignItems: 'center',
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderBottomColor: '#cccccc',
+    },
+    'course__row-active': {
+        backgroundColor: 'green',
+    },
+    course__row_text: {
+        fontSize: 12,
+    },
+    'course__row_text-active': {
+        color: '#ffffff',
     },
 });
 

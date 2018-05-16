@@ -3,9 +3,10 @@ import {StyleSheet} from 'react-native';
 
 import StartUp from './pages/start-up';
 import Home from './pages/home';
-import Courses from './pages/courses';
+import Course from './pages/course';
 import Discovery from './pages/discovery';
 import Me from './pages/me';
+import courseRoutes from './pages/course/routes';
 import discoveryRoutes from './pages/discovery/routes';
 import MeRoutes from './pages/me/routes';
 
@@ -15,8 +16,8 @@ const MainTabNavigator = TabNavigator({
     Home: {
         screen: Home
     },
-    Courses: {
-        screen: Courses
+    Course: {
+        screen: Course
     },
     Discovery: {
         screen: Discovery
@@ -60,6 +61,7 @@ const MainStackNavigator = StackNavigator({
     Home: {
         screen: MainTabNavigator
     },
+    ...courseRoutes,
     ...discoveryRoutes,
     ...MeRoutes,
 }, {
