@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity, View, Text} from 'react-native';
+import {StyleSheet, TouchableHighlight, View, Text} from 'react-native';
 import NavigationBar from 'react-native-navbar';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -9,23 +9,41 @@ function noop() {}
 
 const Back = ({onPress}) => {
     return (
-        <TouchableOpacity 
-            activeOpacity={0.6}
+        <TouchableHighlight 
+            underlayColor={'#f7f7f7'}
+            activeOpacity={1}
             onPress={onPress || noop}
-            style={styles.button}
+            style={[styles.button, styles.leftButton]}
         >
             <Icon 
                 name='md-arrow-back'
                 color='#000000' 
                 size={25}
             />
-        </TouchableOpacity>
+        </TouchableHighlight>
     );
 };
 
 const More = ({options}) => {
     return (
         <PopupMenu options={options}/>
+    );
+};
+
+const Refresh = ({onPress}) => {
+    return (
+        <TouchableHighlight 
+            underlayColor={'#f7f7f7'}
+            activeOpacity={1}
+            onPress={onPress || noop}
+            style={[styles.button, styles.rightButton]}
+        >
+            <Icon 
+                name='md-refresh'
+                color='#000000' 
+                size={25}
+            />
+        </TouchableHighlight>
     );
 };
 
@@ -68,6 +86,18 @@ export const MoreNavBar = ({navigation, config, moreOptions}) => {
     );
 };
 
+export const RefreshNavBar = ({navigation, config, onRefresh}) => {
+    const {goBack} = navigation;
+
+    return (
+        <NavBar
+            leftButton={<Back onPress={() => goBack()}/>}
+            rightButton={<Refresh onPress={() => onRefresh()}/>}
+            config={config}
+        />
+    );
+};
+
 const styles = StyleSheet.create({
     container: {
         borderBottomWidth: StyleSheet.hairlineWidth,
@@ -77,9 +107,15 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     button: {
-        width: 44, 
+        width: 44,
         borderRadius: 22,
         justifyContent: 'center', 
         alignItems: 'center', 
+    },
+    leftButton: {
+        marginLeft: 5,
+    },
+    rightButton: {
+        marginRight: 5,
     },
 });

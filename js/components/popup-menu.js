@@ -25,7 +25,7 @@ const optionsStyles = {
 
 const PopupMenu = ({options = []}) => {
     return (
-        <Menu style={{width: 44, height: 44, justifyContent: 'center', alignItems: 'center'}}>
+        <Menu style={{width: 44, height: 44, marginRight: 5, justifyContent: 'center', alignItems: 'center'}}>
             <MenuTrigger style={{width: 44, height: 44, justifyContent: 'center', alignItems: 'center'}}>
                 <Icon 
                     name='ios-more' 
