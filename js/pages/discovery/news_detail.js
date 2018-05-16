@@ -3,6 +3,7 @@ import {observable, action, runInAction} from 'mobx';
 import {observer} from 'mobx-react';
 import {StyleSheet, ScrollView, View, Text, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {Toast} from 'antd-mobile';
 
 import {fetchNewsDetail} from '../../utils/api';
 
@@ -33,7 +34,17 @@ class NewsDetail extends Component {
     async componentDidMount() {
         const newsId = this.props.navigation.getParam('newsId');
 
-        await this.fetchNewsDetail(newsId);
+        try {
+            Toast.loading('', 0);
+            await this.fetchNewsDetail(newsId);
+            Toast.hide();
+        } catch (err) {
+            console.warn(err);
+        }
+    }
+
+    componentWillUnmount() {
+        Toast.hide();
     }
 
     render() {

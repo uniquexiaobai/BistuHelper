@@ -24,8 +24,8 @@ class SchoolNewsStore {
                 // fixbug object api set in next release
                 if (data) this.schoolNews[params.type] = data;
             });
-        } catch (e) {
-            console.error(e);
+        } catch (err) {
+            console.warn(err);
         }
     };
 }

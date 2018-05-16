@@ -3,56 +3,73 @@ import {observer, inject} from 'mobx-react';
 import {
     StyleSheet,
     TouchableHighlight,
-    ListView,
+    FlatList,
     View,
     Image,
     Text,
 } from 'react-native';
+import {Toast} from 'antd-mobile';
 
 import {colors} from '../../constants/colors';
 
 @inject('schoolNewsStore')
 @observer
 class NewsList extends Component {
-    ds = new ListView.DataSource({
-        rowHasChanged: (r1, r2) => r1 !== r2
-    });
-
     async componentDidMount() {
+        try {
+            this.fetchData();
+        } catch (err) {
+            console.warn(err);
+        }
+    }
+
+    fetchData = async () => {
         const {fetchNewsList} = this.props.schoolNewsStore;
         const {type} = this.props;
 
-        await fetchNewsList({type});
+        try {
+            Toast.loading('', 0);
+            await fetchNewsList({type});
+            Toast.hide();
+        } catch (err) {
+            console.warn(err);
+        }
+    }
+
+    componentWillUnmount() {
+        Toast.hide();
     }
 
     render() {
         const {type} = this.props;
-        const schoolNews = this.props.schoolNewsStore.schoolNews;
-        const newsList = [...schoolNews[type]];
+        const {schoolNews} = this.props.schoolNewsStore;
+        const newsList = schoolNews[type];
 
         return (
-            <ListView
+            <FlatList
+                data={newsList}
+                keyExtractor={item => item.id}
                 style={styles.news_list}
-                enableEmptySections={true}
-                dataSource={this.ds.cloneWithRows(newsList)}
-                renderRow={(news) => (
-                    <TouchableHighlight
-                        key={news.id}
-                        style={styles.news_item__wrap}
-                        underlayColor={colors.lightGray}
-                        onPress={this.onNewsItemTap.bind(this, news.id)}
-                    >
-                        <View style={styles.news_item}>
-                            <Text style={styles.news_item__title}>{news.title}</Text>
-                            <Image
-                                style={styles.news_item__cover}
-                                source={{uri: news.cover || news.banner}}
-                            />
-                        </View>
-                    </TouchableHighlight>
-                )}
+                renderItem={({item}) => {
+                    return (
+                        <TouchableHighlight
+                            key={item.id}
+                            style={styles.news_item__wrap}
+                            underlayColor={colors.lightGray}
+                            onPress={this.onNewsItemTap.bind(this, item.id)}
+                        >
+                            <View style={styles.news_item}>
+                                <Text style={styles.news_item__title}>{item.title}</Text>
+                                <Image
+                                    style={styles.news_item__cover}
+                                    source={{uri: item.cover || item.banner}}
+                                />
+                            </View>
+                        </TouchableHighlight>
+                    );
+                }}
             />
-        )
+        );
     }
 
     onNewsItemTap(newsId) {
