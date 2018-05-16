@@ -3,12 +3,13 @@ import {observer, inject} from 'mobx-react';
 import {StyleSheet, ScrollView, TouchableOpacity, View, Text, Button} from 'react-native';
 import {Toast} from 'antd-mobile';
 import Icon from 'react-native-vector-icons/Ionicons';
-import dayjs from 'dayjs';
 
 import {getFromStorage} from '../../utils/storage';
 import {mainTabColors} from '../../constants/colors';
 import {screenWidth} from '../../utils/screen';
 import {range} from '../../utils/array';
+import {getCurTerm, getCurWeekDates} from '../../utils/date';
+import {colors} from '../../constants/colors';
 
 const educationAccountStorageKey = 'BistuHelper__education__account';
 
@@ -28,19 +29,30 @@ class Courses extends Component {
     };
 
     async componentDidMount() {
+        try {
+            this.fetchDate();
+        } catch (err) {
+            console.warn(err);
+        }
+    }
+
+    fetchDate = async () => {
         const {navigate} = this.props.navigation;
         const {fetchCourseList} = this.props.courseStore;
 
         try {
-            const {username, password, name, major} = await getFromStorage(educationAccountStorageKey) || {};
+            const {username, password, name, major, level} = await getFromStorage(educationAccountStorageKey) || {};
 
             if (!username || !password) {
                 Toast.info('请先绑定教务处账号', 1);
-                setTimeout(() => navigate('EducationSignIn'), 1000);
                 return;
             }
 
-            this.userInfo = {name, major};
+            this.userInfo = {
+                name, 
+                major,
+                level: getCurTerm(level),
+            };
 
             Toast.loading('', 0);
             await fetchCourseList({username, password});
@@ -48,44 +60,6 @@ class Courses extends Component {
         } catch (err) {
             console.warn(err);
         }
-    }
-
-    update = async () => {
-        const {navigate} = this.props.navigation;
-        const {fetchCourseList} = this.props.courseStore;
-
-        try {
-            const {username, password, name, major} = await getFromStorage(educationAccountStorageKey) || {};
-
-            if (!username || !password) {
-                Toast.info('请先绑定教务处账号', 1);
-                setTimeout(() => navigate('EducationSignIn'), 1000);
-                return;
-            }
-
-            this.userInfo = {name, major};
-
-            Toast.loading('', 0);
-            await fetchCourseList({username, password});
-            Toast.hide();
-        } catch (err) {
-            console.warn(err);
-        }
-    }
-
-    curWeekDates = () => {
-        const date = dayjs();
-        const curWeek = date.day();
-
-        return range(1, 7).map(w => {
-            if (w === curWeek) {
-                return date;
-            } else if (w > curWeek) {
-                return date.add(w - curWeek, 'day');
-            } else {
-                return date.subtract(curWeek - w, 'day');
-            }
-        });
     }
 
     courseHeaderValues = () => {
@@ -98,7 +72,7 @@ class Courses extends Component {
             5: '周五',
             6: '周六',
         };
-        const dates = this.curWeekDates();
+        const dates = getCurWeekDates();
 
         const values = dates.map(date => {
             const wValue = weekMap[date.day()];
@@ -114,6 +88,7 @@ class Courses extends Component {
     }
 
     courseBodyValues = (courses) => {
+        if (!courses.length) return [];
         const sideValues = range(1, 13).map(value => ({value}));
 
         const values = [];
@@ -190,13 +165,11 @@ class Courses extends Component {
     render() {
         const {curWeekCourses} = this.props.courseStore;
         const headerValues = this.courseHeaderValues();
-
         const bodyValues = this.courseBodyValues(curWeekCourses);
-        // console.warn(bodyValues);
 
         return (
             <View style={styles.course}>
-                <Button title="刷新" onPress={this.update} />
+                <Button title="刷新" onPress={this.fetchDate} />
 
                 <View style={styles.course__table}>
                     {this.courseHeaderView(headerValues)}
@@ -226,9 +199,7 @@ const styles = StyleSheet.create({
         height: 55,
         flexDirection: 'row',
         alignItems: 'stretch',
-        backgroundColor: '#f7f7f7',
-        borderBottomWidth: StyleSheet.hairlineWidth,
-        borderBottomColor: '#cccccc',
+        backgroundColor: colors.fill_grey,
     },
     course__th: {
         flex: 3,
@@ -240,11 +211,12 @@ const styles = StyleSheet.create({
     },
     course__th_text: {
         fontSize: 12,
-        color: '#333333',
+        color: colors.color_text_paragraph,
     },
     text_bold: {
         fontWeight: 'bold',
     },
+
     course__body: {
         flexDirection: 'row',
         height: 715,
@@ -256,7 +228,7 @@ const styles = StyleSheet.create({
     },
     course__column0: {
         flex: 2,
-        backgroundColor: '#f7f7f7',
+        backgroundColor: colors.fill_grey,
     },
     course__row: {
         paddingLeft: 3,
@@ -264,7 +236,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center', 
         alignItems: 'center',
         borderBottomWidth: StyleSheet.hairlineWidth,
-        borderBottomColor: '#cccccc',
+        borderBottomColor: colors.border_color_light,
+        borderRightWidth: StyleSheet.hairlineWidth,
+        borderRightColor: colors.border_color_light,
     },
     'course__row-active': {
         backgroundColor: 'green',
@@ -273,7 +247,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
     },
     'course__row_text-active': {
-        color: '#ffffff',
+        color: colors.color_text_base_inverse,
     },
 });
 
