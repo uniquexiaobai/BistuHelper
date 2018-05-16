@@ -5,15 +5,17 @@ import {StyleSheet, ScrollView, View, Text, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Toast} from 'antd-mobile';
 
+import {BackNavBar} from '../../components/nav-bar';
 import {fetchNewsDetail} from '../../utils/api';
-
 import {mainTabColors, colors} from '../../constants/colors';
 import {screenWidth} from '../../utils/screen';
 
 @observer
 class NewsDetail extends Component {
     static navigationOptions = ({navigation}) => ({
-        title: '新闻详情',
+        header: <BackNavBar navigation={navigation} config={{
+            title: '新闻详情',
+        }}/>
     });
 
     @observable newsDetail = {};

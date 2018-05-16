@@ -2,10 +2,14 @@ import React, {Component} from 'react';
 import {WebView} from 'react-native';
 import {Toast} from 'antd-mobile';
 
+import {BackNavBar} from '../../components/nav-bar';
+
 class LibraryContact extends Component {
-    static navigationOptions = {
-        title: '联系方式',
-    };
+    static navigationOptions = ({navigation}) => ({
+        header: <BackNavBar navigation={navigation} config={{
+            title: '联系方式',
+        }}/>
+    });
 
     componentDidMount() {
         Toast.loading('', 0);

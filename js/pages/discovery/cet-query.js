@@ -3,17 +3,20 @@ import {observer, inject} from 'mobx-react';
 import {StyleSheet, View, Text} from 'react-native';
 import {Accordion, Toast} from 'antd-mobile';
 
-import CustomAccordionStyle from '../../styles/Accordion';
+import {BackNavBar} from '../../components/nav-bar';
 import {getFromStorage} from '../../utils/storage';
 import {colors} from '../../constants/colors';
+import CustomAccordionStyle from '../../styles/Accordion';
 
 const educationAccountStorageKey = 'BistuHelper__education__account';
 
 @inject('cetQueryStore')
 @observer
 class CetQuery extends Component {
-    static navigationOptions = () => ({
-        title: '四六级查询',
+    static navigationOptions = ({navigation}) => ({
+        header: <BackNavBar navigation={navigation} config={{
+            title: '四六级查询',
+        }}/>
     });
 
     async componentDidMount() {

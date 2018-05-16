@@ -6,18 +6,21 @@ import {StyleSheet, View, Text} from 'react-native';
 import {Accordion, Toast} from 'antd-mobile';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import CustomAccordionStyle from '../../styles/Accordion';
+import {BackNavBar} from '../../components/nav-bar';
 import {fetchLibraryBorrow} from '../../utils/api';
 import {getFromStorage, saveToStorage} from '../../utils/storage';
 import {colors} from '../../constants/colors';
+import CustomAccordionStyle from '../../styles/Accordion';
 
 const libraryAccountStorageKey = 'BistuHelper__library__account';
 const libraryBorrowInfoStorageKey = 'BistuHelper__library__borrowInfo';
 
 @observer
 class LibraryBorrow extends Component {
-    static navigationOptions = () => ({
-        title: '借阅信息',
+    static navigationOptions = ({navigation}) => ({
+        header: <BackNavBar navigation={navigation} config={{
+            title: '借阅信息',
+        }}/>
     });
 
     @observable borrowInfo;

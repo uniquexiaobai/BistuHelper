@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-
 import {View, Text} from 'react-native';
 import {createForm} from 'rc-form';
 import {Toast, InputItem, Button} from 'antd-mobile';
 
+import {BackNavBar} from '../../components/nav-bar';
 import {user_signUp} from '../../utils/leancloud';
 import {getFromStorage, saveToStorage} from '../../utils/storage';
 import {fetchEducationBase} from '../../utils/api';
@@ -12,7 +12,9 @@ const educationAccountStorageKey = 'BistuHelper__education__account';
 
 class LibrarySignIn extends Component {
     static navigationOptions = ({navigation}) => ({
-        title: '教务处账号绑定',
+        header: <BackNavBar navigation={navigation} config={{
+            title: '教务处账号绑定',
+        }}/>
     });
 
     async componentDidMount() {

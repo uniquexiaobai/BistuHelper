@@ -4,6 +4,7 @@ import {View, Text} from 'react-native';
 import {createForm} from 'rc-form';
 import {Toast, InputItem, Button} from 'antd-mobile';
 
+import {BackNavBar} from '../../components/nav-bar';
 import {user_signUp} from '../../utils/leancloud';
 import {getFromStorage, saveToStorage} from '../../utils/storage';
 import {fetchLibraryBase} from '../../utils/api';
@@ -12,7 +13,9 @@ const libraryAccountStorageKey = 'BistuHelper__library__account';
 
 class LibrarySignIn extends Component {
     static navigationOptions = ({navigation}) => ({
-        title: '图书馆账号绑定',
+        header: <BackNavBar navigation={navigation} config={{
+            title: '图书馆账号绑定',
+        }}/>
     });
 
     async componentDidMount() {

@@ -3,6 +3,7 @@ import {Linking, Alert, View, Text} from 'react-native';
 import {List} from 'antd-mobile';
 const {Item} = List;
 
+import {BackNavBar} from '../../components/nav-bar';
 import {colors} from '../../constants/colors';
 
 const persons = [
@@ -18,9 +19,11 @@ const persons = [
 ];
 
 class PhoneBook extends Component {
-    static navigationOptions = {
-        title: '常用电话',
-    };
+    static navigationOptions = ({navigation}) => ({
+        header: <BackNavBar navigation={navigation} config={{
+            title: '常用电话',
+        }}/>
+    });
 
     render() {
         return (

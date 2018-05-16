@@ -2,10 +2,14 @@ import React, {Component} from 'react';
 import {WebView} from 'react-native';
 import {Toast} from 'antd-mobile';
 
+import {BackNavBar} from '../../components/nav-bar';
+
 class LibraryOpenTime extends Component {
-    static navigationOptions = {
-        title: '开放时间',
-    };
+    static navigationOptions = ({navigation}) => ({
+        header: <BackNavBar navigation={navigation} config={{
+            title: '开放时间',
+        }}/>
+    });
 
     componentDidMount() {
         Toast.loading('', 0);

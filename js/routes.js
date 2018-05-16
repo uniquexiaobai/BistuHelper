@@ -1,5 +1,6 @@
+import React from 'react';
 import {StackNavigator, TabNavigator} from 'react-navigation';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 
 import StartUp from './pages/start-up';
 import Home from './pages/home';
@@ -66,6 +67,9 @@ const MainStackNavigator = StackNavigator({
     ...MeRoutes,
 }, {
     initialRouteName: 'Home',
+    navigationOptions: {
+        
+    },
     cardStyle: {
         backgroundColor: '#fff'
     }

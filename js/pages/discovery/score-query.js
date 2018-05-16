@@ -1,20 +1,22 @@
 import React, {Component} from 'react';
 import {observer, inject} from 'mobx-react';
-
 import {StyleSheet, TouchableOpacity, ScrollView, View, Text, Picker} from 'react-native';
 import {Accordion, Toast} from 'antd-mobile';
 
-import CustomAccordionStyle from '../../styles/Accordion';
+import {BackNavBar} from '../../components/nav-bar';
 import {getFromStorage} from '../../utils/storage';
 import {colors} from '../../constants/colors';
+import CustomAccordionStyle from '../../styles/Accordion';
 
 const educationAccountStorageKey = 'BistuHelper__education__account';
 
 @inject('scoreQueryStore')
 @observer
 class ScoreQuery extends Component {
-    static navigationOptions = () => ({
-        title: '成绩查询',
+    static navigationOptions = ({navigation}) => ({
+        header: <BackNavBar navigation={navigation} config={{
+            title: '成绩查询',
+        }}/>
     });
 
     async componentDidMount() {

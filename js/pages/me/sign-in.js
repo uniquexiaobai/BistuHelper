@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 
+import {BackNavBar} from '../../components/nav-bar';
+
 class SignIn extends Component {
     static navigationOptions = ({navigation}) => ({
-        title: '登陆'
+        header: <BackNavBar navigation={navigation} config={{
+            title: '登陆',
+        }}/>
     });
 
     render() {

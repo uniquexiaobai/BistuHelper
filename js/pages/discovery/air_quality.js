@@ -2,10 +2,14 @@ import React, {Component} from 'react';
 import {WebView, View, Text} from 'react-native';
 import {Toast} from 'antd-mobile';
 
+import {BackNavBar} from '../../components/nav-bar';
+
 class AirQuality extends Component {
-    static navigationOptions = {
-        title: '空气质量',
-    };
+    static navigationOptions = ({navigation}) => ({
+        header: <BackNavBar navigation={navigation} config={{
+            title: '空气质量',
+        }}/>
+    });
 
     componentDidMount() {
         Toast.loading('', 0);

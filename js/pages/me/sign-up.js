@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
 import {View, Text} from 'react-native';
-
 import {createForm} from 'rc-form';
 import {Toast, InputItem, Button} from 'antd-mobile';
 
+import {BackNavBar} from '../../components/nav-bar';
 import {user_signUp} from '../../utils/leancloud';
 
 class SignUp extends Component {
     static navigationOptions = ({navigation}) => ({
-        title: '注册',
+        header: <BackNavBar navigation={navigation} config={{
+            title: '注册',
+        }}/>
     });
 
     usernameValidator = (rule, value = '', callback) => {

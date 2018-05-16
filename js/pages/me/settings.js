@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
-
 import {AsyncStorage, View, Text} from 'react-native';
 import {Toast, List} from 'antd-mobile';
 const {Item} = List;
 
+import {BackNavBar} from '../../components/nav-bar';
+
 class Library extends Component {
     static navigationOptions = ({navigation}) => ({
-        title: '设置',
+        header: <BackNavBar navigation={navigation} config={{
+            title: '设置',
+        }}/>
     });
 
     render() {

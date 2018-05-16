@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
 import {StyleSheet, ScrollView, View, Text} from 'react-native';
 
+import {BackNavBar} from '../../components/nav-bar';
+
 class SchoolOverview extends Component {
     static navigationOptions = ({navigation}) => ({
-        title: '学校概况',
+        header: <BackNavBar navigation={navigation} config={{
+            title: '学校概况',
+        }}/>
     });
 
     render() {

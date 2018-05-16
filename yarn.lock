@@ -4395,6 +4395,12 @@ react-native-menu@^0.23.0:
     prop-types "^15.5.10"
     react-timer-mixin "^0.13.3"
 
+react-native-navbar@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-navbar/-/react-native-navbar-2.1.0.tgz#4f21e947501ce5cf4563a29914cb3192db35a647"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-popup-menu@^0.12.3:
   version "0.12.3"
   resolved "http://registry.npm.taobao.org/react-native-popup-menu/download/react-native-popup-menu-0.12.3.tgz#547544e2f4606b907a338e3f9992495d67c76157"

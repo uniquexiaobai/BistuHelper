@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 
+import {BackNavBar} from '../../components/nav-bar';
 import {colors} from '../../constants/colors';
 
 const weekMap = {
@@ -29,9 +30,11 @@ const CourseDetail = ({navigation}) => {
     );
 };
 
-CourseDetail.navigationOptions = {
-    title: '课程详情',
-};
+CourseDetail.navigationOptions = ({navigation}) => ({
+    header: <BackNavBar navigation={navigation} config={{
+        title: '课程详情',
+    }}/>
+});
 
 const styles = StyleSheet.create({
     detail__name: {

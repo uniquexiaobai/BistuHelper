@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
-
 import {View, Text} from 'react-native';
 import {Tabs} from 'antd-mobile';
 
 import NewsList from './news_list';
+import {BackNavBar} from '../../components/nav-bar';
 
 class SchoolNews extends Component {
     static navigationOptions = ({navigation}) => ({
-        title: '校园新闻',
+        header: <BackNavBar navigation={navigation} config={{
+            title: '校园新闻',
+        }}/>
     });
 
     renderContent = (tab, index) => (

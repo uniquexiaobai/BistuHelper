@@ -1,7 +1,8 @@
 import React from 'react';
-
 import {StyleSheet, ScrollView, View, Image, Text} from 'react-native';
 import {LocaleConfig, CalendarList} from 'react-native-calendars'
+
+import {BackNavBar} from '../../components/nav-bar';
 
 LocaleConfig.locales['cn'] = {
     monthNames: ['January','February','March','April','May','June','July','August','September','October','November','December'],
@@ -115,7 +116,7 @@ const markedDates = dates.reduce((acc, cur) => {
     };
     return acc;
 }, {});
-  
+
 const SchoolCalendar = () => {
     return (
         <View>
@@ -142,9 +143,11 @@ const SchoolCalendar = () => {
     );
 };
 
-SchoolCalendar.navigationOptions = {
-    title: '校历',
-};
+SchoolCalendar.navigationOptions = ({navigation}) => ({
+    header: <BackNavBar navigation={navigation} config={{
+        title: '校历',
+    }}/>
+});
 
 const styles = StyleSheet.create({
     schoolCalendar__header: {
