@@ -6,10 +6,17 @@ import {Toast} from 'antd-mobile';
 import Icon from '../../components/icon';
 import {getFromStorage} from '../../utils/storage';
 import {range} from '../../utils/array';
-import {getCurTerm, getCurWeekDates, getCurDay} from '../../utils/date';
+import {getCurWeekDates, getCurTerm, getCurWeek, getCurDay} from '../../utils/date';
 import {mainTabColors, colors} from '../../constants/colors';
 
 const educationAccountStorageKey = 'BistuHelper__education__account';
+
+const levelMap = {
+    1: '大一',
+    2: '大二',
+    3: '大三',
+    4: '大四',
+};
 
 @inject('courseStore')
 @observer
@@ -164,6 +171,11 @@ class Courses extends Component {
         const headerValues = this.courseHeaderValues();
         const bodyValues = this.courseBodyValues(curWeekCourses);
 
+        const curWeek = getCurWeek();
+        const level = (this.userInfo || {}).level;
+        const levelValue = level ? levelMap[~~(level / 2)] : '';
+        const termValue = level ? (level % 2 === 0 ? 2 : 1) : '';
+
         return (
             <View style={styles.course}>
                 <View style={styles.course__top}>
@@ -175,8 +187,8 @@ class Courses extends Component {
                         <Icon type='add'/>
                     </TouchableHighlight>
                     <View style={{alignItems: 'center'}}>
-                        <Text style={{fontSize: 16, color: colors.color_text_base}}>第12周</Text>
-                        <Text style={{fontSize: 14, color: colors.color_text_paragraph}}>大四 第2学期</Text>
+                        <Text style={{fontSize: 16, color: colors.color_text_base}}>第{curWeek}周</Text>
+                        <Text style={{fontSize: 14, color: colors.color_text_paragraph}}>{`${levelValue} 第${termValue}学期`}</Text>
                     </View>
                     <TouchableHighlight
                         underlayColor={colors.fill_grey}

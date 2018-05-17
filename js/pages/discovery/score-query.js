@@ -75,7 +75,7 @@ class ScoreQuery extends Component {
                     ) : null
                 }
 
-                <View>
+                <View style={{backgroundColor: colors.fill_grey}}>
                     <Picker 
                         selectedValue={curScoreTerm}
                         onValueChange={value => setCurScoreTerm(value)}
