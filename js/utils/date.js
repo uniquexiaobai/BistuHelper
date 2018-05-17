@@ -33,3 +33,7 @@ export const getCurWeekDates = () => {
         }
     });
 };
+
+export const getCurDay = () => {
+    return dayjs().date();
+};

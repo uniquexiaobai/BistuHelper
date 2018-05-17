@@ -35,7 +35,7 @@ const Refresh = ({onPress}) => {
         <TouchableHighlight 
             underlayColor={'#f7f7f7'}
             activeOpacity={1}
-            onPress={onPress || noop}
+            onPress={() => onPress()}
             style={[styles.button, styles.rightButton]}
         >
             <Icon 
@@ -86,8 +86,9 @@ export const MoreNavBar = ({navigation, config, moreOptions}) => {
     );
 };
 
-export const RefreshNavBar = ({navigation, config, onRefresh}) => {
-    const {goBack} = navigation;
+export const RefreshNavBar = ({navigation, config}) => {
+    const {goBack, getParam} = navigation;
+    const onRefresh =  getParam('onRefresh') || noop;
 
     return (
         <NavBar

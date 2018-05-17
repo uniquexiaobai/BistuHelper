@@ -9,9 +9,15 @@ class CetQueryStore {
     @observable cetInfo = [];
 
     @action
-    fetchEducationCet = async (params) => {
+    fetchEducationCet = async (params, force) => {
+        let data;
+
         try {
-            const data = await getFromStorage(educationCetStorageKey);
+            if (force) {
+                data = await fetchEducationCet(params);
+            } else {
+                data = await getFromStorage(educationCetStorageKey);
+            }
 
             if (!data) {
                 data = await fetchEducationCet(params);

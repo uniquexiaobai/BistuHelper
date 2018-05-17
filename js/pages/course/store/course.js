@@ -12,9 +12,15 @@ class CourseStore {
     @observable curWeek = 1;
 
     @action
-    fetchCourseList = async (params) => {
+    fetchCourseList = async (params, force) => {
+        let date;
+
         try {
-            const data = await getFromStorage(educationCourseStorageKey);
+            if (force) {
+                data = await fetchCourseList(params);
+            } else {
+                data = await getFromStorage(educationCourseStorageKey);
+            }
 
             if (!data) {
                 data = await fetchCourseList(params);

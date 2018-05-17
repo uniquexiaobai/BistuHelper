@@ -17,7 +17,6 @@ class CetQuery extends Component {
         header: (
             <RefreshNavBar 
                 navigation={navigation}
-                onRefresh={() => console.warn('refresh')}
                 config={{
                     title: '四六级查询',
                 }}
@@ -25,7 +24,14 @@ class CetQuery extends Component {
         )
     });
 
-    async componentDidMount() {
+    componentDidMount() {
+        const {navigation} = this.props;
+
+        navigation.setParams({onRefresh: () => this.fetchData(true)});
+        this.fetchData();
+    }
+
+    fetchData = async (force) => {
         const {navigate} = this.props.navigation;
         const {fetchEducationCet} = this.props.cetQueryStore;
 
@@ -41,7 +47,7 @@ class CetQuery extends Component {
             this.userInfo = {name, major};
 
             Toast.loading('', 0);
-            await fetchEducationCet({username, password});
+            await fetchEducationCet({username, password}, force);
             Toast.hide();
         } catch (err) {
             console.warn(err);

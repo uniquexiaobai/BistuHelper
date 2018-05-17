@@ -6,7 +6,7 @@ import {StyleSheet, View, Text} from 'react-native';
 import {Accordion, Toast} from 'antd-mobile';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import {BackNavBar} from '../../components/nav-bar';
+import {RefreshNavBar} from '../../components/nav-bar';
 import {fetchLibraryBorrow} from '../../utils/api';
 import {getFromStorage, saveToStorage} from '../../utils/storage';
 import {colors} from '../../constants/colors';
@@ -18,7 +18,7 @@ const libraryBorrowInfoStorageKey = 'BistuHelper__library__borrowInfo';
 @observer
 class LibraryBorrow extends Component {
     static navigationOptions = ({navigation}) => ({
-        header: <BackNavBar navigation={navigation} config={{
+        header: <RefreshNavBar navigation={navigation} config={{
             title: '借阅信息',
         }}/>
     });
@@ -26,13 +26,22 @@ class LibraryBorrow extends Component {
     @observable borrowInfo;
     @observable userInfo;
     @action
-    fetchLibraryBorrow = async (params) => {
+    fetchLibraryBorrow = async (params, force) => {
+        let data;
+
         try {
-            const data = await getFromStorage(libraryBorrowInfoStorageKey);
+            if (force) {
+                data = await fetchLibraryBorrow(params);
+            } else {
+                data = await getFromStorage(libraryBorrowInfoStorageKey);
+            }
+
             if (!data) {
                 data = await fetchLibraryBorrow(params);
-                await saveToStorage(libraryBorrowInfoStorageKey, data);
             }
+            if (!data || !data.length) return;
+            
+            await saveToStorage(libraryBorrowInfoStorageKey, data);
 
             runInAction(() => {
                 this.borrowInfo = data;
@@ -43,6 +52,13 @@ class LibraryBorrow extends Component {
     };
 
     async componentDidMount() {
+        const {navigation} = this.props;
+
+        navigation.setParams({onRefresh: () => this.fetchData(true)});
+        this.fetchData();
+    }
+
+    fetchData = async (force) => {
         const {navigate} = this.props.navigation;
         let user;
 
@@ -58,7 +74,7 @@ class LibraryBorrow extends Component {
             this.userInfo = {name, department};
 
             Toast.loading('', 0);
-            await this.fetchLibraryBorrow({username, password});
+            await this.fetchLibraryBorrow({username, password}, force);
             Toast.hide();
         } catch (err) {
             console.warn(err);

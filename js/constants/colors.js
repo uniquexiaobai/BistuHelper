@@ -19,4 +19,5 @@ export const colors = {
 
     // 背景色
     fill_grey: '#f7f7f7',
+    fill_steel_blue: '#4682B4',
 };

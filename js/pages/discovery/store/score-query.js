@@ -10,9 +10,16 @@ class ScoreQueryStore {
     @observable curScoreTerm;
 
     @action
-    fetchEducationScore = async (params) => {
+    fetchEducationScore = async (params, force) => {
+        let data;
+
         try {
-            const data = await getFromStorage(educationScoreStorageKey);
+            if (force) {
+                data = await fetchEducationScore(params);
+            } else {
+                data = await getFromStorage(educationScoreStorageKey)
+            }
+
             if (!data) {
                 data = await fetchEducationScore(params);
             }

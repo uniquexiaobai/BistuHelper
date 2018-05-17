@@ -3,7 +3,7 @@ import {observer, inject} from 'mobx-react';
 import {StyleSheet, TouchableOpacity, ScrollView, View, Text, Picker} from 'react-native';
 import {Accordion, Toast} from 'antd-mobile';
 
-import {BackNavBar} from '../../components/nav-bar';
+import {RefreshNavBar} from '../../components/nav-bar';
 import {getFromStorage} from '../../utils/storage';
 import {colors} from '../../constants/colors';
 import CustomAccordionStyle from '../../styles/Accordion';
@@ -14,12 +14,19 @@ const educationAccountStorageKey = 'BistuHelper__education__account';
 @observer
 class ScoreQuery extends Component {
     static navigationOptions = ({navigation}) => ({
-        header: <BackNavBar navigation={navigation} config={{
+        header: <RefreshNavBar navigation={navigation} config={{
             title: '成绩查询',
         }}/>
     });
 
-    async componentDidMount() {
+    componentDidMount() {
+        const {navigation} = this.props;
+
+        navigation.setParams({onRefresh: () => this.fetchData(true)});
+        this.fetchData();
+    }
+
+    fetchData = async (force) => {
         const {navigate} = this.props.navigation;
         const {fetchEducationScore} = this.props.scoreQueryStore;
 
@@ -35,7 +42,7 @@ class ScoreQuery extends Component {
             this.userInfo = {name, major};
 
             Toast.loading('', 0);
-            await fetchEducationScore({username, password});
+            await fetchEducationScore({username, password}, force);
             Toast.hide();
         } catch (err) {
             console.warn(err);

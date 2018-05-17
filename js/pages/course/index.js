@@ -1,15 +1,14 @@
 import React, {Component} from 'react';
 import {observer, inject} from 'mobx-react';
-import {StyleSheet, ScrollView, TouchableOpacity, View, Text, Button} from 'react-native';
+import {StyleSheet, ScrollView, TouchableHighlight, TouchableOpacity, View, Text, Button, Picker} from 'react-native';
 import {Toast} from 'antd-mobile';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import {getFromStorage} from '../../utils/storage';
-import {mainTabColors} from '../../constants/colors';
 import {screenWidth} from '../../utils/screen';
 import {range} from '../../utils/array';
-import {getCurTerm, getCurWeekDates} from '../../utils/date';
-import {colors} from '../../constants/colors';
+import {getCurTerm, getCurWeekDates, getCurDay} from '../../utils/date';
+import {mainTabColors, colors} from '../../constants/colors';
 
 const educationAccountStorageKey = 'BistuHelper__education__account';
 
@@ -36,7 +35,7 @@ class Courses extends Component {
         }
     }
 
-    fetchDate = async () => {
+    fetchDate = async (force) => {
         const {navigate} = this.props.navigation;
         const {fetchCourseList} = this.props.courseStore;
 
@@ -55,7 +54,7 @@ class Courses extends Component {
             };
 
             Toast.loading('', 0);
-            await fetchCourseList({username, password});
+            await fetchCourseList({username, password}, force);
             Toast.hide();
         } catch (err) {
             console.warn(err);
@@ -127,7 +126,10 @@ class Courses extends Component {
     courseHeaderView = (values) => (
         <View style={styles.course__header}>
             {values.map((value, index) => (
-                <View key={index} style={[styles.course__th, index === 0 ? styles.course__th0 : null]}>
+                <View 
+                    key={index} 
+                    style={[styles.course__th, index === 0 ? styles.course__th0 : null, `${getCurDay()}日` === value[1] ? styles['course__th-active'] : null]}
+                >
                     <Text style={[styles.course__th_text, styles.text_bold]}>{value[0]}</Text>
                     <Text style={[styles.course__th_text]}>{value[1]}</Text>
                 </View>
@@ -169,7 +171,36 @@ class Courses extends Component {
 
         return (
             <View style={styles.course}>
-                <Button title="刷新" onPress={this.fetchDate} />
+                {/* <Button title="刷新" onPress={this.fetchDate} /> */}
+                <View style={styles.course__top}>
+                    <TouchableHighlight
+                        underlayColor={colors.fill_grey}
+                        activeOpacity={1}
+                        style={[styles.course__button, styles.course__button_left]}
+                    >
+                        <Icon 
+                            name='md-add'
+                            color='#000000' 
+                            size={25}
+                        />
+                    </TouchableHighlight>
+                    <View style={{alignItems: 'center'}}>
+                        <Text style={{fontSize: 16, color: colors.color_text_base}}>第12周</Text>
+                        <Text style={{fontSize: 14, color: colors.color_text_paragraph}}>大四 第2学期</Text>
+                    </View>
+                    <TouchableHighlight
+                        underlayColor={colors.fill_grey}
+                        activeOpacity={1}
+                        onPress={() => this.fetchDate(true)}
+                        style={[styles.course__button, styles.course__button_right]}
+                    >
+                        <Icon 
+                            name='md-refresh'
+                            color='#000000' 
+                            size={25}
+                        />
+                    </TouchableHighlight>
+                </View>
 
                 <View style={styles.course__table}>
                     {this.courseHeaderView(headerValues)}
@@ -195,6 +226,24 @@ const styles = StyleSheet.create({
     course__table: {
         flex: 1,
     },
+    course__top: {
+        height: 44,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    course__button: {
+        width: 44,
+        height: 44,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    course__button_left: {
+        marginLeft: 5,
+    },
+    course__button_right: {
+        marginRight: 5,
+    },
     course__header: {
         height: 55,
         flexDirection: 'row',
@@ -208,6 +257,9 @@ const styles = StyleSheet.create({
     },
     course__th0: {
         flex: 2,
+    },
+    'course__th-active': {
+        backgroundColor: '#D2F3F2',
     },
     course__th_text: {
         fontSize: 12,
@@ -241,7 +293,7 @@ const styles = StyleSheet.create({
         borderRightColor: colors.border_color_light,
     },
     'course__row-active': {
-        backgroundColor: 'green',
+        backgroundColor: colors.fill_steel_blue,
     },
     course__row_text: {
         fontSize: 12,
