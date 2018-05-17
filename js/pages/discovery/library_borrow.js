@@ -8,7 +8,7 @@ import {RefreshNavBar} from '../../components/nav-bar';
 import {fetchLibraryBorrow} from '../../utils/api';
 import {getFromStorage, saveToStorage} from '../../utils/storage';
 import {colors} from '../../constants/colors';
-import CustomAccordionStyle from '../../styles/Accordion';
+import CustomAccordionStyle from '../../styles/accordion';
 
 const libraryAccountStorageKey = 'BistuHelper__library__account';
 const libraryBorrowInfoStorageKey = 'BistuHelper__library__borrowInfo';

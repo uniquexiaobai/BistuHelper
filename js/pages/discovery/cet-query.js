@@ -6,7 +6,7 @@ import {Accordion, Toast} from 'antd-mobile';
 import {RefreshNavBar} from '../../components/nav-bar';
 import {getFromStorage} from '../../utils/storage';
 import {colors} from '../../constants/colors';
-import CustomAccordionStyle from '../../styles/Accordion';
+import CustomAccordionStyle from '../../styles/accordion';
 
 const educationAccountStorageKey = 'BistuHelper__education__account';
 
