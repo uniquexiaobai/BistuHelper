@@ -1,8 +1,9 @@
 import React from 'react';
-import {StyleSheet, ScrollView, View, Image, Text} from 'react-native';
-import {LocaleConfig, CalendarList} from 'react-native-calendars'
+import {StyleSheet, View, Text} from 'react-native';
+import {LocaleConfig, Calendar} from 'react-native-calendars'
 
 import {BackNavBar} from '../../components/nav-bar';
+import {colors} from '../../constants/colors';
 
 LocaleConfig.locales['cn'] = {
     monthNames: ['January','February','March','April','May','June','July','August','September','October','November','December'],
@@ -109,10 +110,8 @@ const dates = [
 
 const markedDates = dates.reduce((acc, cur) => {
     acc[cur] = {
-        startingDay: true,
-        endingDay: true,
-        textColor: '#fff',
-        color: 'green',
+        marked: true,
+        dotColor: colors.brand_primary,
     };
     return acc;
 }, {});
@@ -123,20 +122,16 @@ const SchoolCalendar = () => {
             <View style={styles.schoolCalendar__header}>
                 <Text style={styles.schoolCalendar__title}>2017-2018学年第二学期</Text>
             </View>
-            <CalendarList
+
+            <Calendar
                 minDate={'2018-02-26'}
                 maxDate={'2018-09-02'}
                 monthFormat={'yyyy年 M月'}
-                horizontal
-                showScrollIndicator
                 firstDay={1}
-                calendarWidth={320}
-                pastScrollRange={7}
-                futureScrollRange={7}
-                markingType={'period'}
                 markedDates={markedDates}
                 theme={{
-                    todayTextColor: 'red',
+                    todayTextColor: colors.brand_warning,
+                    arrowColor: colors.brand_primary
                 }}
             />
         </View>
@@ -156,8 +151,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     schoolCalendar__title: {
-        color: '#000',
-        fontSize: 20,
+        color: colors.color_text_base,
+        fontSize: 18,
     },
 });
 

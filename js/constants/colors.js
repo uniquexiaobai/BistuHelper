@@ -20,4 +20,8 @@ export const colors = {
     // 背景色
     fill_grey: '#f7f7f7',
     fill_steel_blue: '#4682B4',
+
+    // 全局/品牌色
+    brand_primary: '#108ee9',
+    brand_warning: '#f4333c',
 };
