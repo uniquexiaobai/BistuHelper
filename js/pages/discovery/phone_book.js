@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
+import {observable, action, computed} from 'mobx';
+import {observer} from 'mobx-react';
 import {Linking, Alert, View, Text} from 'react-native';
-import {List} from 'antd-mobile';
-const {Item} = List;
+import {SearchBar, List} from 'antd-mobile';
 
 import {BackNavBar} from '../../components/nav-bar';
 import {colors} from '../../constants/colors';
+
+import CustomSearchBarStyle from '../../styles/search-bar';
 
 const persons = [
     {name: '治安办公室', number: '82426114'},
@@ -18,6 +21,7 @@ const persons = [
     {name: '网站维护及技术支持', number: '82426946'},
 ];
 
+@observer
 class PhoneBook extends Component {
     static navigationOptions = ({navigation}) => ({
         header: <BackNavBar navigation={navigation} config={{
@@ -25,19 +29,45 @@ class PhoneBook extends Component {
         }}/>
     });
 
+    @observable searchValue = '';
+
+    @action
+    setSearchValue(value) {
+        this.searchValue = value;
+    }
+
+    @computed
+    get filteredPersons() {
+        if (!this.searchValue) return persons;
+
+        return persons.filter(person => {
+            return person.name.includes(this.searchValue)
+        });
+    }
+
     render() {
         return (
-            <View style={{marginTop: 10}}>
+            <View>
+                <SearchBar
+                    styles={CustomSearchBarStyle}
+                    value={this.searchValue}
+                    placeholder="Search"
+                    blurOnSubmit
+                    maxLength={8}
+                    onChange={value => this.setSearchValue(value)}
+                    onCancel={() => this.setSearchValue('')}
+                />
+
                 <List>
                     {
-                        persons.map(person => (
-                            <Item 
+                        this.filteredPersons.map(person => (
+                            <List.Item
                                 extra={this.renderItemExtra(person.number)}
                                 key={person.number}
                                 onClick={() => this.showDialModal(person.number)} 
                             >
                                 {person.name}
-                            </Item>
+                            </List.Item>
                         ))
                     }
                 </List>

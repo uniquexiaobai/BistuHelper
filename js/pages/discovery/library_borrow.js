@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import {observable, action, runInAction} from 'mobx';
 import {observer} from 'mobx-react';
-
 import {StyleSheet, View, Text} from 'react-native';
 import {Accordion, Toast} from 'antd-mobile';
-import Icon from 'react-native-vector-icons/Ionicons';
 
 import {RefreshNavBar} from '../../components/nav-bar';
 import {fetchLibraryBorrow} from '../../utils/api';

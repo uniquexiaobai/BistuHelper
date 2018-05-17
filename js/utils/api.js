@@ -1,8 +1,7 @@
 import qs from 'qs';
 import axios from 'axios';
 
-const baseUrl = 'http://bistuhelper.cn';
-// baseUrl = 'http://c9977a5e.ngrok.io';
+import {apiBaseUrl as baseUrl} from '../constants/url';
 
 const newsHotUrl = `${baseUrl}/api/news/hot`;
 const libraryBaseUrl = `${baseUrl}/api/library/base`;
@@ -44,8 +43,6 @@ const getCreater = (url) => async () => {
         throw err;
     }
 };
-
-
 
 export const fetchCourseList = postCreater(courseListUrl);
 
