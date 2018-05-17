@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import {observer, inject} from 'mobx-react';
-import {StyleSheet, ScrollView, TouchableHighlight, TouchableOpacity, View, Text, Button, Picker} from 'react-native';
+import {StyleSheet, ScrollView, TouchableHighlight, TouchableOpacity, View, Text} from 'react-native';
 import {Toast} from 'antd-mobile';
-import Icon from 'react-native-vector-icons/Ionicons';
 
+import Icon from '../../components/icon';
 import {getFromStorage} from '../../utils/storage';
-import {screenWidth} from '../../utils/screen';
 import {range} from '../../utils/array';
 import {getCurTerm, getCurWeekDates, getCurDay} from '../../utils/date';
 import {mainTabColors, colors} from '../../constants/colors';
@@ -19,11 +18,7 @@ class Courses extends Component {
         header: null,
         tabBarLabel: '课程表',
         tabBarIcon: ({focused, tintColor}) => (
-            <Icon
-                name='md-grid'
-                color={focused ? tintColor : mainTabColors.inactiveTintColor}
-                size={25}
-            />
+            <Icon type='grid' color={focused ? tintColor : mainTabColors.inactiveTintColor}/>
         )
     };
 
@@ -171,18 +166,13 @@ class Courses extends Component {
 
         return (
             <View style={styles.course}>
-                {/* <Button title="刷新" onPress={this.fetchDate} /> */}
                 <View style={styles.course__top}>
                     <TouchableHighlight
                         underlayColor={colors.fill_grey}
                         activeOpacity={1}
                         style={[styles.course__button, styles.course__button_left]}
                     >
-                        <Icon 
-                            name='md-add'
-                            color='#000000' 
-                            size={25}
-                        />
+                        <Icon type='add'/>
                     </TouchableHighlight>
                     <View style={{alignItems: 'center'}}>
                         <Text style={{fontSize: 16, color: colors.color_text_base}}>第12周</Text>
@@ -194,11 +184,7 @@ class Courses extends Component {
                         onPress={() => this.fetchDate(true)}
                         style={[styles.course__button, styles.course__button_right]}
                     >
-                        <Icon 
-                            name='md-refresh'
-                            color='#000000' 
-                            size={25}
-                        />
+                        <Icon type='refresh'/>
                     </TouchableHighlight>
                 </View>
 

@@ -1,25 +1,22 @@
 import React from 'react';
-import {StyleSheet, TouchableHighlight, View, Text} from 'react-native';
+import {StyleSheet, TouchableHighlight} from 'react-native';
 import NavigationBar from 'react-native-navbar';
-import Icon from 'react-native-vector-icons/Ionicons';
 
+import Icon from './icon';
 import PopupMenu from './popup-menu';
+import {colors} from '../constants/colors';
 
 function noop() {}
 
 const Back = ({onPress}) => {
     return (
         <TouchableHighlight 
-            underlayColor={'#f7f7f7'}
+            underlayColor={colors.fill_grey}
             activeOpacity={1}
             onPress={onPress || noop}
             style={[styles.button, styles.leftButton]}
         >
-            <Icon 
-                name='md-arrow-back'
-                color='#000000' 
-                size={25}
-            />
+            <Icon type='back'/>
         </TouchableHighlight>
     );
 };
@@ -33,16 +30,12 @@ const More = ({options}) => {
 const Refresh = ({onPress}) => {
     return (
         <TouchableHighlight 
-            underlayColor={'#f7f7f7'}
+            underlayColor={colors.fill_grey}
             activeOpacity={1}
             onPress={() => onPress()}
             style={[styles.button, styles.rightButton]}
         >
-            <Icon 
-                name='md-refresh'
-                color='#000000' 
-                size={25}
-            />
+            <Icon type='refresh'/>
         </TouchableHighlight>
     );
 };
@@ -102,7 +95,7 @@ export const RefreshNavBar = ({navigation, config}) => {
 const styles = StyleSheet.create({
     container: {
         borderBottomWidth: StyleSheet.hairlineWidth,
-        borderBottomColor: '#cccccc',
+        borderBottomColor: colors.border_color_base,
     },
     title: {
         fontSize: 18,

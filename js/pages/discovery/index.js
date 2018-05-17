@@ -1,17 +1,8 @@
-/**
- * Tab Bar 首页
- */
 import React, {Component} from 'react';
-import {
-    StyleSheet,
-    ToastAndroid,
-    Image,
-    TouchableHighlight,
-    View,
-    Text
-} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import {StyleSheet, TouchableHighlight, View, Image, Text} from 'react-native';
+import {Toast} from 'antd-mobile';
 
+import Icon from '../../components/icon';
 import {mainTabColors, colors} from '../../constants/colors';
 import {screenWidth} from '../../utils/screen';
 
@@ -20,11 +11,7 @@ class Discovery extends Component {
         header: null,
         tabBarLabel: '发现',
         tabBarIcon: ({focused, tintColor}) => (
-            <Icon
-                name='ios-compass'
-                color={focused ? tintColor : mainTabColors.inactiveTintColor}
-                size={25}
-            />
+            <Icon type='compass' color={focused ? tintColor : mainTabColors.inactiveTintColor}/>
         )
     };
 
@@ -113,7 +100,8 @@ class Discovery extends Component {
                         key={item.name}
                         style={styles.touchView}
                         underlayColor={colors.lightGray}
-                        onPress={this.onItemPress.bind(this, item)}
+                        activeOpacity={1}
+                        onPress={() => this.onItemPress(item)}
                     >
                         <View style={styles.item}>
                             <Image source={item.logo} style={styles.img}/>
@@ -129,7 +117,7 @@ class Discovery extends Component {
         const {navigate} = this.props.navigation;
 
         if (!item.routeName) {
-            return ToastAndroid.show(`${item.name} 开发中`, ToastAndroid.SHORT);
+            return Toast.info(`${item.name} 开发中`, 1);
         }
         navigate(item.routeName);
     }
@@ -160,7 +148,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 12,
-        color: '#000'
+        color: colors.color_text_base,
     }
 });
 

@@ -1,25 +1,19 @@
 import React, {Component} from 'react';
 import {StyleSheet, Linking, Text, View} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 import {List, Card, Button} from 'antd-mobile';
-const {Item} = List;
+
+import Icon from '../../components/icon';
+import {mainTabColors, colors} from '../../constants/colors';
+import {feedbackUrl} from '../../constants/url';
 
 import ButtonStyle from 'antd-mobile/lib/button/style/index.native';
-
-import {mainTabColors} from '../../constants/colors';
-
-const feedbackUrl = 'https://github.com/uniquexiaobai/BistuHelper/issues';
 
 class Me extends Component {
     static navigationOptions = {
         header: null,
         tabBarLabel: '我',
         tabBarIcon: ({focused, tintColor}) => (
-            <Icon
-                name='md-person'
-                color={focused ? tintColor : mainTabColors.inactiveTintColor}
-                size={25}
-            />
+            <Icon type='person' color={focused ? tintColor : mainTabColors.inactiveTintColor}/>
         )
     };
 
@@ -28,7 +22,7 @@ class Me extends Component {
             <View>
                 <View style={{paddingLeft: 20, marginTop: 20}}>
                     <View style={{marginBottom: 10}}>
-                        <Text style={{fontSize: 20, color: '#000'}}>欢迎来到掌上北信科</Text>    
+                        <Text style={{fontSize: 20, color: colors.color_text_base}}>欢迎来到掌上北信科</Text>    
                     </View>
 
                     <View style={{flexDirection: 'row'}}>
@@ -49,11 +43,11 @@ class Me extends Component {
 
                 <View style={{marginTop: 20}}>
                     <List>
-                        <Item arrow="horizontal" onClick={() => this.routeTo('EducationSignIn')}>教务处绑定</Item>
-                        <Item arrow="horizontal" onClick={() => this.routeTo('LibrarySignIn')}>图书馆绑定</Item>
-                        <Item arrow="horizontal" onClick={() => this.feedback()}>意见反馈</Item>
-                        <Item arrow="horizontal" onClick={() => this.routeTo('AboutMe')}>关于我们</Item>
-                        <Item arrow="horizontal" onClick={() => this.routeTo('Settings')}>设置</Item>
+                        <List.Item arrow="horizontal" onClick={() => this.routeTo('EducationSignIn')}>教务处绑定</List.Item>
+                        <List.Item arrow="horizontal" onClick={() => this.routeTo('LibrarySignIn')}>图书馆绑定</List.Item>
+                        <List.Item arrow="horizontal" onClick={() => this.feedback()}>意见反馈</List.Item>
+                        <List.Item arrow="horizontal" onClick={() => this.routeTo('AboutMe')}>关于我们</List.Item>
+                        <List.Item arrow="horizontal" onClick={() => this.routeTo('Settings')}>设置</List.Item>
                     </List>
                 </View>
             </View>

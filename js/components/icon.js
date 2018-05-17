@@ -1,13 +1,23 @@
+import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import {colors} from '../constants/colors';
+
 const iconMap = {
-    'refresh': 'md-arrow-back',
+    'refresh': 'md-refresh',
+    'back': 'md-arrow-back',
+    'more': 'ios-more',
+    'add': 'md-add',
+    'grid': 'md-grid',
+    'compass': 'ios-compass',
+    'home': 'ios-home',
+    'person': 'md-person',
 };
 
-export default ({type}) => (
+export default ({type, color=colors.color_text_base}) => (
     <Icon 
         name={iconMap[type]}
-        color='#000000' 
+        color={color} 
         size={25}
     />
 );

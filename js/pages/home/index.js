@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text, Alert} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import {StyleSheet, View} from 'react-native';
 
+import Icon from '../../components/icon';
 import NewsHot from './news_hot';
 
 import {mainTabColors} from '../../constants/colors';
@@ -11,11 +11,7 @@ class Home extends Component {
         header: null,
         tabBarLabel: '首页',
         tabBarIcon: ({focused, tintColor}) => (
-            <Icon
-                name='ios-home'
-                color={focused ? tintColor : mainTabColors.inactiveTintColor}
-                size={25}
-            />
+            <Icon type='home' color={focused ? tintColor : mainTabColors.inactiveTintColor}/>
         )
     };
 
