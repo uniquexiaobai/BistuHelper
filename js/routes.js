@@ -15,17 +15,17 @@ import {mainTabColors, colors} from './constants/colors';
 
 const MainTabNavigator = TabNavigator({
     Home: {
-        screen: Home
+        screen: Home,
     },
     Course: {
-        screen: Course
+        screen: Course,
     },
     Discovery: {
-        screen: Discovery
+        screen: Discovery,
     },
     Me: {
-        screen: Me
-    }
+        screen: Me,
+    },
 }, {
     tabBarPosition: 'bottom',
     swipeEnabled: true,
@@ -35,44 +35,42 @@ const MainTabNavigator = TabNavigator({
         activeTintColor: mainTabColors.activeTintColor,
         inactiveTintColor: mainTabColors.inactiveTintColor,
         style: {
-            backgroundColor: '#fff',
+            backgroundColor: colors.color_text_base_inverse,
             borderTopWidth: StyleSheet.hairlineWidth,
-            borderTopColor: colors.lightGray
+            borderTopColor: colors.border_color_base,
         },
         tabStyle: {
             paddingTop: 4.5,
-            paddingBottom: 4.5
+            paddingBottom: 4.5,
         },
         indicatorStyle: {
-            height: 0
+            height: 0,
         },
         labelStyle: {
             fontSize: 12,
             marginBottom: 0,
-            marginTop: 0
+            marginTop: 0,
         },
-        iconStyle: {}
-    }
+        iconStyle: {},
+    },
 });
 
 const MainStackNavigator = StackNavigator({
     StartUp: {
-        screen: StartUp
+        screen: StartUp,
     },
     Home: {
-        screen: MainTabNavigator
+        screen: MainTabNavigator,
     },
     ...courseRoutes,
     ...discoveryRoutes,
     ...MeRoutes,
 }, {
     initialRouteName: 'Home',
-    navigationOptions: {
-        
-    },
+    navigationOptions: {},
     cardStyle: {
-        backgroundColor: '#fff'
-    }
+        backgroundColor: colors.color_text_base_inverse,
+    },
 });
 
 export default MainStackNavigator;

@@ -42,14 +42,6 @@ class Discovery extends Component {
                 logo: require("../../../assets/images/discovery/lost.png"),
             },
             {
-                name: '校车',
-                logo: require("../../../assets/images/discovery/school-bus.png"),
-            }, 
-            {
-                name: '离线地图',
-                logo: require("../../../assets/images/discovery/map.png"),
-            }, 
-            {
                 name: '新生专栏',
                 logo: require("../../../assets/images/discovery/ask.png"),
             }, 
@@ -60,7 +52,16 @@ class Discovery extends Component {
             {
                 name: '空闲教室',
                 logo: require("../../../assets/images/discovery/school-news.png"),
+            },
+            {
+                name: '离线地图',
+                logo: require("../../../assets/images/discovery/map.png"),
             }, 
+            {
+                routeName: 'SchoolBus',
+                name: '校车',
+                logo: require("../../../assets/images/discovery/school-bus.png"),
+            },
             {
                 routeName: 'SubwayMap',
                 name: '地铁图',

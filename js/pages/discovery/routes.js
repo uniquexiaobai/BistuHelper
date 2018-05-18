@@ -12,6 +12,7 @@ import AirQuality from './air_quality';
 import TimeTable from './time-table';
 import CetQuery from './cet-query';
 import ScoreQuery from './score-query';
+import SchoolBus from './school_bus';
 
 const discoveryRoutes = {
     Library: {
@@ -55,6 +56,9 @@ const discoveryRoutes = {
     },
     ScoreQuery: {
         screen: ScoreQuery,
+    },
+    SchoolBus: {
+        screen: SchoolBus,
     },
 };
 
