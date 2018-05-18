@@ -3,6 +3,7 @@ import {WebView} from 'react-native';
 import {Toast} from 'antd-mobile';
 
 import {BackNavBar} from '../../components/nav-bar';
+import {libraryOpenTimeViewUrl} from '../../constants/url';
 
 class LibraryOpenTime extends Component {
     static navigationOptions = ({navigation}) => ({
@@ -22,8 +23,8 @@ class LibraryOpenTime extends Component {
     render() {
         return (
             <WebView
+                source={{uri: libraryOpenTimeViewUrl}}
                 onLoad={() => Toast.hide()}
-                source={{uri: 'http://workhard.top/test/library_open-time.html'}}
             />
         );
     }

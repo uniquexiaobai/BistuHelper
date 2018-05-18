@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {WebView, View, Text} from 'react-native';
+import {WebView} from 'react-native';
 import {Toast} from 'antd-mobile';
 
 import {BackNavBar} from '../../components/nav-bar';
+import {timeTableViewUrl} from '../../constants/url';
 
 class TimeTable extends Component {
     static navigationOptions = ({navigation}) => ({
@@ -22,7 +23,7 @@ class TimeTable extends Component {
     render() {
         return (
             <WebView
-                source={{uri: 'http://workhard.top/test/time-table.html'}}
+                source={{uri: timeTableViewUrl}}
                 onLoad={() => Toast.hide()}
             />
         );

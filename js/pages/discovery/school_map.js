@@ -3,12 +3,12 @@ import {WebView} from 'react-native';
 import {Toast} from 'antd-mobile';
 
 import {BackNavBar} from '../../components/nav-bar';
-import {libraryContactViewUrl} from '../../constants/url';
+import {schoolMapViewUrl} from '../../constants/url';
 
-class LibraryContact extends Component {
+class SchoolMap extends Component {
     static navigationOptions = ({navigation}) => ({
         header: <BackNavBar navigation={navigation} config={{
-            title: '联系方式',
+            title: '学校地图',
         }}/>
     });
 
@@ -23,11 +23,11 @@ class LibraryContact extends Component {
     render() {
         return (
             <WebView
-                source={{uri: libraryContactViewUrl}}
+                source={{uri: schoolMapViewUrl}}
                 onLoad={() => Toast.hide()}
             />
         );
     }
 }
 
-export default LibraryContact;
+export default SchoolMap;

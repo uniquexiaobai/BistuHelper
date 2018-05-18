@@ -13,6 +13,7 @@ import TimeTable from './time-table';
 import CetQuery from './cet-query';
 import ScoreQuery from './score-query';
 import SchoolBus from './school_bus';
+import SchoolMap from './school_map';
 
 const discoveryRoutes = {
     Library: {
@@ -59,6 +60,9 @@ const discoveryRoutes = {
     },
     SchoolBus: {
         screen: SchoolBus,
+    },
+    SchoolMap: {
+        screen: SchoolMap,
     },
 };
 

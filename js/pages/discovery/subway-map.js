@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {WebView, View, Text} from 'react-native';
+import {WebView} from 'react-native';
 import {Toast} from 'antd-mobile';
 
 import {BackNavBar} from '../../components/nav-bar';
+import {subwayMapViewUrl} from '../../constants/url';
 
 class SubwayMap extends Component {
     static navigationOptions = ({navigation}) => ({
@@ -22,9 +23,8 @@ class SubwayMap extends Component {
     render() {
         return (
             <WebView
-                // contentInset ios only
+                source={{uri: subwayMapViewUrl}}
                 onLoad={() => Toast.hide()}
-                source={{uri: 'http://workhard.top/test/subway-map.html'}}
             />
         );
     }
