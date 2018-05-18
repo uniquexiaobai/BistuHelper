@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 
-import Icon from '../../components/icon';
 import NewsHot from './news_hot';
+import Icon from '../../components/icon';
+import {colors} from '../../constants/colors';
 
 import {mainTabColors} from '../../constants/colors';
 
@@ -29,7 +30,7 @@ class Home extends Component {
 const styles = StyleSheet.create({
     home: {
         
-    }
+    },
 });
 
 export default Home;
