@@ -29,15 +29,19 @@ class Courses extends Component {
         )
     };
 
-    async componentDidMount() {
+    componentDidMount() {
         try {
-            this.fetchDate();
+            this.fetchDate(false, false);
         } catch (err) {
             console.warn(err);
         }
     }
 
-    fetchDate = async (force) => {
+    componentWillUnmount() {
+        Toast.hide();
+    }
+
+    fetchDate = async (force, showLoading) => {
         const {navigate} = this.props.navigation;
         const {fetchCourseList} = this.props.courseStore;
 
@@ -55,7 +59,9 @@ class Courses extends Component {
                 level: getCurTerm(level),
             };
 
-            Toast.loading('', 0);
+            if (showLoading) {
+                Toast.loading('', 0);
+            }
             await fetchCourseList({username, password}, force);
             Toast.hide();
         } catch (err) {

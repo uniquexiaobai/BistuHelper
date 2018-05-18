@@ -26,6 +26,10 @@ class ScoreQuery extends Component {
         this.fetchData();
     }
 
+    componentWillUnmount() {
+        Toast.hide();
+    }
+
     fetchData = async (force) => {
         const {navigate} = this.props.navigation;
         const {fetchEducationScore} = this.props.scoreQueryStore;
@@ -49,10 +53,6 @@ class ScoreQuery extends Component {
         }
     }
 
-    componentWillUnmount() {
-        Toast.hide();
-    }
-
     render() {
         const {setCurScoreTerm, scoreTerms, curScoreTerm, curScoreInfo} = this.props.scoreQueryStore;
         const userInfo = this.userInfo || {};
@@ -66,7 +66,7 @@ class ScoreQuery extends Component {
         });
 
         return (
-            <View style={{paddingTop: 15, paddingLeft: 5, paddingRight: 5}}>
+            <View style={{paddingTop: 15, paddingLeft: 5, paddingRight: 5, flex: 1}}>
                 {
                     userInfo.name ? (
                         <View style={{marginBottom: 15, paddingLeft: 5}}>
