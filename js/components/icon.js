@@ -12,8 +12,7 @@ const iconMap = {
     'compass': 'ios-compass',
     'home': 'ios-home',
     'person': 'md-person',
-    'right': 'ios-return-right',
-    'bus': 'ios-bus',
+    'open': 'md-open',
 };
 
 export default ({type, color=colors.color_text_base}) => (

@@ -19,8 +19,7 @@ class Library extends Component {
             <View>
                 <List>
                     <Item arrow="horizontal" onClick={this.clearCache}>清除缓存</Item>
-                    <Item arrow="horizontal" onClick={this.showCache}>显示所有缓存</Item>
-                    <Item arrow="horizontal">退出</Item>
+                    <Item arrow="horizontal">退出登陆</Item>
                 </List>
             </View>
         );
@@ -32,19 +31,7 @@ class Library extends Component {
 
             Toast.info('清除成功', 1);
         } catch (err) {
-            console.warn(err);
             Toast.info('清除失败', 1);
-        }
-    }
-
-    showCache = async () => {
-        try {
-            const keys = await AsyncStorage.getAllKeys();
-            const data = await AsyncStorage.multiGet(keys);
-
-            console.warn(data);
-        } catch (err) {
-            console.warn(err);
         }
     }
 }

@@ -14,6 +14,7 @@ import CetQuery from './cet-query';
 import ScoreQuery from './score-query';
 import SchoolBus from './school_bus';
 import SchoolMap from './school_map';
+import SiteWiki from './site-wiki';
 
 const discoveryRoutes = {
     Library: {
@@ -63,6 +64,9 @@ const discoveryRoutes = {
     },
     SchoolMap: {
         screen: SchoolMap,
+    },
+    SiteWiki: {
+        screen: SiteWiki,
     },
 };
 

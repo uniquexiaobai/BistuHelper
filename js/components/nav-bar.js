@@ -40,6 +40,19 @@ const Refresh = ({onPress}) => {
     );
 };
 
+const Right = ({rightIcon, onPress}) => {
+    return (
+        <TouchableHighlight 
+            underlayColor={colors.fill_grey}
+            activeOpacity={1}
+            onPress={() => onPress()}
+            style={[styles.button, styles.leftButton]}
+        >
+            <Icon type={rightIcon}/>
+        </TouchableHighlight>
+    );
+}
+
 export const NavBar = ({leftButton, rightButton, config}) => {
     const {title} = config;
 
@@ -87,6 +100,20 @@ export const RefreshNavBar = ({navigation, config}) => {
         <NavBar
             leftButton={<Back onPress={() => goBack()}/>}
             rightButton={<Refresh onPress={() => onRefresh()}/>}
+            config={config}
+        />
+    );
+};
+
+export const RightNavBar = ({navigation, config}) => {
+    const {goBack, getParam} = navigation;
+    const onRightPress = getParam('onRightPress') || noop;
+    const {rightIcon} = config;
+
+    return (
+        <NavBar
+            leftButton={<Back onPress={() => goBack()}/>}
+            rightButton={<Right rightIcon={rightIcon} onPress={() => onRightPress()}/>}
             config={config}
         />
     );

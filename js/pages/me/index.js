@@ -4,7 +4,8 @@ import {List, Card, Button} from 'antd-mobile';
 
 import Icon from '../../components/icon';
 import {mainTabColors, colors} from '../../constants/colors';
-import {feedbackUrl} from '../../constants/url';
+import {feedbackUrl, aboutMeUrl} from '../../constants/url';
+import {openURL} from '../../utils/linking';
 
 import ButtonStyle from 'antd-mobile/lib/button/style/index.native';
 
@@ -45,8 +46,8 @@ class Me extends Component {
                     <List>
                         <List.Item arrow="horizontal" onClick={() => this.routeTo('EducationSignIn')}>教务处绑定</List.Item>
                         <List.Item arrow="horizontal" onClick={() => this.routeTo('LibrarySignIn')}>图书馆绑定</List.Item>
-                        <List.Item arrow="horizontal" onClick={() => this.feedback()}>意见反馈</List.Item>
-                        <List.Item arrow="horizontal" onClick={() => this.routeTo('AboutMe')}>关于我们</List.Item>
+                        <List.Item arrow="horizontal" onClick={() => openURL(feedbackUrl)}>意见反馈</List.Item>
+                        <List.Item arrow="horizontal" onClick={() => openURL(aboutMeUrl)}>关于我</List.Item>
                         <List.Item arrow="horizontal" onClick={() => this.routeTo('Settings')}>设置</List.Item>
                     </List>
                 </View>
@@ -58,10 +59,6 @@ class Me extends Component {
         const {navigate} = this.props.navigation;
 
         navigate(routeName);
-    }
-
-    feedback = () => {
-        Linking.openURL(feedbackUrl); 
     }
 }
 

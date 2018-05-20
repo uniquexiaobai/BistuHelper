@@ -38,20 +38,21 @@ class Discovery extends Component {
                 logo: require("../../../assets/images/discovery/cet-query.png"),
             },
             {
-                name: '寻物招领',
-                logo: require("../../../assets/images/discovery/lost.png"),
+                name: '考试查询',
+                logo: require("../../../assets/images/discovery/notice.png"),
+            }, 
+            {
+                name: '空闲教室',
+                logo: require("../../../assets/images/discovery/school-news.png"),
             },
             {
                 name: '新生专栏',
                 logo: require("../../../assets/images/discovery/ask.png"),
             }, 
             {
-                name: '教务通知',
-                logo: require("../../../assets/images/discovery/notice.png"),
-            }, 
-            {
-                name: '空闲教室',
-                logo: require("../../../assets/images/discovery/school-news.png"),
+                routeName: 'SiteWiki',
+                name: '网址导航',
+                logo: require("../../../assets/images/discovery/site-wiki.png"),
             },
             {
                 routeName: 'SchoolMap',
