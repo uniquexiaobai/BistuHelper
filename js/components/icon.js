@@ -13,7 +13,6 @@ const iconMap = {
     'home': 'ios-home',
     'person': 'md-person',
     'open': 'md-open',
-    'share': 'md-share',
 };
 
 export default ({type, color=colors.color_text_base, size=25}) => (

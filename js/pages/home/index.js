@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 
-import NewsHot from './news_hot';
+import NewsSlide from './news_slide';
 import Icon from '../../components/icon';
 import {mainTabColors, colors} from '../../constants/colors';
 
@@ -19,7 +19,7 @@ class Home extends Component {
 
         return (
             <View style={styles.home}>
-                <NewsHot navigation={navigation}/>
+                <NewsSlide navigation={navigation}/>
             </View>
         );
     }

@@ -4,27 +4,27 @@ import {observer, inject} from 'mobx-react';
 import {StyleSheet, TouchableOpacity, View, Text, Image} from 'react-native';
 import {Carousel} from 'antd-mobile';
 
-@inject('newsHotStore')
+@inject('newsSlideStore')
 @observer
 class NewsHot extends Component {
     async componentDidMount() {
         try {
-            const {fetchNewsHot} = this.props.newsHotStore;
+            const {fetchNewsSlide} = this.props.newsSlideStore;
 
-            await fetchNewsHot();
+            await fetchNewsSlide();
         } catch (err) {
             console.warn(err);
         }
     }
 
     render() {
-        const {newsHot = []} = this.props.newsHotStore;
+        const {newsSlide = []} = this.props.newsSlideStore;
 
         return (
             <View>
                 <Carousel autoplayInterval={5000} autoplay infinite>
                     {
-                        newsHot.map(item => (
+                        newsSlide.map(item => (
                             <TouchableOpacity style={styles.newsHot__item} activeOpacity={1} key={item.id} onPress={() => this.routeToDetail(item.id)}>
                                 <Image
                                     style={styles.newsHot__image}

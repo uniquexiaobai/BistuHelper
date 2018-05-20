@@ -1,5 +1,5 @@
-import NewsHotStore from './news_hot';
+import NewsSlideStore from './news_slide';
 
 export default {
-    newsHotStore: new NewsHotStore(),
+    newsSlideStore: new NewsSlideStore(),
 };
