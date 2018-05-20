@@ -3,9 +3,7 @@ import {StyleSheet, View, Text} from 'react-native';
 
 import NewsHot from './news_hot';
 import Icon from '../../components/icon';
-import {colors} from '../../constants/colors';
-
-import {mainTabColors} from '../../constants/colors';
+import {mainTabColors, colors} from '../../constants/colors';
 
 class Home extends Component {
     static navigationOptions = {

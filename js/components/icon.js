@@ -13,12 +13,13 @@ const iconMap = {
     'home': 'ios-home',
     'person': 'md-person',
     'open': 'md-open',
+    'share': 'md-share',
 };
 
-export default ({type, color=colors.color_text_base}) => (
+export default ({type, color=colors.color_text_base, size=25}) => (
     <Icon 
         name={iconMap[type]}
         color={color} 
-        size={25}
+        size={size}
     />
 );

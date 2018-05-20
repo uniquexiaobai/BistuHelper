@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {StyleSheet, Linking, Text, View} from 'react-native';
+import {StyleSheet, Share, Text, View} from 'react-native';
 import {List, Card, Button} from 'antd-mobile';
+import MDIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Icon from '../../components/icon';
 import {mainTabColors, colors} from '../../constants/colors';
@@ -17,6 +18,12 @@ class Me extends Component {
             <Icon type='person' color={focused ? tintColor : mainTabColors.inactiveTintColor}/>
         )
     };
+
+    itemThumbView = ({type}) => (
+        <View style={{width: 22, height: 22, marginRight: 15}}>
+            <MDIcon name={type} size={22} color={colors.brand_primary}/>
+        </View>
+    );
 
     render() {
         return (
@@ -43,12 +50,54 @@ class Me extends Component {
                 </View>
 
                 <View style={{marginTop: 20}}>
-                    <List>
-                        <List.Item arrow="horizontal" onClick={() => this.routeTo('EducationSignIn')}>教务处绑定</List.Item>
-                        <List.Item arrow="horizontal" onClick={() => this.routeTo('LibrarySignIn')}>图书馆绑定</List.Item>
-                        <List.Item arrow="horizontal" onClick={() => openURL(feedbackUrl)}>意见反馈</List.Item>
-                        <List.Item arrow="horizontal" onClick={() => openURL(aboutMeUrl)}>关于我</List.Item>
-                        <List.Item arrow="horizontal" onClick={() => this.routeTo('Settings')}>设置</List.Item>
+                    <List style={{marginBottom: 20}}>
+                        <List.Item 
+                            arrow="horizontal"
+                            thumb={<this.itemThumbView type='school' />}
+                            onClick={() => this.routeTo('EducationSignIn')}
+                        >
+                            教务处绑定
+                        </List.Item>
+
+                        <List.Item 
+                            arrow="horizontal"
+                            thumb={<this.itemThumbView type='library' />}
+                            onClick={() => this.routeTo('LibrarySignIn')}
+                        >
+                            图书馆绑定
+                        </List.Item>
+                    
+                        <List.Item 
+                            arrow="horizontal"
+                            thumb={<this.itemThumbView type='share-variant' />}
+                            onClick={() => this.shareApp()}
+                        >
+                            分享应用
+                        </List.Item>
+
+                        <List.Item 
+                            arrow="horizontal"
+                            thumb={<this.itemThumbView type='send' />}
+                            onClick={() => openURL(feedbackUrl)}
+                        >
+                            意见反馈
+                        </List.Item>
+
+                        <List.Item 
+                            arrow="horizontal"
+                            thumb={<this.itemThumbView type='information' />}
+                            onClick={() => openURL(aboutMeUrl)}
+                        >
+                            关于我们
+                        </List.Item>
+
+                        <List.Item 
+                            arrow="horizontal"
+                            thumb={<this.itemThumbView type='settings' />}
+                            onClick={() => this.routeTo('Settings')}
+                        >
+                            设置
+                        </List.Item>
                     </List>
                 </View>
             </View>
@@ -59,7 +108,14 @@ class Me extends Component {
         const {navigate} = this.props.navigation;
 
         navigate(routeName);
-    }
+    };
+
+    shareApp = () => {
+        Share.share({
+            title: '',
+            message: 'BistuHelper',
+        });
+    };
 }
 
 const CustomButtonStyle = {

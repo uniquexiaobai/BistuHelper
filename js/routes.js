@@ -32,7 +32,7 @@ const MainTabNavigator = TabNavigator({
     animationEnabled: false,
     tabBarOptions: {
         showIcon: true,
-        activeTintColor: mainTabColors.activeTintColor,
+        activeTintColor: colors.brand_primary,
         inactiveTintColor: mainTabColors.inactiveTintColor,
         style: {
             backgroundColor: colors.color_text_base_inverse,
