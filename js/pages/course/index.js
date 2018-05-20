@@ -43,7 +43,7 @@ class Courses extends Component {
 
     fetchDate = async (force, showLoading) => {
         const {navigate} = this.props.navigation;
-        const {fetchCourseList} = this.props.courseStore;
+        const {fetchAllWeekCourses} = this.props.courseStore;
 
         try {
             const {username, password, name, major, level} = await getFromStorage(educationAccountStorageKey) || {};
@@ -62,7 +62,7 @@ class Courses extends Component {
             if (showLoading) {
                 Toast.loading('', 0);
             }
-            await fetchCourseList({username, password}, force);
+            await fetchAllWeekCourses({username, password}, force);
             Toast.hide();
         } catch (err) {
             console.warn(err);
@@ -199,7 +199,7 @@ class Courses extends Component {
                     <TouchableHighlight
                         underlayColor={colors.fill_grey}
                         activeOpacity={1}
-                        onPress={() => this.fetchDate(true)}
+                        onPress={() => this.fetchDate(true, true)}
                         style={[styles.course__button, styles.course__button_right]}
                     >
                         <Icon type='refresh'/>

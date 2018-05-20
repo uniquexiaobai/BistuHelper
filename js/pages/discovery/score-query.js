@@ -54,7 +54,7 @@ class ScoreQuery extends Component {
     }
 
     render() {
-        const {setCurScoreTerm, scoreTerms, curScoreTerm, curScoreInfo} = this.props.scoreQueryStore;
+        const {setCurScoreTerm, scoreTerms = [], curScoreTerm, curScoreInfo} = this.props.scoreQueryStore;
         const userInfo = this.userInfo || {};
         const pickerData = scoreTerms.map(value => {
             const keys = value.split('#');
@@ -75,16 +75,21 @@ class ScoreQuery extends Component {
                     ) : null
                 }
 
-                <View style={{backgroundColor: colors.fill_grey}}>
-                    <Picker 
-                        selectedValue={curScoreTerm}
-                        onValueChange={value => setCurScoreTerm(value)}
-                    >
-                        {pickerData.map(({label, value}) => (
-                            <Picker.Item key={value} label={label} value={value}/>
-                        ))}
-                    </Picker>
-                </View>
+                
+                {
+                    pickerData.length ? (
+                        <View style={{backgroundColor: colors.fill_grey}}>
+                            <Picker 
+                                selectedValue={curScoreTerm}
+                                onValueChange={value => setCurScoreTerm(value)}
+                            >
+                                {pickerData.map(({label, value}) => (
+                                    <Picker.Item key={value} label={label} value={value}/>
+                                ))}
+                            </Picker>
+                        </View>
+                    ) : null
+                }
 
                 <ScrollView>
                     {
