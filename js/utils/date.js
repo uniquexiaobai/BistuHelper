@@ -21,7 +21,7 @@ export const getCurTerm = (level) => {
 
 export const getCurWeekDates = () => {
     const now = dayjs();
-    const dayOfWeek = now.day();
+    const dayOfWeek = now.day() === 0 ? 7 : now.day(); // 0-6 => 1-7
 
     return range(1, 7).map(w => {
         if (w === dayOfWeek) {

@@ -194,7 +194,7 @@ class Courses extends Component {
                     </TouchableHighlight>
                     <View style={{alignItems: 'center'}}>
                         <Text style={{fontSize: 16, color: colors.color_text_base}}>第{curWeek}周</Text>
-                        <Text style={{fontSize: 14, color: colors.color_text_paragraph}}>{`${levelValue} 第${termValue}学期`}</Text>
+                        <Text style={{fontSize: 14, color: colors.color_text_paragraph}}>{(termValue && termValue) ? `${levelValue} 第${termValue}学期` : ''}</Text>
                     </View>
                     <TouchableHighlight
                         underlayColor={colors.fill_grey}
