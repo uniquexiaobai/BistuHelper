@@ -6,7 +6,7 @@ const CustomSearchBarStyle = {
     ...SearchBarStyle,
     wrapper: {
         ...SearchBarStyle.wrapper,
-        backgroundColor: colors.fill_grey,
+        backgroundColor: colors.fill_light_gray,
     },
 };
 

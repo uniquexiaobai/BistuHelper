@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
         height: 55,
         flexDirection: 'row',
         alignItems: 'stretch',
-        backgroundColor: colors.fill_grey,
+        backgroundColor: colors.fill_light_gray,
     },
     course__th: {
         flex: 3,
@@ -284,7 +284,7 @@ const styles = StyleSheet.create({
     },
     course__column0: {
         flex: 2,
-        backgroundColor: colors.fill_grey,
+        backgroundColor: colors.fill_light_gray,
     },
     course__row: {
         paddingLeft: 3,

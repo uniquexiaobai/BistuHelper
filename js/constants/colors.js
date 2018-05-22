@@ -16,7 +16,7 @@ export const colors = {
     fill_steel_blue: '#4682B4',
     fill_tap: '#d3d3d3',
     fill_gray: '#888888',
-    fill_light_gray: '#f7f7f7',
+    fill_light_gray: '#f3f3f3',
 
     // 全局/品牌色
     brand_primary: '#3381D2',

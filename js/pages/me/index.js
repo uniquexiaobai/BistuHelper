@@ -8,7 +8,7 @@ import {colors} from '../../constants/colors';
 import {feedbackUrl, aboutMeUrl} from '../../constants/url';
 import {openURL} from '../../utils/linking';
 
-import ButtonStyle from 'antd-mobile/lib/button/style/index.native';
+import {CustomSmallButtonStyle} from '../../styles/button';
 
 class Me extends Component {
     static navigationOptions = {
@@ -34,8 +34,8 @@ class Me extends Component {
                     </View>
 
                     <View style={{flexDirection: 'row'}}>
-                        <Button type="primary" size="small" styles={CustomButtonStyle} style={{marginRight: 15}} onClick={() => this.routeTo('SignIn')}>登陆</Button>
-                        <Button type="ghost" size="small" styles={CustomButtonStyle} onClick={() => this.routeTo('SignUp')}>注册</Button>
+                        <Button type="primary" size="small" styles={CustomSmallButtonStyle} style={{marginRight: 15}} onClick={() => this.routeTo('SignIn')}>登陆</Button>
+                        <Button type="ghost" size="small" styles={CustomSmallButtonStyle} onClick={() => this.routeTo('SignUp')}>注册</Button>
                     </View>
                 </View>
 
@@ -117,17 +117,5 @@ class Me extends Component {
         });
     };
 }
-
-const CustomButtonStyle = {
-    ...ButtonStyle, 
-    smallRaw: {
-        height: 30,
-        paddingLeft: 25,
-        paddingRight: 25,
-    },
-    smallRawText: {
-        fontSize: 14,
-    },
-};
 
 export default Me;
