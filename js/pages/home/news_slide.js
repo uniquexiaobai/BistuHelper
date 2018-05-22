@@ -21,7 +21,7 @@ class NewsHot extends Component {
         const {newsSlide = []} = this.props.newsSlideStore;
 
         return (
-            <View>
+            <View style={{height: 180}}>
                 <Carousel autoplayInterval={5000} autoplay infinite>
                     {
                         newsSlide.map(item => (

@@ -50,12 +50,12 @@ class NewsList extends Component {
                 data={newsList}
                 keyExtractor={item => item.id}
                 style={styles.news_list}
-                renderItem={({item}) => {
+                renderItem={({item, index}) => {
                     return (
                         <TouchableHighlight
                             key={item.id}
-                            style={styles.news_item__wrap}
-                            underlayColor={colors.lightGray}
+                            style={[styles.news_item__wrap, index === 0 ? {marginTop: 10} : null]}
+                            underlayColor={colors.fill_tap}
                             onPress={this.onNewsItemTap.bind(this, item.id)}
                         >
                             <View style={styles.news_item}>
@@ -83,20 +83,15 @@ const styles = StyleSheet.create({
     news_list: {
         paddingLeft: 10,
         paddingRight: 10,
-        paddingTop: 5,
-        paddingBottom: 5,
-        backgroundColor: colors.whiteSmoke,
+        backgroundColor: colors.fill_body,
     },
     news_item__wrap: {
-        paddingTop: 10,
-        paddingBottom: 10,
-        paddingLeft: 15,
-        paddingRight: 15,
+        padding: 10,
         marginBottom: 10,
         borderWidth: StyleSheet.hairlineWidth,
         borderRadius: 5,
-        borderColor: colors.lightGray,
-        backgroundColor: '#fff'
+        borderColor: colors.border_color_base,
+        backgroundColor: colors.color_text_base_inverse,
     },
     news_item: {
         flexDirection: 'row',
@@ -105,13 +100,13 @@ const styles = StyleSheet.create({
     },
     news_item__title: {
         flex: 1,
-        color: '#000',
-        fontSize: 18,
-        lineHeight: 25
+        color: colors.color_text_base,
+        fontSize: 16,
+        lineHeight: 24,
     },
     news_item__cover: {
-        flexBasis: 80,
-        height: 80,
+        flexBasis: 60,
+        height: 60,
         marginLeft: 20
     }
 });

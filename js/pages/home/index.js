@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, ScrollView, View, Text} from 'react-native';
 
 import NewsSlide from './news_slide';
+import NewsHot from './news_hot';
 import Icon from '../../components/icon';
-import {mainTabColors, colors} from '../../constants/colors';
+import {colors} from '../../constants/colors';
 
 class Home extends Component {
     static navigationOptions = {
         header: null,
         tabBarLabel: '首页',
         tabBarIcon: ({focused, tintColor}) => (
-            <Icon type='home' color={focused ? tintColor : mainTabColors.inactiveTintColor}/>
+            <Icon type='home' color={focused ? tintColor : colors.fill_gray}/>
         )
     };
 
@@ -18,16 +19,18 @@ class Home extends Component {
         const {navigation} = this.props;
 
         return (
-            <View style={styles.home}>
+            <ScrollView style={styles.home}>
                 <NewsSlide navigation={navigation}/>
-            </View>
+                <NewsHot navigation={navigation}/>
+            </ScrollView>
         );
     }
 }
 
 const styles = StyleSheet.create({
     home: {
-        
+        flex: 1,
+        backgroundColor: colors.fill_body,
     },
 });
 

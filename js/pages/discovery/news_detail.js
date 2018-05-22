@@ -7,7 +7,7 @@ import {Toast} from 'antd-mobile';
 
 import {BackNavBar} from '../../components/nav-bar';
 import {fetchNewsDetail} from '../../utils/api';
-import {mainTabColors, colors} from '../../constants/colors';
+import {colors} from '../../constants/colors';
 import {screenWidth} from '../../utils/screen';
 
 @observer
@@ -100,7 +100,7 @@ class NewsDetail extends Component {
 
 const styles = StyleSheet.create({
     detail: {
-        paddingTop: 15,
+        paddingTop: 10,
         paddingLeft: 15,
         paddingRight: 15,
     },
@@ -115,17 +115,17 @@ const styles = StyleSheet.create({
         marginTop: 5,
         marginBottom: 15,
         textAlign: 'center',
-        color: colors.gray51,
+        color: colors.color_text_caption,
     },
     detail__content: {
-        paddingBottom: 15,
+        paddingBottom: 20,
     },
     detail__section: {
         marginBottom: 5,
     },
     detail__text: {
         fontSize: 16,
-        lineHeight: 28,
+        lineHeight: 25,
         color: colors.color_text_paragraph,
     },
     detail__image: {

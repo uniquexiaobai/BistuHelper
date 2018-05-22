@@ -11,7 +11,7 @@ import courseRoutes from './pages/course/routes';
 import discoveryRoutes from './pages/discovery/routes';
 import MeRoutes from './pages/me/routes';
 
-import {mainTabColors, colors} from './constants/colors';
+import {colors} from './constants/colors';
 
 const MainTabNavigator = TabNavigator({
     Home: {
@@ -33,7 +33,7 @@ const MainTabNavigator = TabNavigator({
     tabBarOptions: {
         showIcon: true,
         activeTintColor: colors.brand_primary,
-        inactiveTintColor: mainTabColors.inactiveTintColor,
+        inactiveTintColor: colors.fill_gray,
         style: {
             backgroundColor: colors.color_text_base_inverse,
             borderTopWidth: StyleSheet.hairlineWidth,

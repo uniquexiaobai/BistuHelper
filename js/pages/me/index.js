@@ -4,7 +4,7 @@ import {List, Card, Button} from 'antd-mobile';
 import MDIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Icon from '../../components/icon';
-import {mainTabColors, colors} from '../../constants/colors';
+import {colors} from '../../constants/colors';
 import {feedbackUrl, aboutMeUrl} from '../../constants/url';
 import {openURL} from '../../utils/linking';
 
@@ -15,7 +15,7 @@ class Me extends Component {
         header: null,
         tabBarLabel: '我',
         tabBarIcon: ({focused, tintColor}) => (
-            <Icon type='person' color={focused ? tintColor : mainTabColors.inactiveTintColor}/>
+            <Icon type='person' color={focused ? tintColor : colors.fill_gray}/>
         )
     };
 

@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import {apiBaseUrl as baseUrl} from '../constants/url';
 
+const newsHotUrl = `${baseUrl}/api/news/hot`;
 const newsSlideUrl = `${baseUrl}/api/news/slide`;
 const libraryBaseUrl = `${baseUrl}/api/library/base`;
 const libraryBorrowUrl = `${baseUrl}/api/library/borrow`;
@@ -57,6 +58,8 @@ export const fetchEducationCet = postCreater(cetQueryUrl);
 export const fetchEducationScore = postCreater(scoreQueryUrl);
 
 export const fetchNewsSlide = getCreater(newsSlideUrl);
+
+export const fetchNewsHot = getCreater(newsHotUrl);
 
 export const fetchNewsList = async({type = 'zhxw', page = 1}) => {
     const url = `${baseUrl}/api/news?type=${type}&page=${page}`;

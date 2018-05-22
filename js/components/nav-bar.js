@@ -11,7 +11,7 @@ function noop() {}
 const Back = ({onPress}) => {
     return (
         <TouchableHighlight 
-            underlayColor={colors.fill_grey}
+            underlayColor={colors.fill_tap}
             activeOpacity={1}
             onPress={onPress || noop}
             style={[styles.button, styles.leftButton]}
@@ -30,7 +30,7 @@ const More = ({options}) => {
 const Refresh = ({onPress}) => {
     return (
         <TouchableHighlight 
-            underlayColor={colors.fill_grey}
+            underlayColor={colors.fill_tap}
             activeOpacity={1}
             onPress={() => onPress()}
             style={[styles.button, styles.rightButton]}
@@ -43,7 +43,7 @@ const Refresh = ({onPress}) => {
 const Right = ({rightIcon, onPress}) => {
     return (
         <TouchableHighlight 
-            underlayColor={colors.fill_grey}
+            underlayColor={colors.fill_tap}
             activeOpacity={1}
             onPress={() => onPress()}
             style={[styles.button, styles.leftButton]}

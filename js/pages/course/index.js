@@ -7,7 +7,7 @@ import Icon from '../../components/icon';
 import {getFromStorage} from '../../utils/storage';
 import {range} from '../../utils/array';
 import {getCurWeekDates, getCurTerm, getCurWeek, getCurDay} from '../../utils/date';
-import {mainTabColors, colors} from '../../constants/colors';
+import {colors} from '../../constants/colors';
 
 const educationAccountStorageKey = 'BistuHelper__education__account';
 
@@ -25,7 +25,7 @@ class Courses extends Component {
         header: null,
         tabBarLabel: '课程表',
         tabBarIcon: ({focused, tintColor}) => (
-            <Icon type='grid' color={focused ? tintColor : mainTabColors.inactiveTintColor}/>
+            <Icon type='grid' color={focused ? tintColor : colors.fill_gray}/>
         )
     };
 
@@ -186,7 +186,7 @@ class Courses extends Component {
             <View style={styles.course}>
                 <View style={styles.course__top}>
                     <TouchableHighlight
-                        underlayColor={colors.fill_grey}
+                        underlayColor={colors.fill_tap}
                         activeOpacity={1}
                         style={[styles.course__button, styles.course__button_left]}
                     >
@@ -197,7 +197,7 @@ class Courses extends Component {
                         <Text style={{fontSize: 14, color: colors.color_text_paragraph}}>{(termValue && termValue) ? `${levelValue} 第${termValue}学期` : ''}</Text>
                     </View>
                     <TouchableHighlight
-                        underlayColor={colors.fill_grey}
+                        underlayColor={colors.fill_tap}
                         activeOpacity={1}
                         onPress={() => this.fetchDate(true, true)}
                         style={[styles.course__button, styles.course__button_right]}
@@ -297,7 +297,7 @@ const styles = StyleSheet.create({
         borderRightColor: colors.border_color_light,
     },
     'course__row-active': {
-        backgroundColor: colors.fill_steel_blue,
+        backgroundColor: colors.brand_primary,
     },
     course__row_text: {
         fontSize: 12,

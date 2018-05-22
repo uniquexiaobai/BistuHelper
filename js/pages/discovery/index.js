@@ -3,7 +3,7 @@ import {StyleSheet, TouchableHighlight, View, Image, Text} from 'react-native';
 import {Toast} from 'antd-mobile';
 
 import Icon from '../../components/icon';
-import {mainTabColors, colors} from '../../constants/colors';
+import {colors} from '../../constants/colors';
 import {screenWidth} from '../../utils/screen';
 
 class Discovery extends Component {
@@ -11,7 +11,7 @@ class Discovery extends Component {
         header: null,
         tabBarLabel: '发现',
         tabBarIcon: ({focused, tintColor}) => (
-            <Icon type='compass' color={focused ? tintColor : mainTabColors.inactiveTintColor}/>
+            <Icon type='compass' color={focused ? tintColor : colors.fill_gray}/>
         )
     };
 
@@ -102,7 +102,7 @@ class Discovery extends Component {
                     <TouchableHighlight
                         key={item.name}
                         style={styles.touchView}
-                        underlayColor={colors.lightGray}
+                        underlayColor={colors.fill_tap}
                         activeOpacity={1}
                         onPress={() => this.onItemPress(item)}
                     >
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap'
     },
     touchView: {
-        borderColor: colors.lightGray,
+        borderColor: colors.border_color_base,
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderRightWidth: StyleSheet.hairlineWidth,
         width: screenWidth / 4,
