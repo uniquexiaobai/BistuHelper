@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {observer, inject} from 'mobx-react';
-import {StyleSheet, ScrollView, TouchableHighlight, TouchableOpacity, View, Text} from 'react-native';
+import {StyleSheet, StatusBar, ScrollView, TouchableHighlight, TouchableOpacity, View, Text} from 'react-native';
 import {Toast} from 'antd-mobile';
 
 import Icon from '../../components/icon';
@@ -8,6 +8,7 @@ import {getFromStorage} from '../../utils/storage';
 import {range} from '../../utils/array';
 import {getCurWeekDates, getCurTerm, getCurWeek, getCurDay} from '../../utils/date';
 import {colors} from '../../constants/colors';
+import {EmptyNavbar} from '../../components/nav-bar'
 
 const educationAccountStorageKey = 'BistuHelper__education__account';
 
@@ -18,11 +19,17 @@ const levelMap = {
     4: '大四',
 };
 
+const Bar = () => (
+    <View style={{height: 20, backgroundColor: colors.brand_primary }}>
+        <StatusBar animated barStyle='light-content'/>
+    </View>
+);
+
 @inject('courseStore')
 @observer
 class Courses extends Component {
     static navigationOptions = {
-        header: null,
+        header: <Bar/>,
         tabBarLabel: '课程表',
         tabBarIcon: ({focused, tintColor}) => (
             <Icon type='grid' color={focused ? tintColor : colors.fill_gray}/>
@@ -183,7 +190,8 @@ class Courses extends Component {
         const termValue = level ? (level % 2 === 0 ? 2 : 1) : '';
 
         return (
-            <View style={styles.course}>
+            <View style={[styles.course]}>
+                
                 <View style={styles.course__top}>
                     <TouchableHighlight
                         underlayColor={colors.fill_tap}

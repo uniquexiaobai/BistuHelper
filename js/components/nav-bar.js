@@ -53,7 +53,7 @@ const Right = ({rightIcon, onPress}) => {
     );
 }
 
-export const NavBar = ({leftButton, rightButton, config}) => {
+export const NavBar = ({leftButton, rightButton, config = {}}) => {
     const {title} = config;
 
     return (
