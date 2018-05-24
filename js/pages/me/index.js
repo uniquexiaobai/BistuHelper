@@ -16,7 +16,9 @@ class Me extends Component {
         header: <StatusBar/>,
         tabBarLabel: '我',
         tabBarIcon: ({focused, tintColor}) => (
-            <Icon type='person' color={focused ? tintColor : colors.fill_gray}/>
+            <View style={{width: 25, height: 25, alignItems: 'center'}}>
+                <Icon type='person' color={focused ? tintColor : colors.fill_gray}/>
+            </View>
         )
     };
 
@@ -92,7 +94,7 @@ class Me extends Component {
                             关于我们
                         </List.Item>
 
-                        <List.Item 
+                        <List.Item
                             arrow="horizontal"
                             thumb={<this.itemThumbView type='settings' />}
                             onClick={() => this.routeTo('Settings')}

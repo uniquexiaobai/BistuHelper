@@ -8,6 +8,8 @@ YellowBox.ignoreWarnings([
     'Warning: componentWillReceiveProps is deprecated',
     'Warning: componentWillUpdate is deprecated',
     'Warning: isMounted(...) is deprecated',
+    'Module RCTImageLoader',
+    'Class RCTCxxModule',
 ]);
 
 AppRegistry.registerComponent('BistuHelper', () => Root);

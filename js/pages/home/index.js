@@ -12,7 +12,9 @@ class Home extends Component {
         header: <StatusBar/>,
         tabBarLabel: '首页',
         tabBarIcon: ({focused, tintColor}) => (
-            <Icon type='home' color={focused ? tintColor : colors.fill_gray}/>
+            <View style={{width: 25, height: 25, alignItems: 'center'}}>
+                <Icon type='home' color={focused ? tintColor : colors.fill_gray}/>
+            </View>
         )
     };
 

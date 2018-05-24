@@ -8,9 +8,9 @@ const iconMap = {
     'back': 'md-arrow-back',
     'more': 'ios-more',
     'add': 'md-add',
+    'home': 'ios-home',
     'grid': 'md-grid',
     'compass': 'ios-compass',
-    'home': 'ios-home',
     'person': 'md-person',
     'open': 'md-open',
 };

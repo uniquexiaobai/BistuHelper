@@ -27,7 +27,9 @@ class Courses extends Component {
         header: <StatusBar />,
         tabBarLabel: '课程表',
         tabBarIcon: ({focused, tintColor}) => (
-            <Icon type='grid' color={focused ? tintColor : colors.fill_gray}/>
+            <View style={{width: 25, height: 25, alignItems: 'center'}}>
+                <Icon type='grid' color={focused ? tintColor : colors.fill_gray}/>
+            </View>
         )
     };
 

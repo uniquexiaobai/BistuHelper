@@ -12,7 +12,9 @@ class Discovery extends Component {
         header: <StatusBar/>,
         tabBarLabel: '发现',
         tabBarIcon: ({focused, tintColor}) => (
-            <Icon type='compass' color={focused ? tintColor : colors.fill_gray}/>
+            <View style={{width: 25, height: 25, alignItems: 'center'}}>
+                <Icon type='compass' color={focused ? tintColor : colors.fill_gray}/>
+            </View>
         )
     };
 
