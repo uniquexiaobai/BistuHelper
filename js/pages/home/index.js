@@ -5,10 +5,11 @@ import NewsSlide from './news_slide';
 import NewsHot from './news_hot';
 import Icon from '../../components/icon';
 import {colors} from '../../constants/colors';
+import StatusBar from '../../components/status-bar';
 
 class Home extends Component {
     static navigationOptions = {
-        header: null,
+        header: <StatusBar/>,
         tabBarLabel: '首页',
         tabBarIcon: ({focused, tintColor}) => (
             <Icon type='home' color={focused ? tintColor : colors.fill_gray}/>

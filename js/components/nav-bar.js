@@ -65,6 +65,7 @@ export const NavBar = ({leftButton, rightButton, config = {}}) => {
             }}
             rightButton={rightButton}
             leftButton={leftButton}
+            statusBar={{style: 'light-content', tintColor: colors.brand_primary}}
         />
     );
 };

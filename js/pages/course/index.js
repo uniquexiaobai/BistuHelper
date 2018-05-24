@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {observer, inject} from 'mobx-react';
-import {StyleSheet, StatusBar, ScrollView, TouchableHighlight, TouchableOpacity, View, Text} from 'react-native';
+import {StyleSheet, ScrollView, TouchableHighlight, TouchableOpacity, View, Text} from 'react-native';
 import {Toast} from 'antd-mobile';
 
 import Icon from '../../components/icon';
@@ -9,6 +9,7 @@ import {range} from '../../utils/array';
 import {getCurWeekDates, getCurTerm, getCurWeek, getCurDay} from '../../utils/date';
 import {colors} from '../../constants/colors';
 import {EmptyNavbar} from '../../components/nav-bar'
+import StatusBar from '../../components/status-bar';
 
 const educationAccountStorageKey = 'BistuHelper__education__account';
 
@@ -19,17 +20,11 @@ const levelMap = {
     4: '大四',
 };
 
-const Bar = () => (
-    <View style={{height: 20, backgroundColor: colors.brand_primary }}>
-        <StatusBar animated barStyle='light-content'/>
-    </View>
-);
-
 @inject('courseStore')
 @observer
 class Courses extends Component {
     static navigationOptions = {
-        header: <Bar/>,
+        header: <StatusBar />,
         tabBarLabel: '课程表',
         tabBarIcon: ({focused, tintColor}) => (
             <Icon type='grid' color={focused ? tintColor : colors.fill_gray}/>

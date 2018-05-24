@@ -5,10 +5,11 @@ import {Toast} from 'antd-mobile';
 import Icon from '../../components/icon';
 import {colors} from '../../constants/colors';
 import {screenWidth} from '../../utils/screen';
+import StatusBar from '../../components/status-bar';
 
 class Discovery extends Component {
     static navigationOptions = {
-        header: null,
+        header: <StatusBar/>,
         tabBarLabel: '发现',
         tabBarIcon: ({focused, tintColor}) => (
             <Icon type='compass' color={focused ? tintColor : colors.fill_gray}/>

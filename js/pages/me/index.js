@@ -7,12 +7,13 @@ import Icon from '../../components/icon';
 import {colors} from '../../constants/colors';
 import {feedbackUrl, aboutMeUrl} from '../../constants/url';
 import {openURL} from '../../utils/linking';
+import StatusBar from '../../components/status-bar';
 
 import {CustomSmallButtonStyle} from '../../styles/button';
 
 class Me extends Component {
     static navigationOptions = {
-        header: null,
+        header: <StatusBar/>,
         tabBarLabel: '我',
         tabBarIcon: ({focused, tintColor}) => (
             <Icon type='person' color={focused ? tintColor : colors.fill_gray}/>
@@ -39,7 +40,7 @@ class Me extends Component {
                     </View>
                 </View>
 
-                <View style={{marginTop: 20}}>
+                {/* <View style={{marginTop: 20}}>
                     <Card full style={{paddingBottom: 0, paddingLeft: 5}}>
                         <Card.Header
                             title="公子小白"
@@ -47,7 +48,7 @@ class Me extends Component {
                             thumbStyle={{width: 60, height: 60, borderRadius: 30, marginRight: 10}}
                         />
                     </Card>
-                </View>
+                </View> */}
 
                 <View style={{marginTop: 20}}>
                     <List style={{marginBottom: 20}}>
