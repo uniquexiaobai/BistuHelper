@@ -6,8 +6,8 @@ import {getFromStorage, saveToStorage} from '../../../utils/storage';
 const educationScoreStorageKey = 'BistuHelper__education__score';
 
 class ScoreQueryStore {
-    @observable scoreInfo = [];
-    @observable curScoreTerm;
+    @observable allTermScore = {};
+    @observable curTerm;
 
     @action
     fetchEducationScore = async (params, force) => {
@@ -28,8 +28,8 @@ class ScoreQueryStore {
             await saveToStorage(educationScoreStorageKey, data);
 
             runInAction(() => {
-                this.scoreInfo = data;
-                this.curScoreTerm = this.scoreTerms[this.scoreTerms.length - 1];
+                this.allTermScore = this.formatedScore(data);
+                this.curTerm = this.allTerms[this.allTerms.length - 1];
             });
         } catch (e) {
             console.error(e);
@@ -37,13 +37,12 @@ class ScoreQueryStore {
     };
 
     @action
-    setCurScoreTerm = (value) => {
-        this.curScoreTerm = value;
+    setCurTerm = (value) => {
+        this.curTerm = value;
     };
 
-    @computed
-    get formatedScoreInfo() {
-        return this.scoreInfo.reduce((acc, cur) => {
+    formatedScore(infos) {
+        return infos.reduce((acc, cur) => {
             const key = `${cur.year}#${cur.term}`; // 2014-2015#1
             if (!acc[key]) {
                 acc[key] = [];
@@ -54,16 +53,16 @@ class ScoreQueryStore {
     }
 
     @computed
-    get curScoreInfo() {
-        if (!this.scoreTerms.length) return {};
-        const key = this.curScoreTerm || this.scoreTerms[this.scoreTerms.length - 1];
+    get curTermScore() {
+        if (!this.allTerms.length) return {};
+        const key = this.curTerm || this.allTerms[this.allTerms.length - 1];
 
-        return this.formatedScoreInfo[key];
+        return this.allTermScore[key];
     }
 
     @computed
-    get scoreTerms() {
-        const keys = Object.keys(this.formatedScoreInfo);
+    get allTerms() {
+        const keys = Object.keys(this.allTermScore);
         
         keys.sort();
         return keys;

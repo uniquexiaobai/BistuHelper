@@ -1,14 +1,19 @@
 import React, {Component} from 'react';
 import {observer, inject} from 'mobx-react';
-import {StyleSheet, TouchableOpacity, ScrollView, View, Text, Picker} from 'react-native';
-import {Accordion, Toast} from 'antd-mobile';
+import {StyleSheet, TouchableOpacity, ScrollView, View, Text} from 'react-native';
+import {Accordion, Toast, Picker, List} from 'antd-mobile';
 
 import {RefreshNavBar} from '../../components/nav-bar';
 import {getFromStorage} from '../../utils/storage';
 import {colors} from '../../constants/colors';
 import CustomAccordionStyle from '../../styles/accordion';
+import ListItemStyle from 'antd-mobile/lib/list/style/index.native';
 
 const educationAccountStorageKey = 'BistuHelper__education__account';
+
+const PickerBody = ({extra, onClick}) => (
+    <List.Item styles={CustomListItemStyle} extra='请选择' onClick={onClick}>{extra}</List.Item>
+);
 
 @inject('scoreQueryStore')
 @observer
@@ -53,14 +58,20 @@ class ScoreQuery extends Component {
         }
     }
 
-    render() {
-        const {setCurScoreTerm, scoreTerms = [], curScoreTerm, curScoreInfo} = this.props.scoreQueryStore;
-        const userInfo = this.userInfo || {};
-        const pickerData = scoreTerms.map(value => {
-            const keys = value.split('#');
+    getTermLabel = (value) => {
+        if (!value || value.length < 2) return '';
+        const keys = value.split('#');
 
+        return `${keys[0]}学年 第${keys[1]}学期`;
+    }
+
+    render() {
+        const {setCurTerm, allTerms = [], curTerm, curTermScore} = this.props.scoreQueryStore;
+        const userInfo = this.userInfo || {};
+        const curTermLabel = this.getTermLabel(curTerm);
+        const pickerData = allTerms.map(value => {
             return {
-                label: `${keys[0]}学年 第${keys[1]}学期`,
+                label: this.getTermLabel(value),
                 value,
             };
         });
@@ -69,7 +80,7 @@ class ScoreQuery extends Component {
             <View style={{paddingTop: 15, paddingLeft: 5, paddingRight: 5, flex: 1}}>
                 {
                     userInfo.name ? (
-                        <View style={{marginBottom: 15, paddingLeft: 5}}>
+                        <View style={{marginBottom: 5, paddingLeft: 5}}>
                             <Text style={styles.scoreQuery__top}>{`${userInfo.name} ${userInfo.major}`}</Text>
                         </View>
                     ) : null
@@ -78,13 +89,14 @@ class ScoreQuery extends Component {
                 {
                     pickerData.length ? (
                         <View>
-                            <Picker 
-                                selectedValue={curScoreTerm}
-                                onValueChange={value => setCurScoreTerm(value)}
+                            <Picker
+                                data={pickerData} 
+                                cols={1}
+                                value={[curTerm]}
+                                onOk={val => setCurTerm(val[0])}
+                                title='选择学期'
                             >
-                                {pickerData.map(({label, value}) => (
-                                    <Picker.Item key={value} label={label} value={value}/>
-                                ))}
+                                <PickerBody/>
                             </Picker>
                         </View>
                     ) : null
@@ -92,10 +104,10 @@ class ScoreQuery extends Component {
 
                 <ScrollView>
                     {
-                        curScoreInfo.length ? (
+                        curTermScore.length ? (
                             <Accordion styles={CustomAccordionStyle}>
                                 {
-                                    curScoreInfo.map(score => (
+                                    curTermScore.map(score => (
                                         <Accordion.Panel key={score.courseID} header={score.name}>
                                             <Text>课程代码：</Text>
                                             <Text> {score.courseID}</Text>{'\n'}
@@ -118,6 +130,29 @@ class ScoreQuery extends Component {
         );
     }
 }
+
+const CustomListItemStyle = {
+    ...ListItemStyle,
+    Item: {
+        ...ListItemStyle.Item,
+        paddingLeft: 5,
+    },
+    Line: {
+        ...ListItemStyle.Line,
+        paddingRight: 20,
+        borderBottomWidth: 0,
+        justifyContent: 'space-between',
+    },
+    column: {},
+    Content: {
+        ...ListItemStyle.Content,
+        color: colors.color_text_base,
+    },
+    Extra: {
+        ...ListItemStyle.Extra,
+        color: colors.fill_gray,
+    }
+};
 
 const styles = StyleSheet.create({
     scoreQuery__top: {
