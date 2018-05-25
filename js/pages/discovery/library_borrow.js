@@ -37,7 +37,7 @@ class LibraryBorrow extends Component {
             if (!data) {
                 data = await fetchLibraryBorrow(params);
             }
-            if (!data || !data.length) return;
+            if (!data) return;
             
             await saveToStorage(libraryBorrowInfoStorageKey, data);
 
@@ -89,34 +89,26 @@ class LibraryBorrow extends Component {
 
         return (
             <View style={{paddingTop: 15, paddingLeft: 5, paddingRight: 5}}>
-                {
-                    books.length ? (
-                        <View style={{marginBottom: 15, paddingLeft: 5}}>
-                            <Text style={styles.libraryBorrow__top}>{`${user.name}（${user.department}），目前借书 ${books.length} 本`}</Text>
-                        </View>
-                    ) : null
-                }
+                <View style={{marginBottom: 15, paddingLeft: 5}}>
+                    <Text style={styles.libraryBorrow__top}>{`${user.name}（${user.department}），目前借书 ${books.length} 本`}</Text>
+                </View>
 
-                {
-                    books.length ? (
-                        <Accordion styles={CustomAccordionStyle}>
-                            {
-                                books.map(book => (
-                                    <Accordion.Panel key={book.barCode} header={book.name}>
-                                        <Text>    条码号：</Text>
-                                        <Text> {book.barCode}</Text>{'\n'}
-                                        <Text>借阅日期：</Text>
-                                        <Text> {book.fromDate}</Text>{'\n'}
-                                        <Text>应还日期：</Text>
-                                        <Text> {book.toDate}</Text>{'\n'}
-                                        <Text>    馆藏地：</Text>
-                                        <Text> {book.address}</Text>
-                                    </Accordion.Panel>
-                                ))
-                            }
-                        </Accordion>
-                    ) : null
-                }
+                <Accordion styles={CustomAccordionStyle}>
+                    {
+                        books.map(book => (
+                            <Accordion.Panel key={book.barCode} header={book.name}>
+                                <Text>    条码号：</Text>
+                                <Text> {book.barCode}</Text>{'\n'}
+                                <Text>借阅日期：</Text>
+                                <Text> {book.fromDate}</Text>{'\n'}
+                                <Text>应还日期：</Text>
+                                <Text> {book.toDate}</Text>{'\n'}
+                                <Text>    馆藏地：</Text>
+                                <Text> {book.address}</Text>
+                            </Accordion.Panel>
+                        ))
+                    }
+                </Accordion>
             </View>
         );
     }
