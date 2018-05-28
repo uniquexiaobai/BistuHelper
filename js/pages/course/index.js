@@ -87,7 +87,7 @@ class Courses extends Component {
 
         const values = dates.map(date => {
             const wValue = weekMap[date.day()];
-            const dValue = date.date() === 1 ? `${date.month + 1}月` : `${date.date()}日`;
+            const dValue = date.date() === 1 ? `${date.month() + 1}月` : `${date.date()}日`;
 
             return [wValue, dValue];
         });
