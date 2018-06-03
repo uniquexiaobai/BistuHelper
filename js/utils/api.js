@@ -11,6 +11,7 @@ const educationBaseUrl = `${baseUrl}/api/education/base`;
 const cetQueryUrl = `${baseUrl}/api/education/cet`;
 const scoreQueryUrl = `${baseUrl}/api/education/score`;
 const courseListUrl = `${baseUrl}/api/education/course`;
+const userLoginUrl = `${baseUrl}/api/account/login`;
 
 const defaultOptions = {
     method: 'POST',
@@ -44,6 +45,8 @@ const getCreater = (url) => async () => {
         throw err;
     }
 };
+
+export const userLogin = postCreater(userLoginUrl);
 
 export const fetchCourseList = postCreater(courseListUrl);
 
