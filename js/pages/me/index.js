@@ -136,8 +136,9 @@ class Me extends Component {
 
     shareApp = () => {
         Share.share({
-            title: '',
-            message: 'BistuHelper',
+            title: 'bistuhelper',
+            message: 'welcome to bistuhelper',
+            url: 'https://bistuhelper.cn', // ios only
         });
     };
 }
