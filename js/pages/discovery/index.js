@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     discovery: {
         flex: 1,
         flexDirection: 'row',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
     },
     touchView: {
         borderColor: colors.border_color_base,

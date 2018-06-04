@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {observer, inject} from 'mobx-react';
 import {StyleSheet, Share, Text, View} from 'react-native';
 import {List, Card, Button} from 'antd-mobile';
 import MDIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -8,9 +9,15 @@ import {colors} from '../../constants/colors';
 import {feedbackUrl, aboutMeUrl} from '../../constants/url';
 import {openURL} from '../../utils/linking';
 import StatusBar from '../../components/status-bar';
+import {handleError} from '../../utils/error';
 
 import {CustomSmallButtonStyle} from '../../styles/button';
+import ListStyle from 'antd-mobile/lib/list/style/index.native';
 
+const accountStorageKey = 'BistuHelper__account';
+
+@inject('accountStore')
+@observer
 class Me extends Component {
     static navigationOptions = {
         header: <StatusBar/>,
@@ -29,31 +36,38 @@ class Me extends Component {
     );
 
     render() {
+        const {currentAccount} = this.props.accountStore;
+        // console.warn(currentAccount);
+
         return (
-            <View>
-                <View style={{paddingLeft: 20, marginTop: 20}}>
-                    <View style={{marginBottom: 10}}>
-                        <Text style={{fontSize: 20, color: colors.color_text_base}}>欢迎来到掌上北信科</Text>    
-                    </View>
+            <View style={styles.me}>
+                {
+                    currentAccount ? (
+                        <View style={{marginTop: 20}}>
+                            <Card full style={{borderWidth: 0}}>
+                                <Card.Header
+                                    title={currentAccount.nickname}
+                                    thumb={currentAccount.figureurl}
+                                    thumbStyle={{width: 60, height: 60, borderRadius: 30, marginRight: 10}}
+                                />
+                            </Card>
+                        </View>
+                    ) : (
+                        <View style={{padding: 20, marginTop: 20, backgroundColor: colors.fill_base}}>
+                            <View style={{marginBottom: 10}}>
+                                <Text style={{fontSize: 20, color: colors.color_text_base}}>欢迎来到掌上北信科</Text>    
+                            </View>
 
-                    <View style={{flexDirection: 'row'}}>
-                        <Button type="primary" size="small" styles={CustomSmallButtonStyle} style={{marginRight: 15}} onClick={() => this.routeTo('SignIn')}>登陆</Button>
-                        <Button type="ghost" size="small" styles={CustomSmallButtonStyle} onClick={() => this.routeTo('SignUp')}>注册</Button>
-                    </View>
-                </View>
-
-                {/* <View style={{marginTop: 20}}>
-                    <Card full style={{paddingBottom: 0, paddingLeft: 5}}>
-                        <Card.Header
-                            title="公子小白"
-                            thumb="http://7xp8de.com1.z0.glb.clouddn.com/logo.png"
-                            thumbStyle={{width: 60, height: 60, borderRadius: 30, marginRight: 10}}
-                        />
-                    </Card>
-                </View> */}
+                            <View style={{flexDirection: 'row'}}>
+                                <Button type="primary" size="small" styles={CustomSmallButtonStyle} style={{marginRight: 15}} onClick={() => this.routeTo('SignIn')}>登陆</Button>
+                                <Button type="ghost" size="small" styles={CustomSmallButtonStyle} onClick={() => this.routeTo('SignUp')}>注册</Button>
+                            </View>
+                        </View>
+                    )
+                }
 
                 <View style={{marginTop: 20}}>
-                    <List style={{marginBottom: 20}}>
+                    <List styles={CustomListStyle}>
                         <List.Item 
                             arrow="horizontal"
                             thumb={<this.itemThumbView type='school' />}
@@ -120,5 +134,24 @@ class Me extends Component {
         });
     };
 }
+
+const CustomListStyle = {
+    ...ListStyle,
+    Body: {
+        ...ListStyle.Body,
+        borderTopWidth: 0,
+    },
+    BodyBottomLine: {
+        ...ListStyle.BodyBottomLine,
+        borderBottomWidth: 0,
+    }
+}
+
+const styles = StyleSheet.create({
+    me: {
+        flex: 1,
+        backgroundColor: colors.fill_body,
+    },
+});
 
 export default Me;
