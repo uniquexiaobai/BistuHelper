@@ -6,6 +6,7 @@ import {accountStorageKey} from '../../../constants/storage';
 
 class AccountStore {
     @observable account;
+    @observable signInModalVisible = false;
 
     constructor() {
         this.initAccount();
@@ -23,6 +24,11 @@ class AccountStore {
             handleError(err);
         }
     };
+
+    @action
+    setSignInModalVisible = (visible) => {
+        this.signInModalVisible = visible;
+    }
 
     @computed
     get currentAccount() {

@@ -4,17 +4,16 @@ import {StyleSheet, Share, Text, View} from 'react-native';
 import {List, Card, Button} from 'antd-mobile';
 import MDIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import SignInModal from './sign-in_modal';
 import Icon from '../../components/icon';
+import StatusBar from '../../components/status-bar';
 import {colors} from '../../constants/colors';
 import {feedbackUrl, aboutMeUrl} from '../../constants/url';
 import {openURL} from '../../utils/linking';
-import StatusBar from '../../components/status-bar';
 import {handleError} from '../../utils/error';
 
 import {CustomSmallButtonStyle} from '../../styles/button';
 import ListStyle from 'antd-mobile/lib/list/style/index.native';
-
-const accountStorageKey = 'BistuHelper__account';
 
 @inject('accountStore')
 @observer
@@ -41,6 +40,8 @@ class Me extends Component {
 
         return (
             <View style={styles.me}>
+                <SignInModal/>
+
                 {
                     currentAccount ? (
                         <View style={{marginTop: 20}}>
@@ -59,8 +60,8 @@ class Me extends Component {
                             </View>
 
                             <View style={{flexDirection: 'row'}}>
-                                <Button type="primary" size="small" styles={CustomSmallButtonStyle} style={{marginRight: 15}} onClick={() => this.routeTo('SignIn')}>登陆</Button>
-                                <Button type="ghost" size="small" styles={CustomSmallButtonStyle} onClick={() => this.routeTo('SignUp')}>注册</Button>
+                                <Button type="primary" size="small" styles={CustomSmallButtonStyle} style={{marginRight: 15}} onClick={() => this.signIn()}>登陆</Button>
+                                <Button type="ghost" size="small" styles={CustomSmallButtonStyle} onClick={() => this.signIn()}>注册</Button>
                             </View>
                         </View>
                     )
@@ -126,6 +127,12 @@ class Me extends Component {
 
         navigate(routeName);
     };
+
+    signIn = () => {
+        const {setSignInModalVisible} = this.props.accountStore;
+
+        setSignInModalVisible(true);
+    }
 
     shareApp = () => {
         Share.share({
