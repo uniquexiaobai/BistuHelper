@@ -9,6 +9,7 @@ const libraryBaseUrl = `${baseUrl}/api/library/base`;
 const libraryBorrowUrl = `${baseUrl}/api/library/borrow`;
 const educationBaseUrl = `${baseUrl}/api/education/base`;
 const cetQueryUrl = `${baseUrl}/api/education/cet`;
+const examQueryUrl = `${baseUrl}/api/education/exam`;
 const scoreQueryUrl = `${baseUrl}/api/education/score`;
 const courseListUrl = `${baseUrl}/api/education/course`;
 const userLoginUrl = `${baseUrl}/api/account/login`;
@@ -57,6 +58,8 @@ export const fetchLibraryBorrow = postCreater(libraryBorrowUrl);
 export const fetchEducationBase = postCreater(educationBaseUrl);
 
 export const fetchEducationCet = postCreater(cetQueryUrl);
+
+export const fetchEducationExam = postCreater(examQueryUrl);
 
 export const fetchEducationScore = postCreater(scoreQueryUrl);
 

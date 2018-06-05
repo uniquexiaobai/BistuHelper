@@ -15,6 +15,7 @@ import ScoreQuery from './score-query';
 import SchoolBus from './school_bus';
 import SchoolMap from './school_map';
 import SiteWiki from './site-wiki';
+import ExamQuery from './exam-query';
 
 const discoveryRoutes = {
     Library: {
@@ -68,6 +69,9 @@ const discoveryRoutes = {
     SiteWiki: {
         screen: SiteWiki,
     },
+    ExamQuery: {
+        screen: ExamQuery,
+    }
 };
 
 export default discoveryRoutes;

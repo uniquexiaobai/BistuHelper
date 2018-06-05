@@ -34,19 +34,20 @@ class Discovery extends Component {
                 routeName: 'ScoreQuery',
                 name: '成绩查询',
                 logo: require("../../../assets/images/discovery/score-query.png"),
-            }, 
+            },
             {
                 routeName: 'CetQuery',
                 name: '四六级查询',
                 logo: require("../../../assets/images/discovery/cet-query.png"),
             },
             {
+                routeName: 'ExamQuery',
                 name: '考试查询',
-                logo: require("../../../assets/images/discovery/notice.png"),
+                logo: require("../../../assets/images/discovery/exam.png"),
             }, 
             {
                 name: '空闲教室',
-                logo: require("../../../assets/images/discovery/school-news.png"),
+                logo: require("../../../assets/images/discovery/school-room.png"),
             },
             {
                 name: '新生专栏',
@@ -123,7 +124,7 @@ class Discovery extends Component {
         const {navigate} = this.props.navigation;
 
         if (!item.routeName) {
-            return Toast.info(`${item.name} 开发中`, 1);
+            return Toast.info(`${item.name} 开发中，敬请期待`, 1);
         }
         navigate(item.routeName);
     }
