@@ -98,13 +98,13 @@ class LibraryBorrow extends Component {
                         books.map(book => (
                             <Accordion.Panel key={book.barCode} header={book.name}>
                                 <Text>    条码号：</Text>
-                                <Text> {book.barCode}</Text>{'\n'}
+                                <Text>{book.barCode}</Text>{'\n'}
                                 <Text>借阅日期：</Text>
-                                <Text> {book.fromDate}</Text>{'\n'}
+                                <Text>{book.fromDate}</Text>{'\n'}
                                 <Text>应还日期：</Text>
-                                <Text> {book.toDate}</Text>{'\n'}
+                                <Text>{book.toDate}</Text>{'\n'}
                                 <Text>    馆藏地：</Text>
-                                <Text> {book.address}</Text>
+                                <Text>{book.address}</Text>
                             </Accordion.Panel>
                         ))
                     }

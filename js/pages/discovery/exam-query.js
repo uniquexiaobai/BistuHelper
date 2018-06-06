@@ -69,14 +69,14 @@ class ExamQuery extends Component {
                                     <Accordion.Panel key={exam.course} header={exam.course}>
                                         <Text>考试科目：</Text>
                                         <Text> {exam.course}</Text>{'\n'}
-                                        <Text>考试人：</Text>
-                                        <Text> {exam.name}</Text>{'\n'}
+                                        <Text>    考试人：</Text>
+                                        <Text>{exam.name}</Text>{'\n'}
                                         <Text>考试时间：</Text>
-                                        <Text> {exam.date}</Text>{'\n'}
+                                        <Text>{exam.date}</Text>{'\n'}
                                         <Text>考试地点：</Text>
-                                        <Text> {exam.address}</Text>{'\n'}
-                                        <Text>座位号：</Text>
-                                        <Text> {exam.seatNo}</Text>
+                                        <Text>{exam.address}</Text>{'\n'}
+                                        <Text>    座位号：</Text>
+                                        <Text>{exam.seatNo}</Text>
                                     </Accordion.Panel>
                                 ))
                             }
