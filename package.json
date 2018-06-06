@@ -10,7 +10,6 @@
     "antd-mobile": "^2.1.8",
     "axios": "^0.18.0",
     "dayjs": "^1.5.24",
-    "leancloud-storage": "^3.6.8",
     "mobx": "^4.1.0",
     "mobx-react": "^5.0.0",
     "prop-types": "^15.6.1",

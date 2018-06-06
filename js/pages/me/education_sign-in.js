@@ -4,7 +4,6 @@ import {createForm} from 'rc-form';
 import {Toast, InputItem, Button} from 'antd-mobile';
 
 import {BackNavBar} from '../../components/nav-bar';
-import {user_signUp} from '../../utils/leancloud';
 import {getFromStorage, saveToStorage} from '../../utils/storage';
 import {fetchEducationBase} from '../../utils/api';
 
