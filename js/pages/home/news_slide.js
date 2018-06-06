@@ -7,14 +7,10 @@ import {Carousel} from 'antd-mobile';
 @inject('newsSlideStore')
 @observer
 class NewsHot extends Component {
-    async componentDidMount() {
-        try {
-            const {fetchNewsSlide} = this.props.newsSlideStore;
+    componentDidMount() {
+        const {fetchNewsSlide} = this.props.newsSlideStore;
 
-            await fetchNewsSlide();
-        } catch (err) {
-            console.warn(err);
-        }
+        fetchNewsSlide();
     }
 
     render() {
