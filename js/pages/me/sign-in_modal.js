@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {observer, inject} from 'mobx-react';
 import * as QQAPI from 'react-native-qq';
+import * as WeiboAPI from 'react-native-weibo';
 import {StyleSheet, TouchableOpacity, View, Image, Text} from 'react-native';
 import {Modal} from 'antd-mobile';
 
@@ -38,11 +39,11 @@ class SignInModal extends Component {
 
                         <TouchableOpacity style={{marginLeft: 40}}
                             activeOpacity={1}
-                            onPress={() => {}}
+                            onPress={() => this.signIn0()}
                         >
                             <View>
                                 <Image style={styles.signIn__icon} source={require('../../../assets/images/me/wechat.png')}/>
-                                <Text style={styles.signIn__desc}>微信登录</Text>
+                                <Text style={styles.signIn__desc}>微博登录</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -50,6 +51,25 @@ class SignInModal extends Component {
             </Modal>
         );
     }
+
+    signIn0 = async () => {
+        const {setSignInModalVisible, login} = this.props.accountStore;
+
+        try {
+            const {userID, accessToken} = await WeiboAPI.login();
+            const loggedInUser = await userLogin({
+                loginType: 'weibo',
+                openid: userID,
+                access_token: accessToken,
+            });
+            
+            await login(loggedInUser);
+            setSignInModalVisible(false);
+        } catch (err) {
+            setSignInModalVisible(false);
+            handleError(err);
+        }
+    };
 
     signIn = async () => {
         const {setSignInModalVisible, login} = this.props.accountStore;
@@ -69,7 +89,7 @@ class SignInModal extends Component {
             setSignInModalVisible(false);
             handleError(err);
         }
-    }
+    };
 }
 
 const styles = StyleSheet.create({

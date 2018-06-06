@@ -4300,6 +4300,10 @@ react-native-vector-icons@^4.5.0:
     prop-types "^15.5.10"
     yargs "^8.0.2"
 
+"react-native-weibo@https://github.com/uniquexiaobai/react-native-weibo.git":
+  version "3.0.4"
+  resolved "https://github.com/uniquexiaobai/react-native-weibo.git#53979370b60953ee49b28ef9b8b482b657552ddd"
+
 react-native@^0.55.4:
   version "0.55.4"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.55.4.tgz#eecffada3750a928e2ddd07cf11d857ae9751c30"
