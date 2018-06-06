@@ -66,7 +66,7 @@ class Courses extends Component {
             if (showLoading) {
                 Toast.loading('', 0);
             }
-            await fetchAllWeekCourses({username, password}, force);
+            await fetchAllWeekCourses({username, password, schoolYear: '2017-2018#2'}, force);
             Toast.hide();
         } catch (err) {
             console.warn(err);
