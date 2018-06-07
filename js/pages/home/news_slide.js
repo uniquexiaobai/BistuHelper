@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {observer, inject} from 'mobx-react';
 
-import {StyleSheet, TouchableOpacity, View, Text, Image} from 'react-native';
+import {StyleSheet, TouchableOpacity, View, Image} from 'react-native';
 import {Carousel} from 'antd-mobile';
 
 @inject('newsSlideStore')

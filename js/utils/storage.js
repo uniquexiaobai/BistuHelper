@@ -5,9 +5,11 @@ import {handleError} from './error';
 export const getFromStorage = async (key) => {
     try {
         const value = await AsyncStorage.getItem(key);
-        const data = JSON.parse(value);
-
-        return data;
+        
+        if (value) {
+            return JSON.parse(value)
+        }
+        return value;
     } catch (err) {
         handleError(err);
     }

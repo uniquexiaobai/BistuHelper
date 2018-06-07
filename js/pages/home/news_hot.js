@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {observer, inject} from 'mobx-react';
 import {StyleSheet, TouchableHighlight, View, Text} from 'react-native';
-import {List} from 'antd-mobile';
 
 import {colors} from '../../constants/colors'
 

@@ -2,6 +2,8 @@ import qs from 'qs';
 import axios from 'axios';
 
 import {apiBaseUrl as baseUrl} from '../constants/url';
+import {getFromStorage, saveToStorage} from './storage';
+import {handleError} from './error';
 
 const newsHotUrl = `${baseUrl}/api/news/hot`;
 const newsSlideUrl = `${baseUrl}/api/news/slide`;
@@ -31,19 +33,35 @@ const postCreater = (url) => async (body) => {
 
         return data.data;
     } catch (err) {
-        throw err;
+        handleError(err);
     }
 };
 
+// staleWhileRevalidate
 const getCreater = (url) => async () => {
     try {
+        const oldData = await getFromStorage(url);
+        if (oldData) {
+            axios.get(url)
+                .then(({data = {}}) => {
+                    if (data.code === 0) {
+                        saveToStorage(url, data.data);
+                    }
+                })
+                .catch(err => {
+                    handleError(err);
+                });
+            return oldData;
+        }
+        
         const {data = {}} = await axios.get(url);
-
         if (data.code === 1) throw new Error(data.message);
+
+        saveToStorage(url, data.data)
 
         return data.data;
     } catch (err) {
-        throw err;
+        handleError(err);
     }
 };
 
@@ -74,7 +92,7 @@ export const fetchNewsList = async({type = 'zhxw', page = 1}) => {
         const data = await getCreater(url)();
         return data;
     } catch (err) {
-        throw err;
+        handleError(err);
     }
 }
 
@@ -85,6 +103,6 @@ export const fetchNewsDetail = async (newsId) => {
         const data = await getCreater(url)();
         return data;
     } catch (err) {
-        throw err;
+        handleError(err);
     }
 };

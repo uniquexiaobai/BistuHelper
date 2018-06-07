@@ -1,4 +1,4 @@
 
-export default handleError = (err) => {
-    console.error(err);
+export const handleError = (err) => {
+    console.warn('handleError' + err);
 };
