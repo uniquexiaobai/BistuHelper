@@ -41,8 +41,8 @@ class SignInModal extends Component {
                             activeOpacity={1}
                             onPress={() => this.signIn0()}
                         >
-                            <View>
-                                <Image style={styles.signIn__icon} source={require('../../../assets/images/me/wechat.png')}/>
+                            <View style={styles.signIn__block}>
+                                <Image style={styles.signIn__icon} source={require('../../../assets/images/me/weibo.png')}/>
                                 <Text style={styles.signIn__desc}>微博登录</Text>
                             </View>
                         </TouchableOpacity>
@@ -53,22 +53,22 @@ class SignInModal extends Component {
     }
 
     signIn0 = async () => {
-        const {setSignInModalVisible, login} = this.props.accountStore;
+        // const {setSignInModalVisible, login} = this.props.accountStore;
 
-        try {
-            const {userID, accessToken} = await WeiboAPI.login();
-            const loggedInUser = await userLogin({
-                loginType: 'weibo',
-                openid: userID,
-                access_token: accessToken,
-            });
+        // try {
+        //     const {userID, accessToken} = await WeiboAPI.login();
+        //     const loggedInUser = await userLogin({
+        //         loginType: 'weibo',
+        //         openid: userID,
+        //         access_token: accessToken,
+        //     });
             
-            await login(loggedInUser);
-            setSignInModalVisible(false);
-        } catch (err) {
-            setSignInModalVisible(false);
-            handleError(err);
-        }
+        //     await login(loggedInUser);
+        //     setSignInModalVisible(false);
+        // } catch (err) {
+        //     setSignInModalVisible(false);
+        //     handleError(err);
+        // }
     };
 
     signIn = async () => {

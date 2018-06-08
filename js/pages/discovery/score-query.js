@@ -113,11 +113,11 @@ class ScoreQuery extends Component {
                                             <Text> {score.courseID}</Text>{'\n'}
                                             <Text>课程性质：</Text>
                                             <Text> {score.type}</Text>{'\n'}
-                                            <Text>学分：</Text>
+                                            <Text>        学分：</Text>
                                             <Text> {score.credit}</Text>{'\n'}
-                                            <Text>成绩：</Text>
+                                            <Text>        成绩：</Text>
                                             <Text> {score.score}</Text>{'\n'}
-                                            <Text>绩点：</Text>
+                                            <Text>        绩点：</Text>
                                             <Text> {score.point}</Text>
                                         </Accordion.Panel>
                                     ))

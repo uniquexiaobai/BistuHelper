@@ -44,7 +44,7 @@ class ExamQuery extends Component {
             }
 
             Toast.loading('', 0);
-            fetchEducationExam({username, password}, force);
+            await fetchEducationExam({username, password, schoolYear: '2017-2018#2'}, force);
             Toast.hide();
         } catch (err) {
             console.warn(err);
@@ -69,13 +69,13 @@ class ExamQuery extends Component {
                                         <Text>考试科目：</Text>
                                         <Text> {exam.course}</Text>{'\n'}
                                         <Text>    考试人：</Text>
-                                        <Text>{exam.name}</Text>{'\n'}
+                                        <Text> {exam.name}</Text>{'\n'}
                                         <Text>考试时间：</Text>
-                                        <Text>{exam.date}</Text>{'\n'}
+                                        <Text> {exam.date}</Text>{'\n'}
                                         <Text>考试地点：</Text>
-                                        <Text>{exam.address}</Text>{'\n'}
+                                        <Text> {exam.address}</Text>{'\n'}
                                         <Text>    座位号：</Text>
-                                        <Text>{exam.seatNo}</Text>
+                                        <Text> {exam.seatNo}</Text>
                                     </Accordion.Panel>
                                 ))
                             }
