@@ -1,5 +1,5 @@
 import React from 'react';
-import {MenuProvider, Menu, MenuOptions, MenuOption, MenuTrigger} from 'react-native-popup-menu';
+import {Menu, MenuOptions, MenuOption, MenuTrigger} from 'react-native-popup-menu';
 import {StyleSheet} from 'react-native';
 
 import Icon from './icon';

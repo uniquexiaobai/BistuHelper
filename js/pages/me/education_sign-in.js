@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import {createForm} from 'rc-form';
 import {Toast, InputItem, Button} from 'antd-mobile';
 

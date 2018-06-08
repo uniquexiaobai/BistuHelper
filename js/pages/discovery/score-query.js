@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {observer, inject} from 'mobx-react';
-import {StyleSheet, TouchableOpacity, ScrollView, View, Text} from 'react-native';
+import {StyleSheet, ScrollView, View, Text} from 'react-native';
 import {Accordion, Toast, Picker, List} from 'antd-mobile';
 
 import {RefreshNavBar} from '../../components/nav-bar';

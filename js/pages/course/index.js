@@ -8,7 +8,6 @@ import {getFromStorage} from '../../utils/storage';
 import {range} from '../../utils/array';
 import {getCurWeekDates, getCurTerm, getCurWeek, getCurDay} from '../../utils/date';
 import {colors} from '../../constants/colors';
-import {EmptyNavbar} from '../../components/nav-bar'
 import StatusBar from '../../components/status-bar';
 
 const educationAccountStorageKey = 'BistuHelper__education__account';

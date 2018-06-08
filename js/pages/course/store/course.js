@@ -1,4 +1,4 @@
-import {observable, action, runInAction, computed, set, autorun} from 'mobx';
+import {observable, action, runInAction, computed} from 'mobx';
 
 import {fetchCourseList} from '../../../utils/api';
 import {getFromStorage, saveToStorage} from '../../../utils/storage';

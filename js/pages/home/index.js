@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, ScrollView, View, Text} from 'react-native';
+import {StyleSheet, ScrollView, View} from 'react-native';
 
 import NewsSlide from './news_slide';
 import NewsHot from './news_hot';

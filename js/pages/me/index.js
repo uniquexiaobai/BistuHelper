@@ -10,7 +10,6 @@ import StatusBar from '../../components/status-bar';
 import {colors} from '../../constants/colors';
 import {feedbackUrl, aboutMeUrl} from '../../constants/url';
 import {openURL} from '../../utils/linking';
-import {handleError} from '../../utils/error';
 
 import {CustomSmallButtonStyle} from '../../styles/button';
 import ListStyle from 'antd-mobile/lib/list/style/index.native';

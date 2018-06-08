@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {observer, inject} from 'mobx-react';
-import {AsyncStorage, View, Text} from 'react-native';
+import {View} from 'react-native';
 import {Toast, List} from 'antd-mobile';
 const {Item} = List;
 

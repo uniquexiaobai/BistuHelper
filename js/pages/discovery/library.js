@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {observable, action} from 'mobx';
 import {observer} from 'mobx-react';
 import {BackHandler, WebView, View, Text} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 
 import {MoreNavBar} from '../../components/nav-bar';
 

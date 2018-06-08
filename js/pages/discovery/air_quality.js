@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {WebView, View, Text} from 'react-native';
+import {WebView} from 'react-native';
 import {Toast} from 'antd-mobile';
 
 import {BackNavBar} from '../../components/nav-bar';

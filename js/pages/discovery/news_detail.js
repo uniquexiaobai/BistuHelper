@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {observable, action, runInAction} from 'mobx';
 import {observer} from 'mobx-react';
 import {StyleSheet, ScrollView, View, Text, Image} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 import {Toast} from 'antd-mobile';
 
 import {BackNavBar} from '../../components/nav-bar';

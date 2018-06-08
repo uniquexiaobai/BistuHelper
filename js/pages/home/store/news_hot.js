@@ -1,4 +1,4 @@
-import {observable, action, runInAction, autorun} from 'mobx';
+import {observable, action, runInAction} from 'mobx';
 
 import {fetchNewsHot} from '../../../utils/api';
 import {handleError} from '../../../utils/error';
