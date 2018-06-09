@@ -12,15 +12,13 @@ class SchoolNews extends Component {
         }}/>
     });
 
-    renderContent = (tab, index) => (
+    renderContent = (tab) => (
         <View>
             <NewsList type={tab.type} navigation={this.props.navigation}/>
         </View>
     );
 
     render() {
-        const {navigation} = this.props;
-
         const tabs = [
             { title: '综合新闻', type: 'zhxw' },
             { title: '图片新闻', type: 'tpxw' },
