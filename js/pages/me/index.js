@@ -55,7 +55,7 @@ class Me extends Component {
                     ) : (
                         <View style={{padding: 20, marginTop: 20, backgroundColor: colors.fill_base}}>
                             <View style={{marginBottom: 10}}>
-                                <Text style={{fontSize: 20, color: colors.color_text_base}}>欢迎来到掌上北信科</Text>    
+                                <Text style={{fontSize: 20, color: colors.color_text_base}}>欢迎来到北信科助手</Text>    
                             </View>
 
                             <View style={{flexDirection: 'row'}}>
