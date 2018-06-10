@@ -1,5 +1,6 @@
 import {AppRegistry} from 'react-native';
 import {YellowBox} from 'react-native';
+import CodePush from 'react-native-code-push';
 
 import Root from './js/root';
 
@@ -12,4 +13,6 @@ YellowBox.ignoreWarnings([
     'Class RCTCxxModule',
 ]);
 
-AppRegistry.registerComponent('BistuHelper', () => Root);
+const App = CodePush(Root);
+
+AppRegistry.registerComponent('BistuHelper', () => App);
